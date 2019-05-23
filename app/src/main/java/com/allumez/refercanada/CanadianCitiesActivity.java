@@ -7,6 +7,8 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,6 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -46,8 +51,31 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        showJSON(response);
 
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            int abc = Integer.parseInt(obj.getString("status"));
+                            Log.e("===", String.valueOf(abc));
+                            if (abc !=1 )
+                            {
+                                Toast.makeText(CanadianCitiesActivity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
+                            }
+                            else if (abc == 1)
+                            {
+                                showJSON(response);
+                                listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                        Toast.makeText(CanadianCitiesActivity.this, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(CanadianCitiesActivity.this,CanadianCitiesCategoryActivity.class);
+                                        intent.putExtra("pos",position);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -66,5 +94,6 @@ public class CanadianCitiesActivity extends AppCompatActivity {
         jsonHolderListing.parseJSON();
         CanadianCitiesAdpater ca = new CanadianCitiesAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
         listViewCities.setAdapter(ca);
+        ca.notifyDataSetChanged();
     }
 }

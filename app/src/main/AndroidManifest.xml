@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CanadianCitiesActivity"></activity>
+        <activity android:name=".CanadianCitiesCategoryListActivity"></activity>
+        <activity android:name=".CanadianCitiesCategoryActivity" />
+        <activity android:name=".CanadianCitiesActivity" />
         <activity android:name=".CanadianListingActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

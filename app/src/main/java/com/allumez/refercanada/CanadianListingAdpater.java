@@ -60,7 +60,7 @@ public class CanadianListingAdpater extends BaseAdapter{
 
 
         TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
-        ImageView t3=(ImageView) convertView.findViewById(R.id.imageViewCity);
+//        ImageView t3=(ImageView) convertView.findViewById(R.id.imageViewCity);
 
         String url=null;
         for (int i = 0;i<image.length;i++)
@@ -68,11 +68,11 @@ public class CanadianListingAdpater extends BaseAdapter{
             t1.setText(name[position]);
             url= "http://refercanada.com/uploads/states_img/"+image[position];
 
-            Glide.with(c)
-                    .load(url)
-                    .centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(t3);
+//            Glide.with(c)
+//                    .load(url)
+//                    .centerCrop()
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(t3);
         }
 
 
