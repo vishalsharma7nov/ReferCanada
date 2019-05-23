@@ -87,6 +87,6 @@ public class CanadianListingActivity extends AppCompatActivity{
         jsonHolderListing.parseJSON();
         CanadianListingAdpater ca = new CanadianListingAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image,jsonHolderListing.status);
         listView.setAdapter(ca);
-        ca.notifyDataSetChanged();  
+        ca.notifyDataSetChanged();
     }
 }
