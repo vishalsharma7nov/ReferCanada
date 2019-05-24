@@ -32,12 +32,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CanadianCitiesActivity extends AppCompatActivity {
     ListView listViewCities;
     String url;
+    JsonHolderListing jsonHolderListing;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canadian_cities);
         Intent intent = getIntent();
-        String a = String.valueOf(intent.getIntExtra("pos",0)+1);
+        String a = intent.getStringExtra("pos");
 
         url="http://refercanada.com/api/getCityList.php?stateId="+a;
         Log.e("url",url);
@@ -55,10 +58,10 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-                            Log.e("===", String.valueOf(abc));
+
                             if (abc !=1 )
                             {
-                                Toast.makeText(CanadianCitiesActivity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CanadianCitiesActivity.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
@@ -66,7 +69,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                 listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                                        Toast.makeText(CanadianCitiesActivity.this, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+//
                                         Intent intent = new Intent(CanadianCitiesActivity.this,CanadianCitiesCategoryActivity.class);
                                         intent.putExtra("pos",position);
                                         startActivity(intent);

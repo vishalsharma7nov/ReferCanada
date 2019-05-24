@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,8 +21,9 @@ import org.json.JSONObject;
 
 public class CanadianCitiesCategoryActivity extends AppCompatActivity {
 
-    ListView listViewCitiesCategory;
+    ListView listViewCitiesCategory,listViewId;
     String url;
+    JsonHolderCitiesCategory jsonHolderCitiesCategory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
         url="http://refercanada.com/api/getCategoryList.php";
         Log.e("url",url);
         listViewCitiesCategory = (ListView)findViewById(R.id.listView);
+        listViewId  = (ListView)findViewById(R.id.listViewId);
         sendRequest();
     }
 
@@ -45,20 +48,25 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-                            Log.e("===", String.valueOf(abc));
+
                             if (abc !=1 )
                             {
                                 Toast.makeText(CanadianCitiesCategoryActivity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
+
                                 showJSON(response);
+                                final String mId[] = jsonHolderCitiesCategory.id;
+                                final ArrayAdapter a = new ArrayAdapter(CanadianCitiesCategoryActivity.this,android.R.layout.simple_list_item_1,mId);
+                                listViewId.setAdapter(a);
                                 listViewCitiesCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                                        Toast.makeText(CanadianCitiesCategoryActivity.this, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+                                        String selectedId = String.valueOf(a.getItem(position));
+
                                         Intent intent = new Intent(CanadianCitiesCategoryActivity.this,CanadianCitiesCategoryListActivity.class);
-                                        intent.putExtra("pos",position);
+                                        intent.putExtra("pos",selectedId);
                                         startActivity(intent);
                                     }
                                 });
@@ -80,9 +88,9 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
     }
 
     private void showJSON(String json) {
-        JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
-        jsonHolderListing.parseJSON();
-        CanadianCitiesCategoryAdpater ca = new CanadianCitiesCategoryAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
+        jsonHolderCitiesCategory= new JsonHolderCitiesCategory(json);
+        jsonHolderCitiesCategory.parseJSON();
+        CanadianCitiesCategoryAdpater ca = new CanadianCitiesCategoryAdpater(this,jsonHolderCitiesCategory.id,jsonHolderCitiesCategory.name, jsonHolderCitiesCategory.image);
         listViewCitiesCategory.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

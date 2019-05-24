@@ -27,7 +27,7 @@ public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canadian_cities);
         Intent intent = getIntent();
-        String a = String.valueOf(intent.getIntExtra("pos",0)+1);
+        String a = intent.getStringExtra("pos");
 
         url="http://refercanada.com/api/getSubCategoryList.php?categoryId="+a;
         Log.e("url",url);
@@ -45,7 +45,7 @@ public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-                            Log.e("===", String.valueOf(abc));
+
                             if (abc !=1 )
                             {
                                 Toast.makeText(CanadianCitiesCategoryListActivity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();

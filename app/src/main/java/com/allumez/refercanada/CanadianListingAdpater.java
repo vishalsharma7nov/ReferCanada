@@ -6,15 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import org.json.JSONObject;
-
-import retrofit2.Callback;
 
 
 public class CanadianListingAdpater extends BaseAdapter{
@@ -23,16 +15,16 @@ public class CanadianListingAdpater extends BaseAdapter{
     public static String[] id;
     public static String[] name;
     public static String[] image;
-    public static String[] status;
+    TextView t2;
+    String mID;
 
-
-    public CanadianListingAdpater(Context c, String[] id, String[] name, String[] image, String[] status)
+    public CanadianListingAdpater(Context c, String[] id, String[] name, String[] image)
     {
         this.c=c;
         this.id         = id;
         this.name       = name;
         this.image      = image;
-        this.status      = status;
+
 
     }
 
@@ -44,12 +36,14 @@ public class CanadianListingAdpater extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
+        String a = getItem(position).toString();
+        Log.e("===id",a);
         return null;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -60,12 +54,13 @@ public class CanadianListingAdpater extends BaseAdapter{
 
 
         TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
+        t2=(TextView)convertView.findViewById(R.id.textViewId);
 //        ImageView t3=(ImageView) convertView.findViewById(R.id.imageViewCity);
-
         String url=null;
         for (int i = 0;i<image.length;i++)
         {
             t1.setText(name[position]);
+            t2.setText(id[position]);
             url= "http://refercanada.com/uploads/states_img/"+image[position];
 
 //            Glide.with(c)
@@ -75,7 +70,7 @@ public class CanadianListingAdpater extends BaseAdapter{
 //                    .into(t3);
         }
 
-
         return convertView;
     }
+
 }
