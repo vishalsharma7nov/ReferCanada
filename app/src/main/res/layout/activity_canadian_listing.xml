@@ -14,7 +14,7 @@
         app:srcCompat="@drawable/logorefercanada"/>
     <ListView
         android:id="@+id/listView"
-        android:paddingTop="80dp"
+        android:paddingTop="140dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,6 +27,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listviewSpinner"
+        android:layout_width="397dp"
+        android:layout_height="393dp"/>
+    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        android:id="@+id/spinner_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="20dp"
+        android:background="#F5F0F0"
+        app:hintText="SELECT A STATE"/>
 
 
 </RelativeLayout>

@@ -12,19 +12,26 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".CanadianCitiesCategoryListActivity"></activity>
         <activity android:name=".CanadianCitiesCategoryActivity" />
         <activity android:name=".CanadianCitiesActivity" />
-        <activity android:name=".CanadianListingActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".CanadianListingActivity" />
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

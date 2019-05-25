@@ -9,8 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -23,11 +24,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class CanadianListingActivity extends AppCompatActivity{
+public class CanadianListingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ListView listView,listViewId;
+    ListView listView,listViewId,listViewSpinner;
     JsonHolderListing jsonHolderListing;
-
+    ArrayAdapter ar;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -36,20 +37,21 @@ public class CanadianListingActivity extends AppCompatActivity{
 
         listView    = (ListView)findViewById(R.id.listView);
         listViewId  = (ListView)findViewById(R.id.listViewId);
-
+        listViewSpinner= (ListView)findViewById(R.id.listviewSpinner);
 
         sendRequest();
     }
 
     private void sendRequest() {
-        final ProgressDialog loading = ProgressDialog.show(CanadianListingActivity.this,"Loading","Please wait...",false,false);
-
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
+                loading.getProgress();
         StringRequest stringRequest = new StringRequest("http://refercanada.com/api/getStateList.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
                         loading.dismiss();
+
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
@@ -64,12 +66,18 @@ public class CanadianListingActivity extends AppCompatActivity{
                                 final String mId[] = jsonHolderListing.id;
                                 final ArrayAdapter a = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
-//
+
+                                final Spinner spinner = (Spinner) findViewById(R.id.spinner_search);
+                                spinner.setOnItemSelectedListener(CanadianListingActivity.this);
+                                ArrayAdapter ar = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
+                                listViewSpinner.setAdapter(ar);
+                                ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spinner.setAdapter(ar);
+
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         String selectedId = String.valueOf(a.getItem(position));
-//                                        Log.e("===mi",selectedId);
                                         Intent intent = new Intent(CanadianListingActivity.this,CanadianCitiesActivity.class);
                                         intent.putExtra("pos",selectedId);
                                         startActivity(intent);
@@ -77,6 +85,7 @@ public class CanadianListingActivity extends AppCompatActivity{
 
                                     }
                                 });
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -88,6 +97,7 @@ public class CanadianListingActivity extends AppCompatActivity{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
                     }
                 });
 
@@ -104,4 +114,19 @@ public class CanadianListingActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        String selectedFromList = (String) (listViewSpinner.getItemAtPosition(position));
+        String selectedId = (String) (listViewId.getItemAtPosition(position));
+        Log.e("===Selected id",selectedId);
+        Intent intent = new Intent(CanadianListingActivity.this,CanadianCitiesActivity.class);
+        intent.putExtra("pos",selectedId);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

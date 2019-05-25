@@ -35,94 +35,156 @@
         android:textColor="#F0090808"
         android:textSize="20sp" />
 
+    <LinearLayout
+        android:layout_marginTop="140dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/linearlayoutcanadianlisting"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
 
-             <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_alignParentStart="true"
-                 android:layout_marginTop="180dp"
-                 android:orientation="vertical">
-                 <TextView
-                     android:layout_marginEnd="20dp"
-                     android:layout_marginStart="20dp"
-                     android:textSize="20sp"
-                     android:textColor="@color/colorPrimaryDark"
-                     android:text="Choose Your Option:"
-                     android:textStyle="bold"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/canadianlisting"
+                android:layout_width="104dp"
+                android:layout_height="85dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="casual"
+                android:src="@drawable/canadianlisting"
+                android:text="canadian listing"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textDirection="firstStrong"
+                android:textStyle="bold" />
 
-                 <ScrollView
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:visibility="visible">
-                    <LinearLayout
-
-                        android:paddingBottom="30dp"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp">
-                        <TextView
-                            android:id="@+id/canadianlisting"
-                            android:fontFamily="casual"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginStart="20dp"
-                            android:textSize="20sp"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:text="canadian listing"
-                            android:textStyle="bold"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/internationallisting"
-                            android:fontFamily="casual"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="international listing"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/couponslocalstore"
-                            android:fontFamily="casual"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Coupons And offers Local store"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/discountoffers"
-                            android:fontFamily="casual"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Discount offers Online stores"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                 </ScrollView>
+            <TextView
+                android:id="@+id/textViewCanadianListing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/unna"
+                android:text="CANADIAN LISTING"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textDirection="firstStrong"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
 
-             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/internationallisting"
+                android:layout_width="100dp"
+                android:textDirection="firstStrong"
+                android:layout_height="70dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="casual"
+                android:src="@drawable/internationallisting"
+                android:text="international\nlisting"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewInternationalListing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/unna"
+                android:text="INTERNATIONAL LISTING"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textDirection="firstStrong"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:src="@drawable/canadaflag"
+                android:id="@+id/couponslocalstore"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:fontFamily="casual"
+                android:text="Coupons And offers\n Local store"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/unna"
+                android:text="Discount offers Local store"
+                android:textAlignment="textStart"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginStart="5dp"
+                android:layout_width="100dp"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:id="@+id/discountoffers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/unna"
+                android:text="Discount offers Online stores"
+                android:textAlignment="textStart"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
 
     <TextView
         android:id="@+id/textView2"
