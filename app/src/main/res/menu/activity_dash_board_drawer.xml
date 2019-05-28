@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_dashboard"
+            android:title="MY DASBOARD" />
+        <item
+            android:id="@+id/all_listing"
+            android:title="ALL LISTING" />
+        <item
+            android:id="@+id/add_new_listing"
+            android:title="ADD NEW LISTING" />
+        <item
+            android:id="@+id/messages"
+            android:title="MESSAGES" />
+        <item
+            android:id="@+id/reviews"
+            android:title="REVIEWS" />
+        <item
+            android:id="@+id/my_profile"
+            android:title="MY PROFILE" />
+        <item
+            android:id="@+id/ad_summary"
+            android:title="AD SUMMARY" />
+        <item
+            android:id="@+id/payments"
+            android:title="PAYMENTS" />
+        <item
+            android:id="@+id/invoice"
+            android:title="INVOICE" />
+        <item
+            android:id="@+id/claim_and_refund"
+            android:title="CLAIM AND REFUND" />
+    </group>
+
+    <item android:title="PERSONAL SETTINGS">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:title="SETTING" />
+            <item
+                android:id="@+id/logout"
+                android:title="LOGOUT" />
+        </menu>
+    </item>
+
+</menu>

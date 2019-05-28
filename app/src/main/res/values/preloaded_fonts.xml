@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/allan</item>
+        <item>@font/allura</item>
         <item>@font/nixie_one</item>
         <item>@font/unna</item>
     </array>

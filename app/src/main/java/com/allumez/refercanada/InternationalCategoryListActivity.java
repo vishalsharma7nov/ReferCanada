@@ -1,9 +1,6 @@
 package com.allumez.refercanada;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -12,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -24,35 +22,24 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+public class InternationalCategoryListActivity extends AppCompatActivity {
 
-public class CanadianCitiesActivity extends AppCompatActivity {
-    ListView listViewCities,listViewSearch;
-    String url;
+    ListView listViewInternationalCategoryList,listViewId,listViewSearch;
+    String url="http://refercanada.com/api/getinterCategoryList.php";
     JsonHolderListing jsonHolderListing;
     SearchView searchView;
 
     ArrayList<String> list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canadian_cities);
-        Intent intent = getIntent();
-        String a = intent.getStringExtra("pos");
+        setContentView(R.layout.activity_internationalcategorylist);
 
-        url="http://refercanada.com/api/getCityList.php?stateId="+a;
-        Log.e("url",url);
-
-        listViewCities = (ListView)findViewById(R.id.listView);
-        listViewSearch = (ListView)findViewById(R.id.listViewsearch);
+        listViewInternationalCategoryList= (ListView)findViewById(R.id.listView);
+        listViewId= (ListView)findViewById(R.id.listViewId);
+        listViewSearch= (ListView)findViewById(R.id.listViewsearch);
         searchView = (SearchView)findViewById(R.id.searchview);
-
         sendRequest();
     }
 
@@ -69,31 +56,35 @@ public class CanadianCitiesActivity extends AppCompatActivity {
 
                             if (abc !=1 )
                             {
-                                Toast.makeText(CanadianCitiesActivity.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(InternationalCategoryListActivity.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
                                 showJSON(response);
+                                final String mId[] = jsonHolderListing.id;
+                                final ArrayAdapter a = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1,mId);
+                                listViewId.setAdapter(a);
 
-                                final ArrayAdapter ar = new ArrayAdapter(CanadianCitiesActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
+                                final ArrayAdapter ar = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
                                 listViewSearch.setAdapter(ar);
 
-
-                                listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                listViewInternationalCategoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-                                        Intent intent = new Intent(CanadianCitiesActivity.this,CanadianCitiesCategoryActivity.class);
-                                        intent.putExtra("pos",position);
+                                        String selectedId = String.valueOf(a.getItem(position));
+                                        Intent intent = new Intent(InternationalCategoryListActivity.this,InternationalCategorySubListActivity.class);
+                                        intent.putExtra("pos",selectedId);
                                         startActivity(intent);
+
+
                                     }
                                 });
-
                                 listViewSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        Intent intent = new Intent(CanadianCitiesActivity.this,CanadianCitiesCategoryActivity.class);
-                                        intent.putExtra("pos",position);
+                                        String selectedId = String.valueOf(a.getItem(position));
+                                        Intent intent = new Intent(InternationalCategoryListActivity.this,InternationalCategorySubListActivity.class);
+                                        intent.putExtra("pos",selectedId);
                                         startActivity(intent);
 
 
@@ -103,7 +94,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                 searchView.setOnSearchClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        listViewCities.setVisibility(View.GONE);
+                                        listViewInternationalCategoryList.setVisibility(View.GONE);
                                         listViewSearch.setVisibility(View.VISIBLE);
                                         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                                             @Override
@@ -111,7 +102,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                                 if(list.contains(query)){
                                                     ar.getFilter().filter(query);
                                                 }else{
-                                                    Toast.makeText(CanadianCitiesActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(InternationalCategoryListActivity.this, "No Match found",Toast.LENGTH_LONG).show();
                                                 }
                                                 return false;
                                             }
@@ -126,13 +117,11 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                 searchView.setOnCloseListener(new SearchView.OnCloseListener() {
                                     @Override
                                     public boolean onClose() {
-                                        listViewCities.setVisibility(View.VISIBLE);
+                                        listViewInternationalCategoryList.setVisibility(View.VISIBLE);
                                         listViewSearch.setVisibility(View.GONE);
                                         return false;
                                     }
                                 });
-
-
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -153,8 +142,8 @@ public class CanadianCitiesActivity extends AppCompatActivity {
     private void showJSON(String json) {
         JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
         jsonHolderListing.parseJSON();
-        CanadianCitiesAdpater ca = new CanadianCitiesAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
-        listViewCities.setAdapter(ca);
+        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
+        listViewInternationalCategoryList.setAdapter(ca);
         ca.notifyDataSetChanged();
     }
 }

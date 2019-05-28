@@ -1,31 +1,29 @@
 package com.allumez.refercanada;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-//    TextView textViewCanadianListing,textViewInternationalListing,textViewCouponsLocalStore,textViewDiscountOffers;
-    ImageView textViewCanadianListing,textViewInternationalListing;
-    LinearLayout linearLayoutCanadianList;
-
+    LinearLayout linearLayoutCanadianList,linearLayoutInternationalListing;
+    Button buttonLogin,buttonRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textViewCanadianListing         =       (ImageView)findViewById(R.id.canadianlisting);
-        textViewInternationalListing    =       (ImageView) findViewById(R.id.internationallisting);
-//        textViewCouponsLocalStore       =       (TextView)findViewById(R.id.couponslocalstore);
-//        textViewDiscountOffers          =       (TextView)findViewById(R.id.discountoffers );
+        buttonLogin = (Button)findViewById(R.id.buttonLogin);
+        buttonRegister = (Button)findViewById(R.id.buttonRegister);
 
         linearLayoutCanadianList = (LinearLayout)findViewById(R.id.linearlayoutcanadianlisting);
+        linearLayoutInternationalListing= (LinearLayout)findViewById(R.id.internationallisting);
+
+
         linearLayoutCanadianList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,13 +31,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        textViewCanadianListing.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,CanadianListingActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
+        linearLayoutInternationalListing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,InternationalCategoryListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
+
+
+
 }

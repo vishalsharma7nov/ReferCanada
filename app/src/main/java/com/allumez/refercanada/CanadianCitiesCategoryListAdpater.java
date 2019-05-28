@@ -15,18 +15,13 @@ public class CanadianCitiesCategoryListAdpater extends BaseAdapter{
     public static String[] name;
     public static String[] image;
 
-
-
     public CanadianCitiesCategoryListAdpater(Context c, String[] id, String[] name, String[] image)
     {
         this.c=c;
         this.id         = id;
         this.name       = name;
         this.image      = image;
-
-
     }
-
 
     @Override
     public int getCount() {
@@ -49,21 +44,11 @@ public class CanadianCitiesCategoryListAdpater extends BaseAdapter{
 
         convertView=in.inflate(R.layout.citynames,null);
 
-
         TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
-//        ImageView t3=(ImageView) convertView.findViewById(R.id.imageViewCity);
-
-        String url=null;
         for (int i = 0;i<image.length;i++)
         {
             t1.setText(name[position]);
-            url= "http://refercanada.com/uploads/states_img/"+image[position];
 
-//            Glide.with(c)
-//                    .load(url)
-//                    .centerCrop()
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                    .into(t3);
         }
 
 

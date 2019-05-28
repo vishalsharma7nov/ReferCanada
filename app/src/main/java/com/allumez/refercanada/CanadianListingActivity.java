@@ -5,12 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,12 +23,15 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class CanadianListingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ListView listView,listViewId,listViewSpinner;
+    ListView listView,listViewId,listViewSpinner,listViewSearch;
     JsonHolderListing jsonHolderListing;
-    ArrayAdapter ar;
+    SearchView searchView;
+    ArrayList<String> list;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -37,7 +40,8 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
 
         listView    = (ListView)findViewById(R.id.listView);
         listViewId  = (ListView)findViewById(R.id.listViewId);
-        listViewSpinner= (ListView)findViewById(R.id.listviewSpinner);
+        listViewSearch = (ListView)findViewById(R.id.listViewsearch);
+        searchView = (SearchView)findViewById(R.id.searchview);
 
         sendRequest();
     }
@@ -67,12 +71,8 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
                                 final ArrayAdapter a = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
 
-                                final Spinner spinner = (Spinner) findViewById(R.id.spinner_search);
-                                spinner.setOnItemSelectedListener(CanadianListingActivity.this);
-                                ArrayAdapter ar = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
-                                listViewSpinner.setAdapter(ar);
-                                ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                spinner.setAdapter(ar);
+                                final ArrayAdapter ar = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
+                                listViewSearch.setAdapter(ar);
 
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
@@ -85,8 +85,51 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
 
                                     }
                                 });
+                                listViewSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        String selectedId = String.valueOf(a.getItem(position));
+                                        Intent intent = new Intent(CanadianListingActivity.this,CanadianCitiesActivity.class);
+                                        intent.putExtra("pos",selectedId);
+                                        startActivity(intent);
 
-                            }
+                                    }
+                                });
+
+                                searchView.setOnSearchClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        listView.setVisibility(View.GONE);
+                                        listViewSearch.setVisibility(View.VISIBLE);
+                                        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                            @Override
+                                            public boolean onQueryTextSubmit(String query) {
+                                                if(list.contains(query)){
+                                                    ar.getFilter().filter(query);
+                                                }else{
+                                                    Toast.makeText(CanadianListingActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+                                                }
+                                                return false;
+                                            }
+                                            @Override
+                                            public boolean onQueryTextChange(String newText) {
+                                                ar.getFilter().filter(newText);
+                                                return false;
+                                            }
+                                        });
+                                    }
+                                });
+                                searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+                                    @Override
+                                    public boolean onClose() {
+                                        listView.setVisibility(View.VISIBLE);
+                                        listViewSearch.setVisibility(View.GONE);
+                                        return false;
+                                    }
+                                });
+
+
+                        }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
