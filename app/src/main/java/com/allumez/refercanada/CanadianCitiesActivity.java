@@ -57,6 +57,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
     }
 
     private void sendRequest() {
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
         StringRequest stringRequest = new StringRequest(url,
                 new com.android.volley.Response.Listener<String>() {
@@ -73,6 +74,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                             }
                             else if (abc == 1)
                             {
+                                loading.dismiss();
                                 showJSON(response);
 
                                 final ArrayAdapter ar = new ArrayAdapter(CanadianCitiesActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);

@@ -1,5 +1,6 @@
 package com.allumez.refercanada;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
     }
 
     private void sendRequest() {
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
         StringRequest stringRequest = new StringRequest(url,
                 new com.android.volley.Response.Listener<String>() {
@@ -65,7 +67,7 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
                             }
                             else if (abc == 1)
                             {
-
+                                loading.dismiss();
                                 showJSON(response);
                                 final String mId[] = jsonHolderCitiesCategory.id;
 

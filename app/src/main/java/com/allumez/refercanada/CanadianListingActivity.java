@@ -48,13 +48,13 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
 
     private void sendRequest() {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
-                loading.getProgress();
+
         StringRequest stringRequest = new StringRequest("http://refercanada.com/api/getStateList.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
-                        loading.dismiss();
+
 
                         try {
                             JSONObject obj = new JSONObject(response);
@@ -66,6 +66,7 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
                             }
                             else if (abc ==1)
                             {
+                                loading.dismiss();
                                 showJSON(response);
                                 final String mId[] = jsonHolderListing.id;
                                 final ArrayAdapter a = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,mId);

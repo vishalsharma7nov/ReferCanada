@@ -15,72 +15,78 @@
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/logorefercanada"/>
 
-    <EditText
-        android:id="@+id/firstname"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="116dp"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/firstname"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:ems="10"
+            android:hint="First Name"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/lastname"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="174dp"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
-        android:ems="10"
-        android:hint="Last name"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_width="290dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:ems="10"
+            android:hint="Last name"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="232dp"
-        android:drawableLeft="@drawable/ic_mail_black_24dp"
-        android:ems="10"
-        android:hint="Email Id"
-        android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:drawableLeft="@drawable/ic_mail_black_24dp"
+            android:ems="10"
+            android:hint="Email Id"
+            android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/mobilenumber"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="320dp"
-        android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-        android:ems="10"
-        android:hint="Mobile Number"
-        android:inputType="phone"
-        android:maxLength="10" />
+        <EditText
+            android:id="@+id/mobilenumber"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_phone_android_black_24dp"
+            android:ems="10"
+            android:hint="Mobile Number"
+            android:inputType="phone"
+            android:maxLength="10" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="256dp"
-        android:drawableLeft="@drawable/ic_lock_black_24dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:maxLength="12" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLength="12" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/register"

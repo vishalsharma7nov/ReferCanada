@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout linearLayoutCanadianList,linearLayoutInternationalListing;
+    ImageView imageViewCanadianList,imageViewInternationalListing;
     Button buttonLogin,buttonRegister;
 
     @Override
@@ -20,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin = (Button)findViewById(R.id.buttonLogin);
         buttonRegister = (Button)findViewById(R.id.buttonRegister);
 
-        linearLayoutCanadianList = (LinearLayout)findViewById(R.id.linearlayoutcanadianlisting);
-        linearLayoutInternationalListing= (LinearLayout)findViewById(R.id.internationallisting);
+        imageViewCanadianList = (ImageView) findViewById(R.id.canadianlisting);
+        imageViewInternationalListing= (ImageView)findViewById(R.id.internationallisting);
 
 
-        linearLayoutCanadianList.setOnClickListener(new View.OnClickListener() {
+        imageViewCanadianList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,CanadianListingActivity.class);
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        linearLayoutInternationalListing.setOnClickListener(new View.OnClickListener() {
+        imageViewInternationalListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,InternationalCategoryListActivity.class);

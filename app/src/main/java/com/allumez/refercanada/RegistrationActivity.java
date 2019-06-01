@@ -1,5 +1,6 @@
 package com.allumez.refercanada;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void registration()
     {
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
+
         final String firstname     = editTextFirstName.getText().toString();
         final String lastname      = editTextLastName.getText().toString();
         final String email         = editTextEmailId.getText().toString();
@@ -79,6 +82,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             }
                             else
                             {
+                                loading.dismiss();
                                 editTextFirstName.setText("");
                                 editTextLastName.setText("");
                                 editTextEmailId.setText("");

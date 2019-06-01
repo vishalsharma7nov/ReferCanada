@@ -1,5 +1,6 @@
 package com.allumez.refercanada;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
     }
 
     private void sendRequest() {
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
         StringRequest stringRequest = new StringRequest(url,
                 new com.android.volley.Response.Listener<String>() {
@@ -60,6 +62,7 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
                             }
                             else if (abc == 1)
                             {
+                                loading.dismiss();
                                 showJSON(response);
                                 final String mId[] = jsonHolderListing.id;
                                 final ArrayAdapter a = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1,mId);

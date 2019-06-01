@@ -1,5 +1,6 @@
 package com.allumez.refercanada;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login()
     {
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
+
         final String email         = editTextEmailId.getText().toString();
         final String password      = editTextPassword.getText().toString();
 
@@ -70,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else
                             {
+                                loading.dismiss();
                                 editTextEmailId.setText("");
                                 editTextPassword.setText("");
                                 Intent intent =new Intent(LoginActivity.this,DashBoardActivity.class);

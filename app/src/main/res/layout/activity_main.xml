@@ -39,22 +39,25 @@
             android:textSize="24sp" />
 
         <LinearLayout
-            android:layout_marginTop="140dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/linearlayoutcanadianlisting"
+            <GridLayout
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentStart="true"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/relativeLayoutMainFrame"
                 android:layout_alignParentTop="true"
-                android:orientation="horizontal">
+                android:layout_marginTop="160dp"
+                tools:ignore="NotSibling">
 
                 <ImageView
                     android:id="@+id/canadianlisting"
-                    android:layout_width="104dp"
-                    android:layout_height="85dp"
+                    android:layout_width="114dp"
+                    android:layout_height="129dp"
+                    android:layout_row="1"
+                    android:layout_column="0"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
@@ -67,33 +70,12 @@
                     android:textDirection="firstStrong"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textViewCanadianListing"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:fontFamily="@font/unna"
-                    android:text="CANADIAN LISTING"
-                    android:textAlignment="textStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textDirection="firstStrong"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/internationallisting"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:orientation="horizontal">
-
                 <ImageView
-                    android:layout_width="100dp"
-                    android:textDirection="firstStrong"
-                    android:layout_height="70dp"
+                    android:id="@+id/internationallisting"
+                    android:layout_width="113dp"
+                    android:layout_height="122dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
@@ -103,133 +85,91 @@
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/unna"
-                    android:text="INTERNATIONAL LISTING"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textDirection="firstStrong"
-                    android:textSize="15sp"
                     android:textStyle="bold" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_marginStart="5dp"
-                    android:src="@drawable/canadaflag"
                     android:id="@+id/couponslocalstore"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp"
+                    android:layout_width="115dp"
+                    android:layout_height="117dp"
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="casual"
+                    android:src="@drawable/canadaflag"
                     android:text="Coupons And offers\n Local store"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/unna"
-                    android:text="Discount offers Local store"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:orientation="horizontal">
                 <ImageView
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="119dp"
+                    android:layout_height="120dp"
+                    android:layout_row="2"
+                    android:layout_column="2"
                     android:layout_marginStart="5dp"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp" />
+                    android:src="@mipmap/ic_launcher" />
+            </GridLayout>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/discountoffers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/unna"
-                    android:text="Discount offers Online stores"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/relativeLayoutMainFrame"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="157dp"
+            android:orientation="horizontal"
+            tools:ignore="NotSibling">
 
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/buttonLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="50dp"
-                    android:drawableLeft="@drawable/ic_person_outline_black_24dp"
-                    android:fontFamily="@font/unna"
-                    android:text="Login"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-
-                <Button
-                    android:id="@+id/buttonRegister"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignRight="@id/buttonLogin"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="50dp"
-                    android:drawableLeft="@drawable/register"
-                    android:text="register"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-            </LinearLayout>
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/allura"
-                android:gravity="bottom"
-                android:text="Explore Canadian Provinces and Territories to find the best service expert for your requirements ."
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="50dp"
+                android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+                android:fontFamily="@font/unna"
+                android:text="Login"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+            <Button
+                android:id="@+id/buttonRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/buttonLogin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="50dp"
+                android:drawableLeft="@drawable/register"
+                android:text="register"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="546dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/allura"
+            android:foregroundGravity="bottom"
+            android:gravity="bottom"
+            android:text="Explore Canadian Provinces and Territories to find the best service expert for your requirements ."
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        </RelativeLayout>
 
     </RelativeLayout>
 
 
 
-
-</RelativeLayout>
