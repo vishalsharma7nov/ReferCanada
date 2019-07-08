@@ -2,6 +2,7 @@ package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class InternationalCategoryListActivity extends AppCompatActivity {
 
@@ -31,11 +34,23 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
     JsonHolderListing jsonHolderListing;
     SearchView searchView;
 
+    int currentPage = 0;
+    Timer timer;
+    final long DELAY_MS = 500;
+    final long PERIOD_MS = 3000;
+
+
     ArrayList<String> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_internationalcategorylist);
+
+
+
+
+
+
 
         listViewInternationalCategoryList= (ListView)findViewById(R.id.listView);
         listViewId= (ListView)findViewById(R.id.listViewId);

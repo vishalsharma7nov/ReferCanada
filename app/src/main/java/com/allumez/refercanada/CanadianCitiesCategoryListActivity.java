@@ -51,20 +51,21 @@ public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
                             if (abc !=1 )
                             {
                                 Toast.makeText(CanadianCitiesCategoryListActivity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
+                                loading.dismiss();
                             }
                             else if (abc == 1)
                             {
                                 loading.dismiss();
                                 showJSON(response);
-//                                listViewCitiesCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                                    @Override
-//                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                                        Toast.makeText(CanadianCitiesCategoryActivity.this, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
-//                                        Intent intent = new Intent(CanadianCitiesCategoryActivity.this,CanadianCitiesCategoryListActivity.class);
-//                                        intent.putExtra("pos",position);
-//                                        startActivity(intent);
-//                                    }
-//                                });
+                                listViewCitiesCategoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Toast.makeText(CanadianCitiesCategoryListActivity.this, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(CanadianCitiesCategoryListActivity.this,CanadianCitiesCategoryListing.class);
+                                        intent.putExtra("pos",position);
+                                        startActivity(intent);
+                                    }
+                                });
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

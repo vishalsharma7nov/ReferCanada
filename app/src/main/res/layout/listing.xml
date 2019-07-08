@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:layout_width="168dp"
+                android:layout_height="168dp"
+                android:src="@drawable/tourandtravels" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginStart="200dp"
+                android:text="Tour And Travels"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="30dp"
+                android:text="Address: 28800 Orchard Lake Road, Suite 180 Farmington Hills, U.S.A." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="90dp"
+                android:text="+01 1245 2541, +62 6541 6528" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="120dp"
+                android:text="localdir1@webdir.com" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="180dp"
+                    android:background="@drawable/buttonoutline"
+                    android:text="Send SMS"
+                    android:textColor="#FCFCFC" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="180dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/buttonoutline"
+                    android:text="Call Now"
+                    android:textColor="#FCFCFC" />
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="180dp"
+                    android:background="@drawable/buttonoutline"
+                    android:text="Get Quotes"
+                    android:textColor="#FCFCFC" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

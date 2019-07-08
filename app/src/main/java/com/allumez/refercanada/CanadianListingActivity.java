@@ -43,6 +43,8 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
         listViewSearch = (ListView)findViewById(R.id.listViewsearch);
         searchView = (SearchView)findViewById(R.id.searchview);
 
+
+
         sendRequest();
     }
 
@@ -68,7 +70,7 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                final String mId[] = jsonHolderListing.id;
+                                final String[] mId = jsonHolderListing.id;
                                 final ArrayAdapter a = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
 

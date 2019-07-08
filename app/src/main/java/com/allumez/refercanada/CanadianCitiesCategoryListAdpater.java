@@ -1,11 +1,17 @@
 package com.allumez.refercanada;
 
 import android.content.Context;
+import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class CanadianCitiesCategoryListAdpater extends BaseAdapter{
@@ -43,6 +49,7 @@ public class CanadianCitiesCategoryListAdpater extends BaseAdapter{
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         convertView=in.inflate(R.layout.citynames,null);
+
 
         TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
         for (int i = 0;i<image.length;i++)

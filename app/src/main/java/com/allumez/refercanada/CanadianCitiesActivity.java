@@ -32,9 +32,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CanadianCitiesActivity extends AppCompatActivity {
+
     ListView listViewCities,listViewSearch;
     String url;
-    JsonHolderListing jsonHolderListing;
     SearchView searchView;
 
     ArrayList<String> list;
@@ -70,6 +70,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
 
                             if (abc !=1 )
                             {
+                                loading.dismiss();
                                 Toast.makeText(CanadianCitiesActivity.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
@@ -77,7 +78,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                 loading.dismiss();
                                 showJSON(response);
 
-                                final ArrayAdapter ar = new ArrayAdapter(CanadianCitiesActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
+                                final ArrayAdapter ar = new ArrayAdapter(CanadianCitiesActivity.this,android.R.layout.simple_list_item_1, JsonHolderListing.name);
                                 listViewSearch.setAdapter(ar);
 
 
@@ -155,7 +156,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
     private void showJSON(String json) {
         JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
         jsonHolderListing.parseJSON();
-        CanadianCitiesAdpater ca = new CanadianCitiesAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
+        CanadianCitiesAdpater ca = new CanadianCitiesAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
         listViewCities.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

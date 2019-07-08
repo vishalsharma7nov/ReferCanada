@@ -15,8 +15,6 @@ class JsonHolderListing{
     public static final String KEY_CITYNAME        = "name";
     public static final String KEY_CITYIMAGE       = "image";
 
-    private JSONArray users = null;
-
     private String json;
 
     public JsonHolderListing(String json) {
@@ -27,7 +25,7 @@ class JsonHolderListing{
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
-            users = jsonObject.getJSONArray(JSON_ARRAY);
+            JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
 
             id     = new String[users.length()];
             name   = new String[users.length()];

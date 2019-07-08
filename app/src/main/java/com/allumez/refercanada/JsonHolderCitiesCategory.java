@@ -8,14 +8,15 @@ class JsonHolderCitiesCategory {
     public static String[] id;
     public static String[] name;
     public static String[] image;
+    public static String[] icon;
+
 
 
     public static final String JSON_ARRAY          = "data";
     public static final String KEY_ID              = "id";
     public static final String KEY_CITYNAME        = "name";
     public static final String KEY_CITYIMAGE       = "image";
-
-    private JSONArray users = null;
+    public static final String KEY_CITYICON       =  "icon";
 
     private String json;
 
@@ -27,11 +28,12 @@ class JsonHolderCitiesCategory {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
-            users = jsonObject.getJSONArray(JSON_ARRAY);
+            JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
 
             id    = new String[users.length()];
             name  = new String[users.length()];
             image = new String[users.length()];
+            icon = new String[users.length()];
 
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
@@ -39,6 +41,7 @@ class JsonHolderCitiesCategory {
                 id[i]       = jo.getString(KEY_ID);
                 name[i]     = jo.getString(KEY_CITYNAME);
                 image[i]    = jo.getString(KEY_CITYIMAGE);
+                icon[i]    = jo.getString(KEY_CITYICON);
 
             }
         } catch (JSONException e) {

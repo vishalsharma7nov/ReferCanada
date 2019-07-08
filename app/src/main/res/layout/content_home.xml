@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".HomeActivity"
+    tools:showIn="@layout/app_bar_home">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/logorefercanada"/>
+
+    <ImageView
+        android:visibility="visible"
+        android:id="@+id/imageViewReferCanadaLogo"
+        android:src="@drawable/logorefercanada"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <Button
+        android:id="@+id/buttonSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/buttonRegister"
+        android:layout_alignRight="@id/buttonSignIn"
+        android:layout_marginLeft="-104dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/buttonoutline"
+        android:text="Sign In"
+        android:textColor="@color/colorTextWhite" />
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/buttonoutline"
+        android:text="Register"
+        android:textColor="@color/colorTextWhite" />
+
+
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_marginTop="10dp"
+            android:fadeScrollbars="false"
+            android:scrollbarSize="5dp"
+            android:scrollbarThumbVertical="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:paddingBottom="50dp"
+                android:id="@+id/linearLayoutListing"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/canadianlisting"
+                    android:src="@drawable/canadianlisting"
+                    android:layout_margin="10dp"
+                    android:padding="20dp"
+                    android:background="@drawable/imageviewborder"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
+
+                <ImageView
+                    android:id="@+id/internationallisting"
+                    android:src="@drawable/internationallisting"
+                    android:layout_margin="10dp"
+                    android:padding="20dp"
+                    android:background="@drawable/imageviewborder"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

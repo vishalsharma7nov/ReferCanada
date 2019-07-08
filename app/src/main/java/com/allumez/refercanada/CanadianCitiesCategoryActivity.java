@@ -63,13 +63,14 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
 
                             if (abc !=1 )
                             {
+                                loading.dismiss();
                                 Toast.makeText(CanadianCitiesCategoryActivity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                final String mId[] = jsonHolderCitiesCategory.id;
+                                final String[] mId = jsonHolderCitiesCategory.id;
 
                                 final ArrayAdapter a = new ArrayAdapter(CanadianCitiesCategoryActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
@@ -149,7 +150,7 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
     private void showJSON(String json) {
         jsonHolderCitiesCategory= new JsonHolderCitiesCategory(json);
         jsonHolderCitiesCategory.parseJSON();
-        CanadianCitiesCategoryAdpater ca = new CanadianCitiesCategoryAdpater(this,jsonHolderCitiesCategory.id,jsonHolderCitiesCategory.name, jsonHolderCitiesCategory.image);
+        CanadianCitiesCategoryAdpater ca = new CanadianCitiesCategoryAdpater(this,jsonHolderCitiesCategory.id,jsonHolderCitiesCategory.name, jsonHolderCitiesCategory.image, jsonHolderCitiesCategory.icon);
         listViewCitiesCategory.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

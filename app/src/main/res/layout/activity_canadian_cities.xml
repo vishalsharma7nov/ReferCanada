@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/cardviewoutline"
     tools:context=".CanadianCitiesActivity">
     <ImageView
         android:id="@+id/imageView"
@@ -15,8 +17,9 @@
         app:srcCompat="@drawable/logorefercanada"/>
     <ListView
         android:id="@+id/listView"
-        android:paddingTop="140dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="140dp"
+        android:divider="@color/colorTextWhite"
+        android:dividerHeight="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
@@ -39,6 +42,8 @@
     <android.support.v7.widget.SearchView
         android:id="@+id/searchview"
         app:defaultQueryHint="Search"
+
+        android:background="@drawable/textfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
