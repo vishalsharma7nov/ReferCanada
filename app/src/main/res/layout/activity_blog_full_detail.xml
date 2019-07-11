@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BlogDetail">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/logorefercanada"/>
+
+
+    <ScrollView
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/blogfulldetials"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewBlogDetailImage"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/imageviewoutline"
+                android:layout_gravity="center"
+                android:src="@drawable/blog1"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+            <TextView
+                android:id="@+id/textViewBlogDetailTitle"
+                android:layout_margin="10dp"
+                android:text="Top Export Products"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewBlogDetailDate"
+                android:text="November 10, 2017"
+                android:layout_margin="10dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewBlogDetailDescription"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:background="@drawable/cardviewoutline"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Write Your Review"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:background="@drawable/imageviewoutline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:hint="Full Name"
+                    android:background="@drawable/textfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:hint="Mobile"
+                    android:background="@drawable/textfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:hint="Email Id"
+                    android:background="@drawable/textfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:hint="City"
+                    android:background="@drawable/textfield"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:hint="Write Review"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:background="@drawable/textfield"
+                    android:minLines="6"
+                    android:gravity="top|left"
+                    android:maxLines="10"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:scrollbars="vertical"/>
+
+                <RatingBar
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center"
+                    android:numStars="5"
+                    android:theme="@style/RatingBar" />
+
+                <Button
+                    android:layout_marginTop="10dp"
+                    android:text="Submit Review"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/buttonoutline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/cardviewoutline"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/gallery3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="150dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Jacob Michael"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="150dp"
+                        android:layout_marginTop="50dp"
+                        android:text="19th January 2017" />
+
+                    <TextView
+                        android:id="@+id/textViewReviedContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="130dp"
+                        android:text="Good service... nice and clean rooms... very good spread of buffet and friendly staffs. Located in heart of city and easy to reach any places in a short distance." />
+
+                </RelativeLayout>
+
+                <RatingBar
+                    android:id="@+id/ratingbarReviewed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="21dp"
+                    android:numStars="5"
+                    android:theme="@style/RatingBar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

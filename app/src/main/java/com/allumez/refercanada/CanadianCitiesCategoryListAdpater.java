@@ -24,9 +24,9 @@ public class CanadianCitiesCategoryListAdpater extends BaseAdapter{
     public CanadianCitiesCategoryListAdpater(Context c, String[] id, String[] name, String[] image)
     {
         this.c=c;
-        this.id         = id;
-        this.name       = name;
-        this.image      = image;
+        CanadianCitiesCategoryListAdpater.id = id;
+        CanadianCitiesCategoryListAdpater.name = name;
+        CanadianCitiesCategoryListAdpater.image = image;
     }
 
     @Override
@@ -51,14 +51,11 @@ public class CanadianCitiesCategoryListAdpater extends BaseAdapter{
         convertView=in.inflate(R.layout.citynames,null);
 
 
-        TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
+        TextView t1= convertView.findViewById(R.id.textViewName);
         for (int i = 0;i<image.length;i++)
         {
             t1.setText(name[position]);
-
         }
-
-
         return convertView;
     }
 }

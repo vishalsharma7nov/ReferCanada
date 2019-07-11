@@ -31,9 +31,9 @@ public class CanadianListingAdpater extends BaseAdapter{
     public CanadianListingAdpater(Context c, String[] id, String[] name, String[] image)
     {
         this.c=c;
-        this.id         = id;
-        this.name       = name;
-        this.image      = image;
+        CanadianListingAdpater.id = id;
+        CanadianListingAdpater.name = name;
+        CanadianListingAdpater.image = image;
 
 
     }
@@ -63,8 +63,8 @@ public class CanadianListingAdpater extends BaseAdapter{
         convertView=in.inflate(R.layout.citynames,null);
 
 
-        TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
-        t2=(TextView)convertView.findViewById(R.id.textViewId);
+        TextView t1= convertView.findViewById(R.id.textViewName);
+        t2= convertView.findViewById(R.id.textViewId);
 //        ImageView t3=(ImageView) convertView.findViewById(R.id.imageViewCity);
         String url=null;
         for (int i = 0;i<image.length;i++)

@@ -2,11 +2,14 @@ package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,10 +22,17 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
 
     ListView listViewCitiesCategoryList;
     String url;
+    ListView listViewId,listViewSearch;
+    JsonHolderListing jsonHolderListing;
+    SearchView searchView;
+    ArrayList<String> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +42,19 @@ public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
 
         url="http://refercanada.com/api/getSubCategoryList.php?categoryId="+a;
         Log.e("url",url);
-        listViewCitiesCategoryList = (ListView)findViewById(R.id.listView);
+        listViewCitiesCategoryList = findViewById(R.id.listView);
+
+        listViewId  = findViewById(R.id.listViewId);
+        listViewSearch = findViewById(R.id.listViewsearch);
+        searchView = findViewById(R.id.searchview);
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
+
         sendRequest();
     }
 
@@ -57,15 +79,28 @@ public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
                             {
                                 loading.dismiss();
                                 showJSON(response);
+
+                                final String[] mId = JsonHolderListing.id;
+
+                                final ArrayAdapter a = new ArrayAdapter(CanadianCitiesCategoryListActivity.this,android.R.layout.simple_list_item_1,mId);
+                                listViewId.setAdapter(a);
+
+
                                 listViewCitiesCategoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        Toast.makeText(CanadianCitiesCategoryListActivity.this, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+
+                                        String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(CanadianCitiesCategoryListActivity.this,CanadianCitiesCategoryListing.class);
                                         intent.putExtra("pos",position);
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("subcategoryId", selectedId);
+                                        edit.commit();
                                         startActivity(intent);
                                     }
                                 });
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -86,7 +121,7 @@ public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
     private void showJSON(String json) {
         JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
         jsonHolderListing.parseJSON();
-        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
+        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
         listViewCitiesCategoryList.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

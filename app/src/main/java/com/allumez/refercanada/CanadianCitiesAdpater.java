@@ -24,9 +24,9 @@ public class CanadianCitiesAdpater extends BaseAdapter{
     public CanadianCitiesAdpater(Context c, String[] id, String[] name, String[] image)
     {
         this.c=c;
-        this.id         = id;
-        this.name       = name;
-        this.image      = image;
+        CanadianCitiesAdpater.id = id;
+        CanadianCitiesAdpater.name = name;
+        CanadianCitiesAdpater.image = image;
 
     }
 
@@ -53,7 +53,7 @@ public class CanadianCitiesAdpater extends BaseAdapter{
         convertView=in.inflate(R.layout.citynames,null);
 
 
-        TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
+        TextView t1= convertView.findViewById(R.id.textViewName);
 //        ImageView t3=(ImageView) convertView.findViewById(R.id.imageViewCity);
 
 

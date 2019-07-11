@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity
     ImageView imageViewReferCanadaLogo,imageViewHeader;
     LinearLayout linearLayoutListing;
 
-    ImageView imageViewCanadianList,imageViewInternationalListing;
+    ImageView imageViewCanadianList,imageViewInternationalListing,imageViewCoupon;
     Button buttonSignIn,buttonRegister;
 
 
@@ -39,8 +39,8 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        buttonSignIn   = (Button)findViewById(R.id.buttonSignIn);
-        buttonRegister = (Button)findViewById(R.id.buttonRegister);
+        buttonSignIn   = findViewById(R.id.buttonSignIn);
+        buttonRegister = findViewById(R.id.buttonRegister);
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +57,14 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        imageViewReferCanadaLogo = (ImageView)findViewById(R.id.imageViewReferCanadaLogo);
-        imageViewHeader          = (ImageView)findViewById(R.id.imageView);
-        imageViewCanadianList = (ImageView) findViewById(R.id.canadianlisting);
-        imageViewInternationalListing= (ImageView)findViewById(R.id.internationallisting);
+        imageViewReferCanadaLogo = findViewById(R.id.imageViewReferCanadaLogo);
+        imageViewHeader          = findViewById(R.id.imageView);
+        imageViewCanadianList = findViewById(R.id.canadianlisting);
+        imageViewInternationalListing= findViewById(R.id.internationallisting);
+        imageViewCoupon = findViewById(R.id.coupon);
 
-        linearLayoutListing      = (LinearLayout)findViewById(R.id.linearLayoutListing);
+
+        linearLayoutListing      = findViewById(R.id.linearLayoutListing);
 
 
         imageViewCanadianList.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +79,14 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this,InternationalCategoryListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imageViewCoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,Coupons.class);
                 startActivity(intent);
             }
         });
@@ -154,6 +164,13 @@ public class HomeActivity extends AppCompatActivity
         else if (id == R.id.nav_blog)
         {
             Intent intent = new Intent(HomeActivity.this,Blog.class);
+            startActivity(intent);
+
+        }
+
+        else if (id == R.id.nav_coupons)
+        {
+            Intent intent = new Intent(HomeActivity.this,Coupons.class);
             startActivity(intent);
 
         }

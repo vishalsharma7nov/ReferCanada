@@ -18,9 +18,9 @@ public class InternationalCategoryListAdpater extends BaseAdapter{
     public InternationalCategoryListAdpater(Context c, String[] id, String[] name, String[] image)
     {
         this.c=c;
-        this.id         = id;
-        this.name       = name;
-        this.image      = image;
+        InternationalCategoryListAdpater.id = id;
+        InternationalCategoryListAdpater.name = name;
+        InternationalCategoryListAdpater.image = image;
     }
 
     @Override
@@ -44,11 +44,10 @@ public class InternationalCategoryListAdpater extends BaseAdapter{
 
         convertView=in.inflate(R.layout.citynames,null);
 
-        TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
+        TextView t1= convertView.findViewById(R.id.textViewName);
         for (int i = 0;i<image.length;i++)
         {
             t1.setText(name[position]);
-
         }
 
 

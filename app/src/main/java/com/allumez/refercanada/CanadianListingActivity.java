@@ -3,6 +3,7 @@ package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -28,21 +29,28 @@ import java.util.ArrayList;
 
 public class CanadianListingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ListView listView,listViewId,listViewSpinner,listViewSearch;
+    ListView listView,listViewId,listViewSearch;
     JsonHolderListing jsonHolderListing;
     SearchView searchView;
     ArrayList<String> list;
+    int position;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canadian_listing);
 
-        listView    = (ListView)findViewById(R.id.listView);
-        listViewId  = (ListView)findViewById(R.id.listViewId);
-        listViewSearch = (ListView)findViewById(R.id.listViewsearch);
-        searchView = (SearchView)findViewById(R.id.searchview);
+        listView    = findViewById(R.id.listView);
+        listViewId  = findViewById(R.id.listViewId);
+        listViewSearch = findViewById(R.id.listViewsearch);
+        searchView = findViewById(R.id.searchview);
 
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
 
 
         sendRequest();
@@ -70,11 +78,13 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                final String[] mId = jsonHolderListing.id;
+                                final String[] mId = JsonHolderListing.id;
+                                final String[] stateName = JsonHolderListing.name;
+
                                 final ArrayAdapter a = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
 
-                                final ArrayAdapter ar = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
+                                final ArrayAdapter ar = new ArrayAdapter(CanadianListingActivity.this,android.R.layout.simple_list_item_1, JsonHolderListing.name);
                                 listViewSearch.setAdapter(ar);
 
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,6 +93,10 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
                                         String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(CanadianListingActivity.this,CanadianCitiesActivity.class);
                                         intent.putExtra("pos",selectedId);
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("stateId", selectedId);
+                                        edit.commit();
                                         startActivity(intent);
 
 
@@ -92,24 +106,36 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         String selectedId = String.valueOf(a.getItem(position));
+                                        Toast.makeText(CanadianListingActivity.this, "Testing1", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(CanadianListingActivity.this,CanadianCitiesActivity.class);
                                         intent.putExtra("pos",selectedId);
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("stateId", String.valueOf(position));
+                                        edit.commit();
                                         startActivity(intent);
 
                                     }
                                 });
 
-                                searchView.setOnSearchClickListener(new View.OnClickListener() {
+                                searchView.setOnSearchClickListener(new View.OnClickListener()
+                                {
                                     @Override
-                                    public void onClick(View v) {
+                                    public void onClick(View v)
+                                    {
                                         listView.setVisibility(View.GONE);
                                         listViewSearch.setVisibility(View.VISIBLE);
-                                        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+                                        {
                                             @Override
-                                            public boolean onQueryTextSubmit(String query) {
-                                                if(list.contains(query)){
+                                            public boolean onQueryTextSubmit(String query)
+                                            {
+                                                if(list.contains(query))
+                                                {
                                                     ar.getFilter().filter(query);
-                                                }else{
+                                                }
+                                                else
+                                                {
                                                     Toast.makeText(CanadianListingActivity.this, "No Match found",Toast.LENGTH_LONG).show();
                                                 }
                                                 return false;
@@ -154,7 +180,7 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
     private void showJSON(String json) {
         jsonHolderListing = new JsonHolderListing(json);
         jsonHolderListing.parseJSON();
-        CanadianListingAdpater ca = new CanadianListingAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
+        CanadianListingAdpater ca = new CanadianListingAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
         listView.setAdapter(ca);
         ca.notifyDataSetChanged();
 
@@ -163,12 +189,9 @@ public class CanadianListingActivity extends AppCompatActivity implements Adapte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        String selectedFromList = (String) (listViewSpinner.getItemAtPosition(position));
         String selectedId = (String) (listViewId.getItemAtPosition(position));
         Log.e("===Selected id",selectedId);
-        Intent intent = new Intent(CanadianListingActivity.this,CanadianCitiesActivity.class);
-        intent.putExtra("pos",selectedId);
-        startActivity(intent);
+
     }
 
     @Override

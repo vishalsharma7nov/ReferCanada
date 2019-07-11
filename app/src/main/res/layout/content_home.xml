@@ -67,7 +67,9 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:background="@drawable/cardviewoutline"
                 android:visibility="gone"
+                android:layout_margin="10dp"
                 android:paddingBottom="50dp"
                 android:id="@+id/linearLayoutListing"
                 android:orientation="vertical"
@@ -80,8 +82,9 @@
                     android:layout_margin="10dp"
                     android:padding="20dp"
                     android:background="@drawable/imageviewborder"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp" />
+                    android:layout_gravity="center"
+                    android:layout_width="300dp"
+                    android:layout_height="250dp" />
 
                 <ImageView
                     android:id="@+id/internationallisting"
@@ -89,7 +92,18 @@
                     android:layout_margin="10dp"
                     android:padding="20dp"
                     android:background="@drawable/imageviewborder"
-                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp" />
+
+                <ImageView
+                    android:id="@+id/coupon"
+                    android:src="@drawable/blog"
+                    android:layout_margin="10dp"
+                    android:padding="20dp"
+                    android:background="@drawable/imageviewborder"
+                    android:layout_gravity="center"
+                    android:layout_width="300dp"
                     android:layout_height="200dp" />
 
             </LinearLayout>

@@ -2,6 +2,7 @@ package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -40,11 +41,17 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
 
         url="http://refercanada.com/api/getCategoryList.php";
         Log.e("url",url);
-        listViewCitiesCategory = (ListView)findViewById(R.id.listView);
-        listViewId  = (ListView)findViewById(R.id.listViewId);
-        listViewSearch = (ListView)findViewById(R.id.listViewsearch);
-        searchView = (SearchView)findViewById(R.id.searchview);
+        listViewCitiesCategory = findViewById(R.id.listView);
+        listViewId  = findViewById(R.id.listViewId);
+        listViewSearch = findViewById(R.id.listViewsearch);
+        searchView = findViewById(R.id.searchview);
 
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
 
         sendRequest();
     }
@@ -70,12 +77,12 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                final String[] mId = jsonHolderCitiesCategory.id;
+                                final String[] mId = JsonHolderCitiesCategory.id;
 
                                 final ArrayAdapter a = new ArrayAdapter(CanadianCitiesCategoryActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
 
-                                final ArrayAdapter ar = new ArrayAdapter(CanadianCitiesCategoryActivity.this,android.R.layout.simple_list_item_1,jsonHolderCitiesCategory.name);
+                                final ArrayAdapter ar = new ArrayAdapter(CanadianCitiesCategoryActivity.this,android.R.layout.simple_list_item_1, JsonHolderCitiesCategory.name);
                                 listViewSearch.setAdapter(ar);
 
                                 listViewCitiesCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -84,6 +91,10 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
                                         String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(CanadianCitiesCategoryActivity.this,CanadianCitiesCategoryListActivity.class);
                                         intent.putExtra("pos",selectedId);
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("categoryId", selectedId);
+                                        edit.commit();
                                         startActivity(intent);
                                     }
                                 });
@@ -93,6 +104,10 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
                                         String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(CanadianCitiesCategoryActivity.this,CanadianCitiesCategoryListActivity.class);
                                         intent.putExtra("pos",selectedId);
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("categoryId", String.valueOf(position));
+                                        edit.commit();
                                         startActivity(intent);
 
 
@@ -150,7 +165,7 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
     private void showJSON(String json) {
         jsonHolderCitiesCategory= new JsonHolderCitiesCategory(json);
         jsonHolderCitiesCategory.parseJSON();
-        CanadianCitiesCategoryAdpater ca = new CanadianCitiesCategoryAdpater(this,jsonHolderCitiesCategory.id,jsonHolderCitiesCategory.name, jsonHolderCitiesCategory.image, jsonHolderCitiesCategory.icon);
+        CanadianCitiesCategoryAdpater ca = new CanadianCitiesCategoryAdpater(this, JsonHolderCitiesCategory.id, JsonHolderCitiesCategory.name, JsonHolderCitiesCategory.image, JsonHolderCitiesCategory.icon);
         listViewCitiesCategory.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

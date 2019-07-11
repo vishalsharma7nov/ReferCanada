@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -30,10 +31,10 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter{
     public CanadianCitiesCategoryAdpater(Context c, String[] id, String[] name, String[] image, String[] icon)
     {
         this.c=c;
-        this.id         = id;
-        this.name       = name;
-        this.image      = image;
-        this.icon      = icon;
+        CanadianCitiesCategoryAdpater.id = id;
+        CanadianCitiesCategoryAdpater.name = name;
+        CanadianCitiesCategoryAdpater.image = image;
+        CanadianCitiesCategoryAdpater.icon = icon;
     }
 
 
@@ -58,9 +59,8 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter{
 
         convertView=in.inflate(R.layout.services,null);
 
-        final ProgressDialog loading = ProgressDialog.show(c,"Loading Images","Please wait...",false,false);
-        TextView t1=(TextView)convertView.findViewById(R.id.textViewName);
-        ImageView t3=(ImageView) convertView.findViewById(R.id.imageViewCity);
+        TextView t1= convertView.findViewById(R.id.textViewName);
+        ImageView i3= convertView.findViewById(R.id.imageViewCity);
 
         String url=null;
         for (int i = 0;i<image.length;i++)
@@ -70,23 +70,24 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter{
 
             Glide.with(c)
                     .load(url)
+                    .optionalCircleCrop()
                     .centerCrop()
                     .addListener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            Toast.makeText(c, "Error While Loading Image!!!", Toast.LENGTH_SHORT).show();
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            loading.dismiss();
+//                            Toast.makeText(c, "Image Loading Finished!!!", Toast.LENGTH_SHORT).show();
                             return false;
                         }
                     })
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(t3);
+                    .into(i3);
         }
-
 
         return convertView;
     }

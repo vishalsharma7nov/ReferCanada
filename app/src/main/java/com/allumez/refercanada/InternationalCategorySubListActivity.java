@@ -32,7 +32,7 @@ public class InternationalCategorySubListActivity extends AppCompatActivity {
 
         url="http://refercanada.com/api/getinterSubCategoryList.php?categoryId="+a;
         Log.e("url",url);
-        listViewCitiesCategoryList = (ListView)findViewById(R.id.listView);
+        listViewCitiesCategoryList = findViewById(R.id.listView);
         sendRequest();
     }
 
@@ -77,7 +77,7 @@ public class InternationalCategorySubListActivity extends AppCompatActivity {
     private void showJSON(String json) {
         JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
         jsonHolderListing.parseJSON();
-        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
+        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
         listViewCitiesCategoryList.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

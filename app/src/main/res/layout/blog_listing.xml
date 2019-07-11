@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutbloglisting"
+        android:padding="5dp"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:background="@drawable/cardviewoutline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewBlogImage"
+            android:layout_margin="5dp"
+            android:background="@drawable/imageviewoutline"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+        <TextView
+            android:id="@+id/textViewBlogTitle"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Top 10 best resorts in london, england"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Date"
+            android:layout_margin="5dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textViewBlogDescription"
+            android:maxLines="6"
+            android:textSize="20sp"
+            android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/buttonBlogReadMore"
+            android:text="Read More"
+            android:background="@drawable/buttonoutline"
+            android:layout_margin="5dp"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

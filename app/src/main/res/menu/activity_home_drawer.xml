@@ -21,6 +21,12 @@
             android:icon="@drawable/ic_sms_black_24dp"
             android:title="@string/menu_blog" />
 
+        <item
+            android:id="@+id/nav_coupons"
+            android:icon="@drawable/ic_sms_black_24dp"
+            android:title="@string/menu_coupons" />
+
+
 
     </group>
 

@@ -46,16 +46,18 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_internationalcategorylist);
 
+        listViewInternationalCategoryList= findViewById(R.id.listView);
+        listViewId= findViewById(R.id.listViewId);
+        listViewSearch= findViewById(R.id.listViewsearch);
+        searchView = findViewById(R.id.searchview);
 
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
 
-
-
-
-
-        listViewInternationalCategoryList= (ListView)findViewById(R.id.listView);
-        listViewId= (ListView)findViewById(R.id.listViewId);
-        listViewSearch= (ListView)findViewById(R.id.listViewsearch);
-        searchView = (SearchView)findViewById(R.id.searchview);
         sendRequest();
     }
 
@@ -79,11 +81,11 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                final String mId[] = jsonHolderListing.id;
+                                final String[] mId = JsonHolderListing.id;
                                 final ArrayAdapter a = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
 
-                                final ArrayAdapter ar = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1,jsonHolderListing.name);
+                                final ArrayAdapter ar = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1, JsonHolderListing.name);
                                 listViewSearch.setAdapter(ar);
 
                                 listViewInternationalCategoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -160,7 +162,7 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
     private void showJSON(String json) {
         JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
         jsonHolderListing.parseJSON();
-        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this,jsonHolderListing.id,jsonHolderListing.name, jsonHolderListing.image);
+        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
         listViewInternationalCategoryList.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

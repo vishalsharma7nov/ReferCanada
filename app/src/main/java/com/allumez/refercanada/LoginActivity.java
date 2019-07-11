@@ -47,10 +47,10 @@ public class LoginActivity extends AppCompatActivity {
 
         loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
-        editTextEmailId  = (EditText)findViewById(R.id.editTextEmailId);
-        editTextPassword = (EditText)findViewById(R.id.editTextPassword);
+        editTextEmailId  = findViewById(R.id.editTextEmailId);
+        editTextPassword = findViewById(R.id.editTextPassword);
 
-        buttonLogin = (Button)findViewById(R.id.login);
+        buttonLogin = findViewById(R.id.login);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        webView = (WebView)findViewById(R.id.webview);
+        webView = findViewById(R.id.webview);
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);

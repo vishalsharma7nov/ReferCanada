@@ -1,89 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/listing"
+        android:layout_margin="5dp"
+        app:cardPreventCornerOverlap="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <RelativeLayout
+            android:padding="10dp"
+            android:background="@drawable/cardviewoutline"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
+            android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="168dp"
-                android:layout_height="168dp"
+                android:id="@+id/imageViewCoverImage"
+                android:background="@drawable/imageviewoutline"
+                android:padding="5dp"
+                android:layout_width="170dp"
+                android:layout_height="200dp"
                 android:src="@drawable/tourandtravels" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="200dp"
-                android:text="Tour And Travels"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="30dp"
-                android:text="Address: 28800 Orchard Lake Road, Suite 180 Farmington Hills, U.S.A." />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="90dp"
-                android:text="+01 1245 2541, +62 6541 6528" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="120dp"
-                android:text="localdir1@webdir.com" />
-
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="180dp"
-                    android:background="@drawable/buttonoutline"
-                    android:text="Send SMS"
-                    android:textColor="#FCFCFC" />
+                <TextView
+                    android:id="@+id/textViewListingName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="180dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:background="@drawable/textfieldoutline"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textViewAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:autoLink="all"
+                    android:background="@drawable/textfieldoutline"/>
+                <TextView
+                    android:id="@+id/textViewPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:autoLink="all"
+                    android:background="@drawable/textfieldoutline"/>
+                <TextView
+                    android:id="@+id/textViewEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:autoLink="all"
+                    android:background="@drawable/textfieldoutline" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:id="@+id/buttonOffers"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="180dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="60dp"
                     android:background="@drawable/buttonoutline"
-                    android:text="Call Now"
-                    android:textColor="#FCFCFC" />
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="180dp"
-                    android:background="@drawable/buttonoutline"
-                    android:text="Get Quotes"
+                    android:text="Offers"
                     android:textColor="#FCFCFC" />
 
             </LinearLayout>
 
-
         </RelativeLayout>
-
     </android.support.v7.widget.CardView>
-
 
 </RelativeLayout>

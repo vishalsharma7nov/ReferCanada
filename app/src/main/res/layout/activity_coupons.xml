@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Coupons">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/logorefercanada"/>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="80dp"
+            android:padding="30dp"
+            android:background="@drawable/couponsbackground"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:srcCompat="@drawable/blog1" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="65dp"
+                        android:text="Cars Coupons" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="54dp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:text="Coupons Coupons Coupons Coupons Coupons" />
+
+                </RelativeLayout>
+
+
+
+
+
+            <TextView
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Coupons left =1" />
+
+            <Button
+                android:text="Get Coupons"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorTextWhite"
+                android:background="@drawable/buttonoutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/frame2"
+        android:visibility="gone"
+        android:background="@drawable/cardviewoutline"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:background="@drawable/couponsbackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:background="@drawable/couponsbackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:background="@drawable/couponsbackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

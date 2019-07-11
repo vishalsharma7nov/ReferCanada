@@ -1,85 +1,62 @@
 package com.allumez.refercanada;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class CanadianCitiesCategoryListing extends AppCompatActivity {
 
-    CardView cardView1,cardView2,cardView3;
-    LinearLayout linearLayout;
+    boolean doubleBackToExitPressedOnce = false;
+
     ImageView imageView;
+    ListView listViewListing;
+    String url;
+    JsonHolderCategoryListing jsonHolderListing;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canadian_cities_category_listing);
 
-        cardView1 = (CardView)findViewById(R.id.listing1);
-        cardView2 = (CardView)findViewById(R.id.listing2);
-        cardView3 = (CardView)findViewById(R.id.listing3);
+        listViewListing  = findViewById(R.id.listviewListing);
 
-        imageView = (ImageView)findViewById(R.id.imageView);
+        SharedPreferences bb = getSharedPreferences("my_prefs", 0);
+        String stateId = bb.getString("stateId", "stateId");
+        String cityId = bb.getString("cityId", "cityId");
+        String categoryId = bb.getString("categoryId", "categoryId");
+        String subcategoryId = bb.getString("subcategoryId", "subcategoryId");
 
+        url = "http://refercanada.com/api/getListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
 
-        linearLayout = (LinearLayout)findViewById(R.id.fulllisting);
-
-        cardView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cardView1.setVisibility(View.GONE);
-                cardView2.setVisibility(View.GONE);
-                cardView3.setVisibility(View.GONE);
-                imageView.setVisibility(View.GONE);
-                linearLayout.setVisibility(View.VISIBLE);
-            }
-        });
-
-                final int[] currentPage = {0};
-        Timer timer;
-        final long DELAY_MS = 1000;//delay in milliseconds before task is to be executed
-        final long PERIOD_MS = 4000; // time in milliseconds between successive task executions.
-
-
-
-        RatingBar ratingBarOverall,ratingBarReviewed;
-        ratingBarOverall  = (RatingBar)findViewById(R.id.ratingbar);
-        ratingBarReviewed = (RatingBar)findViewById(R.id.ratingbarReviewed);
-        ratingBarOverall.setRating(4.5f);
-        ratingBarReviewed.setRating(4.5f);
-        ratingBarReviewed.setSelected(false);
-        final ViewPager mViewPager = (ViewPager)findViewById(R.id.viewPager);
-        ImageAdapter adapterView = new ImageAdapter(this);
-        mViewPager.setAdapter(adapterView);
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage[0] == 5-1) {
-                    currentPage[0] = 0;
-                }
-                mViewPager.setCurrentItem(currentPage[0]++, true);
-            }
-        };
-
-        timer = new Timer(); // This will create a new Thread
-        timer.schedule(new TimerTask() { // task to be scheduled
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, DELAY_MS, PERIOD_MS);
+        sendRequest();
     }
-    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
 
@@ -87,22 +64,10 @@ public class CanadianCitiesCategoryListing extends AppCompatActivity {
             super.onBackPressed();
             return;
         }
-
         else
         {
-
-            cardView1.setVisibility(View.VISIBLE);
-            cardView2.setVisibility(View.VISIBLE);
-            cardView3.setVisibility(View.VISIBLE);
-            imageView.setVisibility(View.VISIBLE);
-            linearLayout.setVisibility(View.GONE
-        );
-
-
             this.doubleBackToExitPressedOnce = true;
-
             Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
             new Handler().postDelayed(new Runnable() {
 
                 @Override
@@ -112,4 +77,56 @@ public class CanadianCitiesCategoryListing extends AppCompatActivity {
             }, 2000);
         }
     }
+
+    private void sendRequest() {
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
+
+        StringRequest stringRequest = new StringRequest(url,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            int abc = Integer.parseInt(obj.getString("status"));
+
+
+                            if (abc !=1 )
+                            {
+                                Toast.makeText(CanadianCitiesCategoryListing.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
+                                loading.dismiss();
+                            }
+                            else if (abc == 1)
+                            {
+                                loading.dismiss();
+                                showJSON(response);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(CanadianCitiesCategoryListing.this, "Exception"+e, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void showJSON(String json) {
+        JsonHolderCategoryListing jsonHolderListing = new JsonHolderCategoryListing(json);
+        jsonHolderListing.parseJSON();
+
+
+        CanadianCitiesCategoryListingAdapter ca = new CanadianCitiesCategoryListingAdapter(this, JsonHolderCategoryListing.id, JsonHolderCategoryListing.cover_image, JsonHolderCategoryListing.listing_name, JsonHolderCategoryListing.address, JsonHolderCategoryListing.phone, JsonHolderCategoryListing.email);
+        listViewListing.setAdapter(ca);
+
+        ca.notifyDataSetChanged();
+    }
+
 }

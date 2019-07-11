@@ -46,13 +46,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
         loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
-        editTextFirstName    = (EditText)findViewById(R.id.firstname);
-        editTextLastName     = (EditText)findViewById(R.id.lastname);
-        editTextEmailId      = (EditText)findViewById(R.id.email);
-        editTextMobileNumber = (EditText)findViewById(R.id.mobilenumber);
-        editTextPassword     = (EditText)findViewById(R.id.password);
+        editTextFirstName    = findViewById(R.id.firstname);
+        editTextLastName     = findViewById(R.id.lastname);
+        editTextEmailId      = findViewById(R.id.email);
+        editTextMobileNumber = findViewById(R.id.mobilenumber);
+        editTextPassword     = findViewById(R.id.password);
 
-        buttonRegister = (Button)findViewById(R.id.register);
+        buttonRegister = findViewById(R.id.register);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +61,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-        webView = (WebView)findViewById(R.id.webview);
+        webView = findViewById(R.id.webview);
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -122,9 +122,6 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
     }
-
-
-
 
     public void registration()
     {
