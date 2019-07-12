@@ -29,9 +29,7 @@ public class CanadianCitiesCategoryListActivity extends AppCompatActivity {
     ListView listViewCitiesCategoryList;
     String url;
     ListView listViewId,listViewSearch;
-    JsonHolderListing jsonHolderListing;
     SearchView searchView;
-    ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

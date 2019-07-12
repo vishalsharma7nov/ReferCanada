@@ -2,6 +2,7 @@ package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
     SearchView searchView;
 
     ArrayList<String> list;
+    List<SettingData> settingDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
 
         listViewCities = (ListView)findViewById(R.id.listView);
         listViewSearch = (ListView)findViewById(R.id.listViewsearch);
-        searchView = (SearchView)findViewById(R.id.searchview);
+        searchView     = (SearchView)findViewById(R.id.searchview);
 
         sendRequest();
     }
@@ -78,17 +80,22 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                 loading.dismiss();
                                 showJSON(response);
 
-                                final ArrayAdapter ar = new ArrayAdapter(CanadianCitiesActivity.this,android.R.layout.simple_list_item_1, JsonHolderListing.name);
-                                listViewSearch.setAdapter(ar);
 
+                                final CanadianListingAdpater ar = new CanadianListingAdpater(getApplicationContext(), settingDataList);
+                                listViewSearch.setAdapter(ar);
 
                                 listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //
                                         Intent intent = new Intent(CanadianCitiesActivity.this,CanadianCitiesCategoryActivity.class);
-                                        intent.putExtra("pos",position);
+                                        intent.putExtra("pos",ar.filteredData.get(position).getId());
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("cityId", ar.filteredData.get(position).getId());
+                                        edit.commit();
                                         startActivity(intent);
+                                        Toast.makeText(getApplicationContext(), ar.filteredData.get(position).getId(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -96,16 +103,21 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent intent = new Intent(CanadianCitiesActivity.this,CanadianCitiesCategoryActivity.class);
-                                        intent.putExtra("pos",position);
+                                        intent.putExtra("pos",ar.filteredData.get(position).getId());
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("cityId", ar.filteredData.get(position).getId());
+                                        edit.commit();
                                         startActivity(intent);
-
+                                        Toast.makeText(getApplicationContext(), ar.filteredData.get(position).getId(), Toast.LENGTH_SHORT).show();
 
                                     }
                                 });
 
-                                searchView.setOnSearchClickListener(new View.OnClickListener() {
+                                searchView.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        searchView.setIconified(false);
                                         listViewCities.setVisibility(View.GONE);
                                         listViewSearch.setVisibility(View.VISIBLE);
                                         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -155,8 +167,9 @@ public class CanadianCitiesActivity extends AppCompatActivity {
 
     private void showJSON(String json) {
         JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
-        jsonHolderListing.parseJSON();
-        CanadianCitiesAdpater ca = new CanadianCitiesAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
+        settingDataList = jsonHolderListing.parseJSON();
+
+        CanadianListingAdpater ca = new CanadianListingAdpater(this, settingDataList);
         listViewCities.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

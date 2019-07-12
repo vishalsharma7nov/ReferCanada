@@ -26,7 +26,6 @@ public class Blog extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     String url;
     ListView listViewBlogListing,listViewBlogId;
-    JsonHolderBlogListing jsonHolderBlogListing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

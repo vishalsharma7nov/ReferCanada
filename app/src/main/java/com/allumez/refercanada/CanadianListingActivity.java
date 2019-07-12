@@ -35,7 +35,7 @@ public class CanadianListingActivity extends AppCompatActivity {
     JsonHolderListing jsonHolderListing;
     SearchView searchView;
     ArrayList<String> list;
-
+    List<SettingData> settingDataList;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -46,7 +46,6 @@ public class CanadianListingActivity extends AppCompatActivity {
         listViewId = findViewById(R.id.listViewId);
         listViewSearch = findViewById(R.id.listViewsearch);
         searchView = findViewById(R.id.searchview);
-
 
         sendRequest();
     }
@@ -72,18 +71,17 @@ public class CanadianListingActivity extends AppCompatActivity {
                                 final ArrayAdapter a = new ArrayAdapter(CanadianListingActivity.this, android.R.layout.simple_list_item_1, mId);
                                 listViewId.setAdapter(a);
 
-                                final CanadianListingAdpater ar = new CanadianListingAdpater(getApplicationContext(), list1);
+                                final CanadianListingAdpater ar = new CanadianListingAdpater(getApplicationContext(), settingDataList);
                                 listViewSearch.setAdapter(ar);
 
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(CanadianListingActivity.this, CanadianCitiesActivity.class);
-                                        intent.putExtra("pos", selectedId);
+                                        intent.putExtra("pos", ar.filteredData.get(position).getId());
                                         SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
                                         SharedPreferences.Editor edit = prefs.edit();
-                                        edit.putString("stateId", selectedId);
+                                        edit.putString("stateId", ar.filteredData.get(position).getId());
                                         edit.commit();
                                         startActivity(intent);
 
@@ -94,7 +92,7 @@ public class CanadianListingActivity extends AppCompatActivity {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                                        String x = list1.get(position).getId();
+                                        String x = settingDataList.get(position).getId();
                                         Intent intent = new Intent(CanadianListingActivity.this,CanadianCitiesActivity.class);
                                         intent.putExtra("pos",ar.filteredData.get(position).getId());
                                         SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
@@ -105,10 +103,11 @@ public class CanadianListingActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                searchView.setOnSearchClickListener(new View.OnClickListener() {
+                                searchView.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         listView.setVisibility(View.GONE);
+                                        searchView.setIconified(false);
                                         listViewSearch.setVisibility(View.VISIBLE);
                                         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                                             @Override
@@ -158,12 +157,11 @@ public class CanadianListingActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    List<SettingData> list1;
+
     private void showJSON(String json) {
         jsonHolderListing = new JsonHolderListing(json);
-        list1 = jsonHolderListing.parseJSON();
-        CanadianListingAdpater ca = new CanadianListingAdpater(this, list1);
-//        CanadianListingAdpater ca = new CanadianListingAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
+        settingDataList = jsonHolderListing.parseJSON();
+        CanadianListingAdpater ca = new CanadianListingAdpater(this, settingDataList);
         listView.setAdapter(ca);
         ca.notifyDataSetChanged();
 

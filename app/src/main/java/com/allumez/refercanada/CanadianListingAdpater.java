@@ -31,8 +31,7 @@ public class CanadianListingAdpater extends BaseAdapter implements Filterable
     public static String[] id;
     public static String[] name;
     public static String[] image;
-    TextView t2;
-    String mID;
+
 
     List<SettingData> list;
     List<SettingData> filteredData;
@@ -44,8 +43,6 @@ public class CanadianListingAdpater extends BaseAdapter implements Filterable
         this.c=c;
         this.list = list;
         this.filteredData = list;
-
-
     }
 
     @Override
@@ -71,7 +68,7 @@ public class CanadianListingAdpater extends BaseAdapter implements Filterable
 
 
         TextView t1= convertView.findViewById(R.id.textViewName);
-        t2= convertView.findViewById(R.id.textViewId);
+        TextView t2= convertView.findViewById(R.id.textViewId);
 
             t1.setText(filteredData.get(position).getName());
             t2.setText(filteredData.get(position).getId());

@@ -33,11 +33,8 @@ public class CanadianCitiesCategoryListing extends AppCompatActivity {
 
     boolean doubleBackToExitPressedOnce = false;
 
-    ImageView imageView;
     ListView listViewListing;
     String url;
-    JsonHolderCategoryListing jsonHolderListing;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +50,8 @@ public class CanadianCitiesCategoryListing extends AppCompatActivity {
         String subcategoryId = bb.getString("subcategoryId", "subcategoryId");
 
         url = "http://refercanada.com/api/getListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
+
+        Log.e("===ListingCategory",stateId+"\n"+cityId+"\n"+categoryId+"\n"+subcategoryId);
 
         sendRequest();
     }

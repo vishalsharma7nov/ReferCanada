@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 
 public class InternationalCategoryListActivity extends AppCompatActivity {
@@ -33,11 +34,8 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
     String url="http://refercanada.com/api/getinterCategoryList.php";
     JsonHolderListing jsonHolderListing;
     SearchView searchView;
+    List<SettingData> settingDataList;
 
-    int currentPage = 0;
-    Timer timer;
-    final long DELAY_MS = 500;
-    final long PERIOD_MS = 3000;
 
 
     ArrayList<String> list;
@@ -85,15 +83,14 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
                                 final ArrayAdapter a = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
 
-                                final ArrayAdapter ar = new ArrayAdapter(InternationalCategoryListActivity.this,android.R.layout.simple_list_item_1, JsonHolderListing.name);
+                                final CanadianListingAdpater ar = new CanadianListingAdpater(getApplicationContext(), settingDataList);
                                 listViewSearch.setAdapter(ar);
 
                                 listViewInternationalCategoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(InternationalCategoryListActivity.this,InternationalCategorySubListActivity.class);
-                                        intent.putExtra("pos",selectedId);
+                                        intent.putExtra("pos",ar.filteredData.get(position).getId());
                                         startActivity(intent);
 
 
@@ -102,9 +99,8 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
                                 listViewSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(InternationalCategoryListActivity.this,InternationalCategorySubListActivity.class);
-                                        intent.putExtra("pos",selectedId);
+                                        intent.putExtra("pos",ar.filteredData.get(position).getId());
                                         startActivity(intent);
 
 
@@ -160,9 +156,9 @@ public class InternationalCategoryListActivity extends AppCompatActivity {
     }
 
     private void showJSON(String json) {
-        JsonHolderListing jsonHolderListing = new JsonHolderListing(json);
-        jsonHolderListing.parseJSON();
-        CanadianCitiesCategoryListAdpater ca = new CanadianCitiesCategoryListAdpater(this, JsonHolderListing.id, JsonHolderListing.name, JsonHolderListing.image);
+        jsonHolderListing = new JsonHolderListing(json);
+        settingDataList = jsonHolderListing.parseJSON();
+        CanadianListingAdpater ca = new CanadianListingAdpater(this, settingDataList);
         listViewInternationalCategoryList.setAdapter(ca);
         ca.notifyDataSetChanged();
     }

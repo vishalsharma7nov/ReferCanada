@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +21,11 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class CanadianCitiesCategoryAdpater extends BaseAdapter{
+
+public class CanadianCitiesCategoryAdpater extends BaseAdapter implements Filterable {
 
     Context c;
     public static String[] id;
@@ -28,29 +33,31 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter{
     public static String[] image;
     public static String[] icon;
 
-    public CanadianCitiesCategoryAdpater(Context c, String[] id, String[] name, String[] image, String[] icon)
+    List<SettingCategoryData> list;
+    List<SettingCategoryData> filteredData;
+    public CanadianCitiesCategoryAdpater.ItemFilter mFilter = new CanadianCitiesCategoryAdpater.ItemFilter();
+
+    public CanadianCitiesCategoryAdpater(Context c, List<SettingCategoryData> list )
     {
         this.c=c;
-        CanadianCitiesCategoryAdpater.id = id;
-        CanadianCitiesCategoryAdpater.name = name;
-        CanadianCitiesCategoryAdpater.image = image;
-        CanadianCitiesCategoryAdpater.icon = icon;
+        this.list = list;
+        this.filteredData = list;
     }
 
 
     @Override
     public int getCount() {
-        return id.length;
+        return filteredData.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return filteredData.get(position).getName();
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -60,13 +67,13 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter{
         convertView=in.inflate(R.layout.services,null);
 
         TextView t1= convertView.findViewById(R.id.textViewName);
-        ImageView i3= convertView.findViewById(R.id.imageViewCity);
+        TextView t2= convertView.findViewById(R.id.textViewId);
 
-        String url=null;
-        for (int i = 0;i<image.length;i++)
-        {
-            t1.setText(name[position]);
-            url= "http://refercanada.com/uploads/category_img/"+icon[position];
+        t1.setText(filteredData.get(position).getName());
+        t2.setText(filteredData.get(position).getId());
+
+        ImageView i1= convertView.findViewById(R.id.imageViewCity);
+        String url= "http://refercanada.com/uploads/category_img/"+filteredData.get(position).getIcon();
 
             Glide.with(c)
                     .load(url)
@@ -78,7 +85,6 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter{
                             Toast.makeText(c, "Error While Loading Image!!!", Toast.LENGTH_SHORT).show();
                             return false;
                         }
-
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
 //                            Toast.makeText(c, "Image Loading Finished!!!", Toast.LENGTH_SHORT).show();
@@ -86,9 +92,51 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter{
                         }
                     })
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(i3);
-        }
+                    .into(i1);
 
         return convertView;
     }
+
+    @Override
+    public Filter getFilter() {
+        return mFilter;
+    }
+
+    private class ItemFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            String filterString = constraint.toString().toLowerCase();
+
+            FilterResults results = new FilterResults();
+
+            final List<SettingCategoryData> list1 = list;
+
+            int count = list1.size();
+            final ArrayList<SettingCategoryData> nlist = new ArrayList<SettingCategoryData>(count);
+
+            SettingCategoryData filterableString ;
+
+            for (int i = 0; i < count; i++) {
+                filterableString = list1.get(i);
+                if (filterableString.getName().toLowerCase().contains(filterString)) {
+                    nlist.add(filterableString);
+                }
+            }
+
+            results.values = nlist;
+            results.count = nlist.size();
+
+            return results;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredData = (ArrayList<SettingCategoryData>) results.values;
+            notifyDataSetChanged();
+        }
+
+    }
+
 }

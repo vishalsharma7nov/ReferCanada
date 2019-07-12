@@ -4,6 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class JsonHolderCitiesCategory {
     public static String[] id;
     public static String[] name;
@@ -24,8 +27,9 @@ class JsonHolderCitiesCategory {
         this.json = json;
     }
 
-    protected void parseJSON() {
+    protected List<SettingCategoryData> parseJSON(){
         JSONObject jsonObject = null;
+        List<SettingCategoryData> list = new ArrayList<>();
         try {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
@@ -37,16 +41,18 @@ class JsonHolderCitiesCategory {
 
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
-
+                SettingCategoryData sd = new SettingCategoryData(jo.getString(KEY_ID), jo.getString(KEY_CITYNAME),jo.getString(KEY_CITYICON));
+                list.add(sd);
                 id[i]       = jo.getString(KEY_ID);
                 name[i]     = jo.getString(KEY_CITYNAME);
                 image[i]    = jo.getString(KEY_CITYIMAGE);
-                icon[i]    = jo.getString(KEY_CITYICON);
+                icon[i]     = jo.getString(KEY_CITYICON);
 
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return list;
     }
 
 }
