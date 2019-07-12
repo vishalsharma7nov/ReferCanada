@@ -14,17 +14,17 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/logorefercanada"/>
+
     <ListView
         android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
         android:divider="@color/colorTextWhite"
         android:dividerHeight="1dp"
         android:fadeScrollbars="false"
-        android:scrollbars="vertical"
         android:scrollbarStyle="insideOverlay"
-        android:layout_marginTop="140dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:scrollbars="vertical"/>
 
     <ListView
         android:visibility="gone"

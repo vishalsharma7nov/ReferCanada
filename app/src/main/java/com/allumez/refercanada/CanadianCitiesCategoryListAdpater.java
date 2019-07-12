@@ -50,12 +50,9 @@ public class CanadianCitiesCategoryListAdpater extends BaseAdapter{
 
         convertView=in.inflate(R.layout.citynames,null);
 
-
         TextView t1= convertView.findViewById(R.id.textViewName);
-        for (int i = 0;i<image.length;i++)
-        {
-            t1.setText(name[position]);
-        }
+        t1.setText(name[position]);
+
         return convertView;
     }
 }

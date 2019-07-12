@@ -4,6 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class JsonHolderListing{
     public static String[] id;
     public static String[] name;
@@ -21,7 +24,8 @@ class JsonHolderListing{
         this.json = json;
     }
 
-    protected void parseJSON() {
+    protected List<SettingData> parseJSON() {
+        List<SettingData> list = new ArrayList<>();
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
@@ -34,7 +38,8 @@ class JsonHolderListing{
 
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
-
+                SettingData sd = new SettingData(jo.getString(KEY_ID), jo.getString(KEY_CITYNAME));
+                list.add(sd);
                 id[i]       = jo.getString(KEY_ID);
                 name[i]     = jo.getString(KEY_CITYNAME);
                 image[i]    = jo.getString(KEY_CITYIMAGE);
@@ -43,6 +48,8 @@ class JsonHolderListing{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        return list;
     }
 
 }

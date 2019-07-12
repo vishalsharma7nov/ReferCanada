@@ -60,7 +60,7 @@ public class CanadianCitiesActivity extends AppCompatActivity {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
         StringRequest stringRequest = new StringRequest(url,
-                new com.android.volley.Response.Listener<String>() {
+                new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 

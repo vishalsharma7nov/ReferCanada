@@ -94,11 +94,7 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
             }
         });
 
-        String url=null;
-
-        for (int i = 0;i<id.length;i++)
-        {
-           url= "http://refercanada.com/uploads/listing_img/"+cover_image[position];
+        String url = "http://refercanada.com/uploads/listing_img/"+cover_image[position];
             Glide.with(c)
                     .load(url)
                     .addListener(new RequestListener<Drawable>() {
@@ -115,14 +111,11 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
                     })
 
                     .into(i1);
-
-
             t1.setText(listing_name[position]);
             t2.setText(address[position]);
             t3.setText(phone[position]);
             t4.setText(email[position]);
 
-        }
         return convertView;
     }
 }

@@ -24,12 +24,11 @@ public class CanadianCitiesAdpater extends BaseAdapter{
     public CanadianCitiesAdpater(Context c, String[] id, String[] name, String[] image)
     {
         this.c=c;
-        CanadianCitiesAdpater.id = id;
-        CanadianCitiesAdpater.name = name;
-        CanadianCitiesAdpater.image = image;
+        this.id = id;
+        this.name = name;
+        this.image = image;
 
     }
-
 
     @Override
     public int getCount() {
