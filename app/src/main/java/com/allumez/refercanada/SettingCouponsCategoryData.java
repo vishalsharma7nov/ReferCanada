@@ -1,17 +1,16 @@
 package com.allumez.refercanada;
 
-public class SettingCategoryData {
+public class SettingCouponsCategoryData {
 
     String id;
     String name;
-    String icon;
+    String coupon_icon;
 
-    public SettingCategoryData(String id, String name, String icon) {
+    public SettingCouponsCategoryData(String id, String name, String coupon_icon) {
         this.id = id;
         this.name = name;
-        this.icon = icon;
+        this.coupon_icon = coupon_icon;
     }
-
 
     public String getId() {
         return id;
@@ -29,11 +28,11 @@ public class SettingCategoryData {
         this.name = name;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getCoupon_icon() {
+        return coupon_icon;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setCoupon_icon(String coupon_icon) {
+        this.coupon_icon = coupon_icon;
     }
 }

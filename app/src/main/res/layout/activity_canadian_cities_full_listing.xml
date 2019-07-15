@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CanadianCitiesFullListing">
+    tools:context=".CanadianCitiesFullListingActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -174,86 +174,23 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
             <LinearLayout
-                android:layout_margin="10dp"
-                android:orientation="vertical"
+                android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageViewGallery"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:src="@drawable/gallery3" />
-
-
-
-                    <TextView
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_alignParentStart="true"
-                        android:fontFamily="@font/adamina"
-                        android:text="ULTRA DELUXE ROOMS" />
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Price: $450"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-
-                        <TextView
-                            android:text="$940"
-                            android:layout_marginStart="10dp"
-                            android:layout_gravity="right"
-                            android:background="@drawable/strike"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:text="Product/Services"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                        android:textColor="@color/colorPrimary"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:text="Wi-Fi, Air Contitioner, Swimming Pool, Bathroom , Bar , TV, Spa, Music, Parking"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <Button
-                        android:layout_marginTop="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"
-                        android:background="@drawable/buttonoutline"
-                        android:layout_alignParentStart="true"
-                        android:text="Book now" />
-
-                </LinearLayout>
+                <ListView
+                    android:id="@+id/listViewBusinessInformation"
+                    android:nestedScrollingEnabled="true"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="true"
+                    android:focusable="true"
+                    android:background="@drawable/cardviewoutline"
+                    android:layout_margin="20dp"
+                    android:fadeScrollbars="false"
+                    android:scrollbarThumbVertical="@color/colorPrimary"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
 
             </LinearLayout>
 
@@ -286,6 +223,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:id="@+id/editTextFullName"
                     android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:hint="Full Name"
@@ -296,6 +234,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:id="@+id/editTextMobile"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:hint="Mobile"
@@ -305,6 +244,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:id="@+id/editTextEmailId"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/textfield"
@@ -315,6 +255,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:id="@+id/editTextCity"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/textfield"
@@ -325,6 +266,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:id="@+id/editTextReview"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:hint="Write Review"
@@ -348,6 +290,7 @@
                     android:theme="@style/RatingBar" />
 
                 <Button
+                    android:id="@+id/buttonSubmitReview"
                     android:layout_marginTop="10dp"
                     android:text="Submit Review"
                     android:textColor="#FFFFFF"
@@ -366,70 +309,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp" />
 
-
-            <LinearLayout
-                android:paddingBottom="50dp"
+            <TextView
+                android:text="Reviews"
                 android:layout_margin="10dp"
-                android:orientation="vertical"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:text="Reviews"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <RelativeLayout
-                    android:layout_margin="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:src="@drawable/gallery3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="20dp"
-                        android:text="Jacob Michael"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="50dp"
-                        android:text="19th January 2017" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginTop="130dp"
-                        android:text="Good service... nice and clean rooms... very good spread of buffet and friendly staffs. Located in heart of city and easy to reach any places in a short distance." />
-
-                </RelativeLayout>
-
-                <RatingBar
-                    android:id="@+id/ratingbarReviewed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:isIndicator="true"
-                    android:clickable="false"
-                    android:layout_alignParentStart="true"
-                    android:layout_gravity="center"
-                    android:numStars="5"
-                    android:theme="@style/RatingBar" />
-
-            </LinearLayout>
+            <ListView
+                android:id="@+id/listViewUsersReviews"
+                android:nestedScrollingEnabled="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:focusable="true"
+                android:background="@drawable/cardviewoutline"
+                android:layout_margin="20dp"
+                android:fadeScrollbars="false"
+                android:scrollbarThumbVertical="@color/colorPrimary"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
 
         </LinearLayout>
 

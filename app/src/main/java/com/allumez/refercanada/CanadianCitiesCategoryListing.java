@@ -121,8 +121,7 @@ public class CanadianCitiesCategoryListing extends AppCompatActivity {
         JsonHolderCategoryListing jsonHolderListing = new JsonHolderCategoryListing(json);
         jsonHolderListing.parseJSON();
 
-
-        CanadianCitiesCategoryListingAdapter ca = new CanadianCitiesCategoryListingAdapter(this, JsonHolderCategoryListing.id, JsonHolderCategoryListing.cover_image, JsonHolderCategoryListing.listing_name, JsonHolderCategoryListing.address, JsonHolderCategoryListing.phone, JsonHolderCategoryListing.email);
+        CanadianCitiesCategoryListingAdapter ca = new CanadianCitiesCategoryListingAdapter(this, JsonHolderCategoryListing.id, JsonHolderCategoryListing.cover_image,JsonHolderCategoryListing.business_id,JsonHolderCategoryListing.listing_name, JsonHolderCategoryListing.address, JsonHolderCategoryListing.phone, JsonHolderCategoryListing.email);
         listViewListing.setAdapter(ca);
 
         ca.notifyDataSetChanged();

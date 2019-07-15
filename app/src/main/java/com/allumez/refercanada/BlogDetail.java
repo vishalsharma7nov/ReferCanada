@@ -33,8 +33,6 @@ public class BlogDetail extends AppCompatActivity {
     TextView textViewBlogDetailTitle,textViewBlogDetailDescription;
     ImageView imageViewBlogDetailImage;
 
-    JsonHolderBlogDetail jsonHolderBlogDetail;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

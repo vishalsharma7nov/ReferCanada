@@ -3,10 +3,10 @@ package com.allumez.refercanada;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +14,21 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
 
     Context c;
     public static String[] id;
+    public static String[] business_id;
     public static String[] listing_name;
     public static String[] cover_image;
     public static String[] phone;
@@ -36,15 +37,16 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
 
 
 
-    public CanadianCitiesCategoryListingAdapter(Context c, String[] id, String[] cover_image, String[] listing_name, String[] address, String[] phone, String[] email)
+    public CanadianCitiesCategoryListingAdapter(Context c, String[] id, String[] cover_image,String[] business_id, String[] listing_name, String[] address, String[] phone, String[] email)
     {
         this.c=c;
-        CanadianCitiesCategoryListingAdapter.id = id;
-        CanadianCitiesCategoryListingAdapter.cover_image = cover_image;
-        CanadianCitiesCategoryListingAdapter.listing_name = listing_name;
-        CanadianCitiesCategoryListingAdapter.address = address;
-        CanadianCitiesCategoryListingAdapter.phone = phone;
-        CanadianCitiesCategoryListingAdapter.email = email;
+        this.id = id;
+        this.business_id= business_id;
+        this.cover_image = cover_image;
+        this.listing_name = listing_name;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         convertView=in.inflate(R.layout.listing,null);
@@ -81,7 +83,12 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(c,CanadianCitiesFullListing.class);
+                Intent intent = new Intent(c, CanadianCitiesFullListingActivity.class);
+                SharedPreferences prefs = c.getSharedPreferences("my_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor edit = prefs.edit();
+                edit.putString("listId", id[position]);
+                edit.putString("businessId", business_id[position]);
+                edit.commit();
                 c.startActivity(intent);
             }
         });
@@ -89,7 +96,12 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(c,CanadianCitiesFullListing.class);
+                Intent intent = new Intent(c, CanadianCitiesFullListingActivity.class);
+                SharedPreferences prefs = c.getSharedPreferences("my_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor edit = prefs.edit();
+                edit.putString("listId", id[position]);
+                edit.putString("businessId", business_id[position]);
+                edit.commit();
                 c.startActivity(intent);
             }
         });

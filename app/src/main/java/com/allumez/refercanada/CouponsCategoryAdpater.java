@@ -3,7 +3,6 @@ package com.allumez.refercanada;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -24,26 +24,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CanadianListingAdpater extends BaseAdapter implements Filterable
-{
+public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
 
     Context c;
     public static String[] id;
     public static String[] name;
     public static String[] image;
+    public static String[] icon;
+    public static String[] coupon_icon;
 
+    List<SettingCouponsCategoryData> list;
+    List<SettingCouponsCategoryData> filteredData;
+    public CouponsCategoryAdpater.ItemFilter mFilter = new CouponsCategoryAdpater.ItemFilter();
 
-    List<SettingData> list;
-    List<SettingData> filteredData;
-
-    public ItemFilter mFilter = new ItemFilter();
-
-    public CanadianListingAdpater(Context c, List<SettingData> list )
+    public CouponsCategoryAdpater(Context c, List<SettingCouponsCategoryData> list )
     {
         this.c=c;
         this.list = list;
         this.filteredData = list;
     }
+
 
     @Override
     public int getCount() {
@@ -63,14 +63,35 @@ public class CanadianListingAdpater extends BaseAdapter implements Filterable
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView=in.inflate(R.layout.citynames,null);
 
+        convertView=in.inflate(R.layout.services,null);
 
         TextView t1= convertView.findViewById(R.id.textViewName);
         TextView t2= convertView.findViewById(R.id.textViewId);
 
-            t1.setText(filteredData.get(position).getName());
-            t2.setText(filteredData.get(position).getId());
+        t1.setText(filteredData.get(position).getName());
+        t2.setText(filteredData.get(position).getId());
+
+        ImageView i1= convertView.findViewById(R.id.imageViewCity);
+        String url= "http://refercanada.com/uploads/category_img/"+filteredData.get(position).getCoupon_icon();
+            Glide.with(c)
+                    .load(url)
+                    .optionalCircleCrop()
+                    .centerCrop()
+                    .addListener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            Toast.makeText(c, "Error While Loading Image!!!", Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+//                            Toast.makeText(c, "Image Loading Finished!!!", Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+                    })
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(i1);
 
         return convertView;
     }
@@ -88,12 +109,12 @@ public class CanadianListingAdpater extends BaseAdapter implements Filterable
 
             FilterResults results = new FilterResults();
 
-            final List<SettingData> list1 = list;
+            final List<SettingCouponsCategoryData> list1 = list;
 
             int count = list1.size();
-            final ArrayList<SettingData> nlist = new ArrayList<SettingData>(count);
+            final ArrayList<SettingCouponsCategoryData> nlist = new ArrayList<SettingCouponsCategoryData>(count);
 
-            SettingData filterableString ;
+            SettingCouponsCategoryData filterableString ;
 
             for (int i = 0; i < count; i++) {
                 filterableString = list1.get(i);
@@ -111,9 +132,10 @@ public class CanadianListingAdpater extends BaseAdapter implements Filterable
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredData = (ArrayList<SettingData>) results.values;
+            filteredData = (ArrayList<SettingCouponsCategoryData>) results.values;
             notifyDataSetChanged();
         }
 
     }
+
 }

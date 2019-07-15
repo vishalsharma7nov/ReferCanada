@@ -24,7 +24,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Coupons"></activity>
         <activity android:name=".BlogDetail" />
-        <activity android:name=".CanadianCitiesFullListing" />
+        <activity android:name=".CanadianCitiesFullListingActivity" />
         <activity android:name=".Blog" />
         <activity android:name=".CanadianCitiesCategoryListing" />
         <activity

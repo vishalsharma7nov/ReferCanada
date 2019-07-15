@@ -14,9 +14,20 @@
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/logorefercanada"/>
 
-
+    <GridView
+        android:visibility="gone"
+        android:id="@+id/gridView"
+        android:layout_marginTop="80dp"
+        android:numColumns="auto_fit"
+        android:gravity="center"
+        android:columnWidth="100dp"
+        android:stretchMode="columnWidth"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </GridView>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_marginTop="80dp"
             android:padding="30dp"
             android:background="@drawable/couponsbackground"
@@ -57,10 +68,6 @@
 
                 </RelativeLayout>
 
-
-
-
-
             <TextView
                 android:gravity="center"
                 android:textStyle="bold"
@@ -78,10 +85,6 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-
-
-
-
 
     <LinearLayout
         android:id="@+id/frame2"
@@ -107,12 +110,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
-
-
-
     </LinearLayout>
 
+    <GridView
+        android:id="@+id/listView"
+        android:layout_marginTop="140dp"
+        android:divider="@color/colorTextWhite"
+        android:dividerHeight="1dp"
+        android:numColumns="auto_fit"
+        android:gravity="center"
+        android:columnWidth="100dp"
+        android:stretchMode="columnWidth"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </GridView>
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listViewId"
+        android:paddingTop="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listViewsearch"
+        android:paddingTop="140dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchview"
+        app:defaultQueryHint="Search"
+        android:background="@drawable/textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true"/>
 
 
 </RelativeLayout>
