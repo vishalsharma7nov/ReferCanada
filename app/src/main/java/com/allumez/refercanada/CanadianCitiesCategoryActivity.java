@@ -98,7 +98,6 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
                                         edit.putString("categoryId", ar.filteredData.get(position).getId());
                                         edit.commit();
                                         startActivity(intent);
-                                        Toast.makeText(CanadianCitiesCategoryActivity.this, ar.filteredData.get(position).getId(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 listViewSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -111,7 +110,6 @@ public class CanadianCitiesCategoryActivity extends AppCompatActivity {
                                         edit.putString("categoryId", ar.filteredData.get(position).getId());
                                         edit.commit();
                                         startActivity(intent);
-                                        Toast.makeText(CanadianCitiesCategoryActivity.this, ar.filteredData.get(position).getId(), Toast.LENGTH_SHORT).show();
 
 
                                     }

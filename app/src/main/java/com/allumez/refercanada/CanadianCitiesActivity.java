@@ -51,9 +51,9 @@ public class CanadianCitiesActivity extends AppCompatActivity {
         url="http://refercanada.com/api/getCityList.php?stateId="+a;
         Log.e("url",url);
 
-        listViewCities = (ListView)findViewById(R.id.listView);
-        listViewSearch = (ListView)findViewById(R.id.listViewsearch);
-        searchView     = (SearchView)findViewById(R.id.searchview);
+        listViewCities = findViewById(R.id.listView);
+        listViewSearch = findViewById(R.id.listViewsearch);
+        searchView     = findViewById(R.id.searchview);
 
         sendRequest();
     }
@@ -95,7 +95,6 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                         edit.putString("cityId", ar.filteredData.get(position).getId());
                                         edit.commit();
                                         startActivity(intent);
-                                        Toast.makeText(getApplicationContext(), ar.filteredData.get(position).getId(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -109,7 +108,6 @@ public class CanadianCitiesActivity extends AppCompatActivity {
                                         edit.putString("cityId", ar.filteredData.get(position).getId());
                                         edit.commit();
                                         startActivity(intent);
-                                        Toast.makeText(getApplicationContext(), ar.filteredData.get(position).getId(), Toast.LENGTH_SHORT).show();
 
                                     }
                                 });

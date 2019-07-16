@@ -6,10 +6,12 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -34,6 +37,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,33 +72,33 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
     EditText editTextFullName,editTextMobile,editTextEmailId,editTextCity,editTextReview;
     Button buttonSubmitButton;
     RatingBar ratingBarReview;
-
+    ImageView imageViewCoverImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canadian_cities_full_listing);
 
-        final ViewPager mViewPager = findViewById(R.id.viewPager);
-        ImageAdapter adapterView = new ImageAdapter(this);
-        mViewPager.setAdapter(adapterView);
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage[0] == 5-1) {
-                    currentPage[0] = 0;
-                }
-                mViewPager.setCurrentItem(currentPage[0]++, true);
-            }
-        };
-
-        timer = new Timer(); // This will create a new Thread
-        timer.schedule(new TimerTask() { // task to be scheduled
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, DELAY_MS, PERIOD_MS);
+        imageViewCoverImage = findViewById(R.id.imageViewCoverImage);
+//        ImageAdapter adapterView = new ImageAdapter(this);
+//       imageView.setAdapter(adapterView);
+//        final Handler handler = new Handler();
+//        final Runnable Update = new Runnable() {
+//            public void run() {
+//                if (currentPage[0] == 5-1) {
+//                    currentPage[0] = 0;
+//                }
+//                mViewPager.setCurrentItem(currentPage[0]++, true);
+//            }
+//        };
+//
+//        timer = new Timer(); // This will create a new Thread
+//        timer.schedule(new TimerTask() { // task to be scheduled
+//            @Override
+//            public void run() {
+//                handler.post(Update);
+//            }
+//        }, DELAY_MS, PERIOD_MS);
 
 
         textViewListingName          = findViewById(R.id.textViewListingName);
@@ -212,17 +221,43 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-
+                            String image = obj.getJSONObject("data").getString("cover_image");
+//
                             if (abc != 1)
                             {
+                                loading.dismiss();
                                 Toast.makeText(getApplicationContext(), "Work in Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
                                 loading.dismiss();
                                 showJSON(response);
+                                String imageUrl = "http://refercanada.com/uploads/listing_img/"+image;
+                                Glide.with(getApplicationContext())
+                                        .load(imageUrl)
+                                        .centerCrop()
+                                        .addListener(new RequestListener<Drawable>() {
+                                            @Override
+                                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                                Toast.makeText(getApplicationContext(), "Error While Loading Image!!!", Toast.LENGTH_SHORT).show();
+                                                Log.e("===exception",e.getMessage());
+                                                return false;
+                                            }
+                                            @Override
+                                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+//                            Toast.makeText(c, "Image Loading Finished!!!", Toast.LENGTH_SHORT).show();
+                                                return false;
+                                            }
+                                        })
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .into(imageViewCoverImage);
+
+
                             }
-                        } catch (JSONException e) {
+                        }
+                        catch (JSONException e)
+                        {
+                            loading.dismiss();
                             e.printStackTrace();
                         }
 
@@ -231,6 +266,7 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
@@ -244,11 +280,11 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
     {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
-        final String fullname         = editTextFullName.getText().toString();
-        final String mobile           = editTextMobile.getText().toString();
-        final String email            = editTextEmailId.getText().toString();
-        final String city             = editTextCity.getText().toString();
-        final String review           = editTextReview.getText().toString();
+        final String fullname  = editTextFullName.getText().toString();
+        final String mobile    = editTextMobile.getText().toString();
+        final String email     = editTextEmailId.getText().toString();
+        final String city      = editTextCity.getText().toString();
+        final String review    = editTextReview.getText().toString();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, reviewAPI,
                 new Response.Listener<String>() {
@@ -318,6 +354,7 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
 
                             if (abc != 1)
                             {
+                                loading.dismiss();
                                 Toast.makeText(getApplicationContext(), "Work in Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
@@ -326,6 +363,7 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
                                 showJSONReview(response);
                             }
                         } catch (JSONException e) {
+                            loading.dismiss();
                             e.printStackTrace();
                         }
 
@@ -334,6 +372,7 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
@@ -347,7 +386,7 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
         JsonHolderReviews jsonHolderReviews = new JsonHolderReviews(json);
         jsonHolderReviews.parseJSON();
 
-        ReviewListingAdapter reviewListingAdapter = new ReviewListingAdapter(this,jsonHolderReviews.name,jsonHolderReviews.comment,jsonHolderReviews.created_date,jsonHolderReviews.rating);
+        ReviewListingAdapter reviewListingAdapter = new ReviewListingAdapter(this, JsonHolderReviews.name, JsonHolderReviews.comment, JsonHolderReviews.created_date, JsonHolderReviews.rating);
         listViewUsersReviews.setAdapter(reviewListingAdapter);
 
     }
@@ -357,7 +396,7 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
         JsonHolderFullListing jsonHolderFullListing = new JsonHolderFullListing(json);
         jsonHolderFullListing.parseJSON();
 
-        FullListingAdapter fullListingAdapter = new FullListingAdapter(this,jsonHolderFullListing.title,jsonHolderFullListing.product_image,jsonHolderFullListing.discount,jsonHolderFullListing.price,jsonHolderFullListing.features);
+        FullListingAdapter fullListingAdapter = new FullListingAdapter(this, JsonHolderFullListing.title, JsonHolderFullListing.product_image, JsonHolderFullListing.discount, JsonHolderFullListing.price, JsonHolderFullListing.features);
         listViewBusinessInformation.setAdapter(fullListingAdapter);
 
     }

@@ -1,6 +1,5 @@
 package com.allumez.refercanada;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
@@ -64,7 +63,7 @@ public class CanadianCitiesCategoryAdpater extends BaseAdapter implements Filter
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        convertView=in.inflate(R.layout.services,null);
+        convertView=in.inflate(R.layout.services_layout,null);
 
         TextView t1= convertView.findViewById(R.id.textViewName);
         TextView t2= convertView.findViewById(R.id.textViewId);

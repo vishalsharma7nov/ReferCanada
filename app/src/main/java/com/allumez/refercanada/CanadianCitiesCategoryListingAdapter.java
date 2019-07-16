@@ -40,13 +40,13 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
     public CanadianCitiesCategoryListingAdapter(Context c, String[] id, String[] cover_image,String[] business_id, String[] listing_name, String[] address, String[] phone, String[] email)
     {
         this.c=c;
-        this.id = id;
-        this.business_id= business_id;
-        this.cover_image = cover_image;
-        this.listing_name = listing_name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
+        CanadianCitiesCategoryListingAdapter.id = id;
+        CanadianCitiesCategoryListingAdapter.business_id = business_id;
+        CanadianCitiesCategoryListingAdapter.cover_image = cover_image;
+        CanadianCitiesCategoryListingAdapter.listing_name = listing_name;
+        CanadianCitiesCategoryListingAdapter.address = address;
+        CanadianCitiesCategoryListingAdapter.phone = phone;
+        CanadianCitiesCategoryListingAdapter.email = email;
     }
 
     @Override

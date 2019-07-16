@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,7 +65,7 @@ public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        convertView=in.inflate(R.layout.services,null);
+        convertView=in.inflate(R.layout.coupons_layout,null);
 
         TextView t1= convertView.findViewById(R.id.textViewName);
         TextView t2= convertView.findViewById(R.id.textViewId);
@@ -73,11 +74,11 @@ public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
         t2.setText(filteredData.get(position).getId());
 
         ImageView i1= convertView.findViewById(R.id.imageViewCity);
+
         String url= "http://refercanada.com/uploads/category_img/"+filteredData.get(position).getCoupon_icon();
             Glide.with(c)
                     .load(url)
-                    .optionalCircleCrop()
-                    .centerCrop()
+                    .fitCenter()
                     .addListener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

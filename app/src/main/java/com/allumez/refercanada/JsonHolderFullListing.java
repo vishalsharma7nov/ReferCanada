@@ -3,6 +3,8 @@ package com.allumez.refercanada;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +20,7 @@ class JsonHolderFullListing {
     public static String[] show_price;
     public static String[] discount;
 
+    public static String cover_image;
 
 
     public static final String JSON_ARRAY                  = "product_data";
@@ -43,6 +46,12 @@ class JsonHolderFullListing {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
 
+            JSONObject jsonObject1 = new JSONObject(json);
+
+
+            cover_image     = jsonObject1.getJSONObject("data").getString("cover_image");
+            Log.e("===jsondata",cover_image);
+
             id                  = new String[users.length()];
             title               = new String[users.length()];
             product_image       = new String[users.length()];
@@ -52,7 +61,6 @@ class JsonHolderFullListing {
             show_product        = new String[users.length()];
             show_price          = new String[users.length()];
             discount            = new String[users.length()];
-
 
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);

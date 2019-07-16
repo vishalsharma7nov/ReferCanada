@@ -37,10 +37,10 @@ public class ReviewListingAdapter extends BaseAdapter {
     public ReviewListingAdapter(Context c, String[] name, String[] comment, String[] created_date,String[] rating)
     {
         this.c = c;
-        this.name= name;
-        this.comment= comment;
-        this.created_date = created_date;
-        this.rating = rating;
+        ReviewListingAdapter.name = name;
+        ReviewListingAdapter.comment = comment;
+        ReviewListingAdapter.created_date = created_date;
+        ReviewListingAdapter.rating = rating;
 
     }
 

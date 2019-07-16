@@ -34,11 +34,11 @@ public class FullListingAdapter extends BaseAdapter {
     public FullListingAdapter(Context c,String[] title,String[] product_image,String[]discount,String[] price,String[] features)
     {
         this.c = c;
-        this.title= title;
-        this.product_image= product_image;
-        this.discount = discount;
-        this.price = price;
-        this.features = features;
+        FullListingAdapter.title = title;
+        FullListingAdapter.product_image = product_image;
+        FullListingAdapter.discount = discount;
+        FullListingAdapter.price = price;
+        FullListingAdapter.features = features;
 
     }
 
