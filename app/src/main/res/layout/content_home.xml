@@ -80,31 +80,37 @@
                     android:id="@+id/canadianlisting"
                     android:src="@drawable/canadianlisting"
                     android:layout_margin="10dp"
-                    android:padding="20dp"
+                    android:padding="5dp"
                     android:background="@drawable/imageviewborder"
                     android:layout_gravity="center"
                     android:layout_width="300dp"
                     android:layout_height="250dp" />
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/internationallisting"
                     android:src="@drawable/internationallisting"
                     android:layout_margin="10dp"
-                    android:padding="20dp"
+                    android:layout_width="150dp"
                     android:background="@drawable/imageviewborder"
                     android:layout_gravity="center"
-                    android:layout_width="300dp"
-                    android:layout_height="200dp" />
+                    android:layout_height="150dp"
+                    android:padding="5dp" />
 
                 <ImageView
                     android:id="@+id/coupon"
-                    android:src="@drawable/blog"
+                    android:layout_width="150dp"
                     android:layout_margin="10dp"
-                    android:padding="20dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/imageviewborder"
                     android:layout_gravity="center"
-                    android:layout_width="300dp"
-                    android:layout_height="200dp" />
+                    android:padding="5dp"
+                    android:src="@drawable/couponsbackground" />
+
+            </GridLayout>
+
 
             </LinearLayout>
         </ScrollView>

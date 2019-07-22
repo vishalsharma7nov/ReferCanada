@@ -1,18 +1,15 @@
 package com.allumez.refercanada;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,17 +35,26 @@ public class LoginActivity extends AppCompatActivity {
     String LoginAPI = "http://refercanada.com/api/login.php";
     WebView webView;
     ProgressDialog loading;
-
+    Spinner spinner;
+    ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
+//        loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
         editTextEmailId  = findViewById(R.id.editTextEmailId);
         editTextPassword = findViewById(R.id.editTextPassword);
+        spinner  = findViewById(R.id.spinner);
+
+        String[] loginType ={"Choose Login Type","Business Login", "Member Login"};
+
+        arrayAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,loginType);
+        spinner.setAdapter(arrayAdapter);
+
+
 
         buttonLogin = findViewById(R.id.login);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        webView = findViewById(R.id.webview);
+     /*   webView = findViewById(R.id.webview);
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -97,10 +103,10 @@ public class LoginActivity extends AppCompatActivity {
                 alertDialog.show();
                 super.onReceivedError(webView, errorCode, description, failingUrl);
             }
-        });
+        });*/
     }
 
-    public class CustomWebViewClient extends WebViewClient {
+   /* public class CustomWebViewClient extends WebViewClient {
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -113,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
             loading.dismiss();
         }
 
-    }
+    }*/
 
     public void login()
     {
@@ -121,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final String email         = editTextEmailId.getText().toString();
         final String password      = editTextPassword.getText().toString();
+        final String member        = "2";
+        final String business      = "3";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LoginAPI,
                 new Response.Listener<String>() {
@@ -142,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                                 loading.dismiss();
                                 editTextEmailId.setText("");
                                 editTextPassword.setText("");
+                                spinner.setSelection(0);
                                 Intent intent =new Intent(LoginActivity.this,DashBoardActivity.class);
                                 startActivity(intent);
                                 makeText(LoginActivity.this, loginMsg, Toast.LENGTH_SHORT).show();
@@ -167,8 +176,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("email", email);
-                params.put("password", password);
+
+                if (spinner.getSelectedItem().equals("Member Login")) {
+                    params.put("email", email);
+                    params.put("password", password);
+                    params.put("role_id", member);
+                }
+                if (spinner.getSelectedItem().equals("Business Login"))
+                {
+                    params.put("email", email);
+                    params.put("password", password);
+                    params.put("role_id", business);
+                }
                 return params;
             }
         };

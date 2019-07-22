@@ -1,17 +1,13 @@
 package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridLayout;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Coupons extends AppCompatActivity {
+public class Coupons extends AppCompatActivity{
 
     SearchView searchView;
     ArrayList<String> list;
@@ -45,9 +41,6 @@ public class Coupons extends AppCompatActivity {
         listViewId  = findViewById(R.id.listViewId);
         listViewSearch = findViewById(R.id.listViewsearch);
         searchView = findViewById(R.id.searchview);
-
-        GridView gridview = findViewById(R.id.listView);
-        gridview.setAdapter(new GridViewAdapter(this));
 
         url = "http://refercanada.com/api/getCategoryList.php";
         sendRequest();

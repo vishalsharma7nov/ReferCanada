@@ -1,31 +1,20 @@
 package com.allumez.refercanada;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -48,20 +37,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 
 public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
 
-    final int[] currentPage = {0};
-    Timer timer;
-    final long DELAY_MS = 1000;
-    final long PERIOD_MS = 4000;
+
     boolean doubleBackToExitPressedOnce = false;
     TextView textViewListingName,textViewLandmark;
     ImageButton imageButtonMail,imageButtonPhone,imageButtonAddress,imageButtonSms;
@@ -80,25 +63,6 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_canadian_cities_full_listing);
 
         imageViewCoverImage = findViewById(R.id.imageViewCoverImage);
-//        ImageAdapter adapterView = new ImageAdapter(this);
-//       imageView.setAdapter(adapterView);
-//        final Handler handler = new Handler();
-//        final Runnable Update = new Runnable() {
-//            public void run() {
-//                if (currentPage[0] == 5-1) {
-//                    currentPage[0] = 0;
-//                }
-//                mViewPager.setCurrentItem(currentPage[0]++, true);
-//            }
-//        };
-//
-//        timer = new Timer(); // This will create a new Thread
-//        timer.schedule(new TimerTask() { // task to be scheduled
-//            @Override
-//            public void run() {
-//                handler.post(Update);
-//            }
-//        }, DELAY_MS, PERIOD_MS);
 
 
         textViewListingName          = findViewById(R.id.textViewListingName);

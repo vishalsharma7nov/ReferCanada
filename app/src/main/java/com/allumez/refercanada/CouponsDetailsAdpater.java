@@ -1,7 +1,6 @@
 package com.allumez.refercanada;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -25,20 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
+public class CouponsDetailsAdpater extends BaseAdapter implements Filterable {
 
+    public CouponsDetailsAdpater.ItemFilter mFilter = new CouponsDetailsAdpater.ItemFilter();
     Context c;
-    public static String[] id;
-    public static String[] name;
-    public static String[] image;
-    public static String[] icon;
-    public static String[] coupon_icon;
+    List<SettingCouponsDetailsData> list;
+    List<SettingCouponsDetailsData> filteredData;
 
-    List<SettingCouponsCategoryData> list;
-    List<SettingCouponsCategoryData> filteredData;
-    public CouponsCategoryAdpater.ItemFilter mFilter = new CouponsCategoryAdpater.ItemFilter();
-
-    public CouponsCategoryAdpater(Context c, List<SettingCouponsCategoryData> list )
+    public CouponsDetailsAdpater(Context c, List<SettingCouponsDetailsData> list )
     {
         this.c=c;
         this.list = list;
@@ -53,7 +46,7 @@ public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
 
     @Override
     public Object getItem(int position) {
-        return filteredData.get(position).getName();
+        return filteredData.get(position).getTitle();
     }
 
     @Override
@@ -64,26 +57,24 @@ public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView=in.inflate(R.layout.coupons_layout,null);
+        convertView=in.inflate(R.layout.coupons_listing_layout,null);
 
-        TextView t1= convertView.findViewById(R.id.textViewName);
-        TextView t2= convertView.findViewById(R.id.textViewId);
+        TextView t1= convertView.findViewById(R.id.textViewCouponsTitle);
+        TextView t2= convertView.findViewById(R.id.textViewCouponsDescription);
+        TextView t3= convertView.findViewById(R.id.textViewCouponsLeft);
+        TextView t4= convertView.findViewById(R.id.textViewCouponsDiscountPrice);
+        TextView t5= convertView.findViewById(R.id.textViewCouponsActualPrice);
 
-        t1.setText(filteredData.get(position).getName());
-        t2.setText(filteredData.get(position).getId());
+        t1.setText(filteredData.get(position).getTitle());
+        t2.setText(filteredData.get(position).getDescription());
+        t3.setText("Total Coupons Left = "+filteredData.get(position).getTotal_number_of_coupons());
+        t4.setText("Price =$"+filteredData.get(position).getDiscounted_price());
+        t5.setText("$"+filteredData.get(position).getActual_price());
 
-        ImageView i1= convertView.findViewById(R.id.imageViewCity);
-        i1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(c, CouponDetails.class);
-                c.startActivity(intent);
-//                Toast.makeText(c, "Coupons Of"+filteredData.get(position).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        String url= "http://refercanada.com/uploads/category_img/"+filteredData.get(position).getCoupon_icon();
+        ImageView i1= convertView.findViewById(R.id.imageViewCouponListing);
 
-        Glide.with(c)
+        String url= "http://refercanada.com/uploads/coupon_img/"+filteredData.get(position).getImage();
+            Glide.with(c)
                     .load(url)
                     .fitCenter()
                     .addListener(new RequestListener<Drawable>() {
@@ -117,16 +108,16 @@ public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
 
             FilterResults results = new FilterResults();
 
-            final List<SettingCouponsCategoryData> list1 = list;
+            final List<SettingCouponsDetailsData> list1 = list;
 
             int count = list1.size();
-            final ArrayList<SettingCouponsCategoryData> nlist = new ArrayList<SettingCouponsCategoryData>(count);
+            final ArrayList<SettingCouponsDetailsData> nlist = new ArrayList<SettingCouponsDetailsData>(count);
 
-            SettingCouponsCategoryData filterableString ;
+            SettingCouponsDetailsData filterableString ;
 
             for (int i = 0; i < count; i++) {
                 filterableString = list1.get(i);
-                if (filterableString.getName().toLowerCase().contains(filterString)) {
+                if (filterableString.getTitle().toLowerCase().contains(filterString)) {
                     nlist.add(filterableString);
                 }
             }
@@ -140,7 +131,7 @@ public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredData = (ArrayList<SettingCouponsCategoryData>) results.values;
+            filteredData = (ArrayList<SettingCouponsDetailsData>) results.values;
             notifyDataSetChanged();
         }
 

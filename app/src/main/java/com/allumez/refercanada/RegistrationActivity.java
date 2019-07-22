@@ -1,18 +1,15 @@
 package com.allumez.refercanada;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,20 +34,22 @@ public class RegistrationActivity extends AppCompatActivity {
     Button  buttonRegister;
     String RegistrationAPI = "http://refercanada.com/api/registration.php";
     WebView webView;
-    ProgressDialog loading;
-
+//    ProgressDialog loading;
+    ArrayAdapter arrayAdapter;
+    Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
+//        loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
 
         editTextFirstName    = findViewById(R.id.firstname);
         editTextLastName     = findViewById(R.id.lastname);
         editTextEmailId      = findViewById(R.id.email);
         editTextMobileNumber = findViewById(R.id.mobilenumber);
         editTextPassword     = findViewById(R.id.password);
+        spinner  = findViewById(R.id.spinner);
 
         buttonRegister = findViewById(R.id.register);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +60,12 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-        webView = findViewById(R.id.webview);
+        String[] loginType ={"Choose Login Type","Business Login", "Member Login"};
+
+        arrayAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,loginType);
+        spinner.setAdapter(arrayAdapter);
+
+        /*webView = findViewById(R.id.webview);
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -103,25 +107,25 @@ public class RegistrationActivity extends AppCompatActivity {
                 alertDialog.show();
                 super.onReceivedError(webView, errorCode, description, failingUrl);
             }
-        });
+        });*/
 
 
     }
-
-    public class CustomWebViewClient extends WebViewClient {
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            //TODO: show progress bar here
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            //TODO: hide progress bar here
-            loading.dismiss();
-        }
-
-    }
+//
+//    public class CustomWebViewClient extends WebViewClient {
+//
+//        @Override
+//        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//            //TODO: show progress bar here
+//        }
+//
+//        @Override
+//        public void onPageFinished(WebView view, String url) {
+//            //TODO: hide progress bar here
+//            loading.dismiss();
+//        }
+//
+//    }
 
     public void registration()
     {
@@ -132,7 +136,8 @@ public class RegistrationActivity extends AppCompatActivity {
         final String email         = editTextEmailId.getText().toString();
         final String mobilenumber  = editTextMobileNumber.getText().toString();
         final String password      = editTextPassword.getText().toString();
-
+        final String member        = "2";
+        final String business      = "3";
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, RegistrationAPI,
@@ -158,7 +163,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                 editTextEmailId.setText("");
                                 editTextMobileNumber.setText("");
                                 editTextPassword.setText("");
-                                Intent intent =new Intent(RegistrationActivity.this,DashBoardActivity.class);
+                                spinner.setSelection(0);
+                                Intent intent =new Intent(RegistrationActivity.this,LoginActivity.class);
                                 startActivity(intent);
                                 makeText(RegistrationActivity.this, loginMsg, Toast.LENGTH_SHORT).show();
                             }
@@ -166,8 +172,6 @@ public class RegistrationActivity extends AppCompatActivity {
                             e.printStackTrace();
                             loading.dismiss();
                         }
-
-
                     }
                 },
 
@@ -183,11 +187,24 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("fname", firstname);
-                params.put("lname", lastname);
-                params.put("email", email);
-                params.put("mobile", mobilenumber);
-                params.put("password", password);
+                if (spinner.getSelectedItem().equals("Member Login")) {
+                    params.put("fname", firstname);
+                    params.put("lname", lastname);
+                    params.put("email", email);
+                    params.put("mobile", mobilenumber);
+                    params.put("password", password);
+                    params.put("role_id", member);
+                }
+                if (spinner.getSelectedItem().equals("Business Login"))
+                {
+                    params.put("fname", firstname);
+                    params.put("lname", lastname);
+                    params.put("email", email);
+                    params.put("mobile", mobilenumber);
+                    params.put("password", password);
+                    params.put("role_id", business);
+                }
+
                 return params;
             }
         };
