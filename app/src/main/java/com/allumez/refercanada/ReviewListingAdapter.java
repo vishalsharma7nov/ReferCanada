@@ -1,24 +1,12 @@
 package com.allumez.refercanada;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 
 public class ReviewListingAdapter extends BaseAdapter {
 
@@ -41,7 +29,6 @@ public class ReviewListingAdapter extends BaseAdapter {
         ReviewListingAdapter.comment = comment;
         ReviewListingAdapter.created_date = created_date;
         ReviewListingAdapter.rating = rating;
-
     }
 
     @Override
@@ -70,14 +57,10 @@ public class ReviewListingAdapter extends BaseAdapter {
        TextView textViewComment         = view.findViewById(R.id.textViewComment);
        RatingBar ratingBar              = view.findViewById(R.id.reviewedRatingBar);
 
-
         textViewUsername.setText(name[i]);
         textViewDate.setText(created_date[i]);
         textViewComment.setText(comment[i]);
         ratingBar.setRating(Float.parseFloat(rating[i]));
-//        float a = Float.parseFloat(rating[i]);
-//        String a = String.valueOf(rating[i]);
-        Log.e("===HELLO",name[i]+"\n"+comment[i]+"\n"+created_date[i]);
 
         return view;
     }

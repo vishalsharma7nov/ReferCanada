@@ -1,9 +1,9 @@
 package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,15 +30,13 @@ public class CouponDetails extends AppCompatActivity {
         setContentView(R.layout.activity_coupon_details);
         listViewCouponsListing = findViewById(R.id.listViewCouponsListing);
 
-//        Intent intent = getIntent();
-//        String pos = intent.getStringExtra("pos");
-//
-//        String categoryId = settingCouponsDetailsData.get(Integer.parseInt(pos)).getCategory_id();
-//        String businessId = settingCouponsDetailsData.get(Integer.parseInt(pos)).getBusiness_listing_id();
+        SharedPreferences bb = getSharedPreferences("my_prefs", 0);
+        String stateId = bb.getString("stateId", "stateId");
+        String cityId = bb.getString("cityId", "cityId");
+        String categoryId = bb.getString("categoryIdCoupon", "categoryIdCoupon");
 
-//        url = "http://refercanada.com/api/getCouponListing.php/?categoryId="+categoryId+"&business_listingId="+businessId;
-        url = "http://refercanada.com/api/getCouponListing.php/?categoryId=1&business_listingId=1";
-        Log.e("==CouponsListing",url);
+        url = "http://refercanada.com/api/getCouponFilterListing.php/?categoryId="+categoryId+"&stateId="+stateId+"&cityId="+cityId;
+//        Log.e("==CouponsListing",url);
         sendRequest();
 
     }

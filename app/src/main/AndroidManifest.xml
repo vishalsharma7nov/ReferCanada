@@ -22,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CouponDetails"></activity>
+        <activity android:name=".CityName"></activity>
+        <activity android:name=".StateName" />
+        <activity android:name=".CouponDetails" />
         <activity android:name=".Coupons" />
         <activity android:name=".BlogDetail" />
         <activity android:name=".CanadianCitiesFullListingActivity" />

@@ -142,12 +142,11 @@ public class CanadianCitiesFullListingActivity extends AppCompatActivity  {
 
         listViewBusinessInformation = findViewById(R.id.listViewBusinessInformation);
         listViewUsersReviews = findViewById(R.id.listViewUsersReviews);
+
         reviewAPI = "http://refercanada.com/api/addreview.php?";
 
         ratingBarReview = findViewById(R.id.ratingbarUserReview);
-
         urlForReviews = "http://refercanada.com/api/getReviews.php?listingId="+listId;
-
 
         sendRequest();
         sendRequestReviews();

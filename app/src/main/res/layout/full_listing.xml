@@ -29,7 +29,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
                 android:layout_alignParentStart="true"
-                android:fontFamily="@font/adamina"
                 android:text="ULTRA DELUXE ROOMS" />
 
             <LinearLayout

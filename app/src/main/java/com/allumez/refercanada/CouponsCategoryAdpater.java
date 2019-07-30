@@ -2,6 +2,7 @@ package com.allumez.refercanada;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -23,6 +24,8 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
@@ -76,9 +79,12 @@ public class CouponsCategoryAdpater extends BaseAdapter implements Filterable {
         i1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(c, CouponDetails.class);
+                Intent intent = new Intent(c, StateName.class);
+                SharedPreferences prefs = c.getSharedPreferences("my_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor edit = prefs.edit();
+                edit.putString("categoryIdCoupon", filteredData.get(position).getId());
+                edit.commit();
                 c.startActivity(intent);
-//                Toast.makeText(c, "Coupons Of"+filteredData.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
         String url= "http://refercanada.com/uploads/category_img/"+filteredData.get(position).getCoupon_icon();
