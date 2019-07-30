@@ -68,7 +68,7 @@ public class CanadianCitiesCategoryListingAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        convertView=in.inflate(R.layout.listing,null);
+        convertView=in.inflate(R.layout.business_listing,null);
 
         final ProgressDialog loading = ProgressDialog.show(c,"Loading Images","Please wait...",false,false);
 
