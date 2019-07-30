@@ -58,19 +58,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ScrollView
-            android:layout_marginTop="10dp"
-            android:fadeScrollbars="false"
-            android:scrollbarSize="5dp"
-            android:scrollbarThumbVertical="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <LinearLayout
-                android:background="@drawable/cardviewoutline"
+                android:layout_margin="5dp"
                 android:visibility="gone"
-                android:layout_margin="10dp"
-                android:paddingBottom="50dp"
+                android:paddingBottom="10dp"
                 android:id="@+id/linearLayoutListing"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -85,8 +76,11 @@
                     android:layout_gravity="center"
                     android:layout_width="300dp"
                     android:layout_height="250dp" />
+
             <GridLayout
+                android:background="@drawable/cardviewoutline"
                 android:layout_width="match_parent"
+                android:padding="5dp"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -111,7 +105,7 @@
 
             </GridLayout>
             </LinearLayout>
-        </ScrollView>
+
 
     </LinearLayout>
 

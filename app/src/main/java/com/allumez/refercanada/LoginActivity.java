@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editTextEmailId.setText("");
                                 editTextPassword.setText("");
                                 spinner.setSelection(0);
-                                Intent intent =new Intent(LoginActivity.this,DashBoardActivity.class);
+                                Intent intent =new Intent(LoginActivity.this, DashBoard_Activity.class);
                                 startActivity(intent);
                                 makeText(LoginActivity.this, loginMsg, Toast.LENGTH_SHORT).show();
                             }

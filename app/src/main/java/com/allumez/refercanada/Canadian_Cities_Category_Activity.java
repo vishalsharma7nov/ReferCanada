@@ -1,13 +1,15 @@
 package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,28 +25,36 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Coupons extends AppCompatActivity{
+public class Canadian_Cities_Category_Activity extends AppCompatActivity {
 
+    ListView listViewCitiesCategory,listViewId,listViewSearch;
+    String url;
+    JsonHolder_Cities_Category jsonHolderCitiesCategory;
     SearchView searchView;
     ArrayList<String> list;
-    ListView listViewId,listViewSearch;
-    List<Setting_Coupons_Category_Data> settingDataList;
-    String url;
-    GridView listViewCitiesCategory;
+
+    List<Setting_Category_Data> settingDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coupons);
+        setContentView(R.layout.activity_canadian_cities);
 
+        url="http://refercanada.com/api/getCategoryList.php";
+        Log.e("url",url);
         listViewCitiesCategory = findViewById(R.id.listView);
         listViewId  = findViewById(R.id.listViewId);
         listViewSearch = findViewById(R.id.listViewsearch);
         searchView = findViewById(R.id.searchview);
 
-        url = "http://refercanada.com/api/getCategoryList.php";
-        sendRequest();
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
 
+        sendRequest();
     }
 
     private void sendRequest() {
@@ -62,57 +72,46 @@ public class Coupons extends AppCompatActivity{
                             if (abc !=1 )
                             {
                                 loading.dismiss();
-                                Toast.makeText(getApplicationContext(), "Work under Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Canadian_Cities_Category_Activity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                final String[] mId = JsonHolder_Coupons_Category.id;
+                                final String[] mId = JsonHolder_Cities_Category.id;
 
-                                final ArrayAdapter a = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,mId);
+                                final ArrayAdapter a = new ArrayAdapter(Canadian_Cities_Category_Activity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
 
 
-                                final Coupons_Category_Adpater ar = new Coupons_Category_Adpater(getApplicationContext(), settingDataList);
+                                final Canadian_Cities_Category_Adpater ar = new Canadian_Cities_Category_Adpater(getApplicationContext(), settingDataList);
                                 listViewSearch.setAdapter(ar);
 
 
                                 listViewCitiesCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                                        Intent intent = new Intent(Canadian_Cities_Category_Activity.this, Canadian_Cities_CategoryList_Activity.class);
+                                        intent.putExtra("pos",ar.filteredData.get(position).getId());
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("categoryId", ar.filteredData.get(position).getId());
+                                        edit.commit();
+                                        startActivity(intent);
                                     }
                                 });
                                 listViewSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Intent intent = new Intent(Canadian_Cities_Category_Activity.this, Canadian_Cities_CategoryList_Activity.class);
+                                        intent.putExtra("pos",ar.filteredData.get(position).getId());
+                                        SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = prefs.edit();
+                                        edit.putString("categoryId", ar.filteredData.get(position).getId());
+                                        edit.commit();
+                                        startActivity(intent);
 
 
-                                    }
-                                });
-                                searchView.setOnSearchClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        searchView.setIconified(false);
-                                        listViewCitiesCategory.setVisibility(View.GONE);
-                                        listViewSearch.setVisibility(View.VISIBLE);
-                                        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                                            @Override
-                                            public boolean onQueryTextSubmit(String query) {
-                                                if(list.contains(query)){
-                                                    ar.getFilter().filter(query);
-                                                }else{
-                                                    Toast.makeText(getApplicationContext(), "No Match found",Toast.LENGTH_LONG).show();
-                                                }
-                                                return false;
-                                            }
-                                            @Override
-                                            public boolean onQueryTextChange(String newText) {
-                                                ar.getFilter().filter(newText);
-                                                return false;
-                                            }
-                                        });
                                     }
                                 });
                                 searchView.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +126,7 @@ public class Coupons extends AppCompatActivity{
                                                 if(list.contains(query)){
                                                     ar.getFilter().filter(query);
                                                 }else{
-                                                    Toast.makeText(getApplicationContext(), "No Match found",Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(Canadian_Cities_Category_Activity.this, "No Match found",Toast.LENGTH_LONG).show();
                                                 }
                                                 return false;
                                             }
@@ -166,12 +165,11 @@ public class Coupons extends AppCompatActivity{
     }
 
     private void showJSON(String json) {
-        JsonHolder_Coupons_Category jsonHolderCouponsCategory= new JsonHolder_Coupons_Category(json);
-        settingDataList = jsonHolderCouponsCategory.parseJSON();
+        jsonHolderCitiesCategory= new JsonHolder_Cities_Category(json);
+        settingDataList = jsonHolderCitiesCategory.parseJSON();
 
-        Coupons_Category_Adpater ca = new Coupons_Category_Adpater(this, settingDataList);
+        Canadian_Cities_Category_Adpater ca = new Canadian_Cities_Category_Adpater(this, settingDataList);
         listViewCitiesCategory.setAdapter(ca);
         ca.notifyDataSetChanged();
     }
-
 }

@@ -1,9 +1,11 @@
 package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,21 +18,29 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Blog extends AppCompatActivity {
+public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity {
 
     boolean doubleBackToExitPressedOnce = false;
+
+    ListView listViewListing;
     String url;
-    ListView listViewBlogListing,listViewBlogId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blog);
+        setContentView(R.layout.activity_canadian_cities_category_listing);
 
-        listViewBlogListing  = findViewById(R.id.listViewBlogListing);
-        listViewBlogId       = findViewById(R.id.listViewBlogId);
+        listViewListing  = findViewById(R.id.listviewListing);
 
-        url = "http://refercanada.com/api/getBlog.php";
+        SharedPreferences bb = getSharedPreferences("my_prefs", 0);
+        String stateId = bb.getString("stateId", "stateId");
+        String cityId = bb.getString("cityId", "cityId");
+        String categoryId = bb.getString("categoryId", "categoryId");
+        String subcategoryId = bb.getString("subcategoryId", "subcategoryId");
+
+        url = "http://refercanada.com/api/getListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
+
+        Log.e("===ListingCategory",stateId+"\n"+cityId+"\n"+categoryId+"\n"+subcategoryId);
 
         sendRequest();
     }
@@ -45,9 +55,7 @@ public class Blog extends AppCompatActivity {
         else
         {
             this.doubleBackToExitPressedOnce = true;
-
             Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
             new Handler().postDelayed(new Runnable() {
 
                 @Override
@@ -70,30 +78,27 @@ public class Blog extends AppCompatActivity {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
 
+
                             if (abc !=1 )
                             {
+                                Toast.makeText(Canadian_Cities_CategoryListing_Activity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
                                 loading.dismiss();
-                                Toast.makeText(Blog.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                Toast.makeText(Blog.this, "Blogs", Toast.LENGTH_SHORT).show();
-
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            loading.dismiss();
-                            Toast.makeText(Blog.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Canadian_Cities_CategoryListing_Activity.this, "Exception"+e, Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        loading.dismiss();
-                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -102,12 +107,13 @@ public class Blog extends AppCompatActivity {
     }
 
     private void showJSON(String json) {
-        JsonHolder_Blog_Listing jsonHolderBlogListing = new JsonHolder_Blog_Listing(json);
-        jsonHolderBlogListing.parseJSON();
+        JsonHolder_Category_Listing jsonHolderListing = new JsonHolder_Category_Listing(json);
+        jsonHolderListing.parseJSON();
 
-        Blog_Listing_Adpater blogListingAdpater = new Blog_Listing_Adpater(this, JsonHolder_Blog_Listing.id, JsonHolder_Blog_Listing.title, JsonHolder_Blog_Listing.description, JsonHolder_Blog_Listing.image, JsonHolder_Blog_Listing.meta_key, JsonHolder_Blog_Listing.meta_description);
-        listViewBlogListing.setAdapter(blogListingAdpater);
-        blogListingAdpater.notifyDataSetChanged();
+        Canadian_Cities_CategoryListing_Adapter ca = new Canadian_Cities_CategoryListing_Adapter(this, JsonHolder_Category_Listing.id, JsonHolder_Category_Listing.cover_image, JsonHolder_Category_Listing.business_id, JsonHolder_Category_Listing.listing_name, JsonHolder_Category_Listing.address, JsonHolder_Category_Listing.phone, JsonHolder_Category_Listing.email);
+        listViewListing.setAdapter(ca);
+
+        ca.notifyDataSetChanged();
     }
 
 }

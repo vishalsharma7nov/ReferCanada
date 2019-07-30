@@ -22,14 +22,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CityName"></activity>
-        <activity android:name=".StateName" />
-        <activity android:name=".CouponDetails" />
+        <activity android:name=".Coupons_CityName"></activity>
+        <activity android:name=".State_Name" />
+        <activity android:name=".Coupon_Details" />
         <activity android:name=".Coupons" />
-        <activity android:name=".BlogDetail" />
-        <activity android:name=".CanadianCitiesFullListingActivity" />
+        <activity android:name=".Blog_Detail" />
+        <activity android:name=".Canadian_Cities_FullListing_Activity" />
         <activity android:name=".Blog" />
-        <activity android:name=".CanadianCitiesCategoryListing" />
+        <activity android:name=".Canadian_Cities_CategoryListing_Activity" />
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar">
@@ -40,16 +40,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DashBoardActivity"
+            android:name=".DashBoard_Activity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".InternationalCategorySubListActivity" />
-        <activity android:name=".InternationalCategoryListActivity" />
-        <activity android:name=".CanadianCitiesCategoryListActivity" />
-        <activity android:name=".CanadianCitiesCategoryActivity" />
-        <activity android:name=".CanadianCitiesActivity" />
-        <activity android:name=".CanadianListingActivity" />
+        <activity android:name=".International_CategorySubList_Activity" />
+        <activity android:name=".International_CategoryList_Activity" />
+        <activity android:name=".Canadian_Cities_CategoryList_Activity" />
+        <activity android:name=".Canadian_Cities_Category_Activity" />
+        <activity android:name=".Canadian_Cities_Activity" />
+        <activity android:name=".Canadian_State_Listing_Activity" />
 
         <meta-data
             android:name="preloaded_fonts"

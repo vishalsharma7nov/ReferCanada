@@ -1,8 +1,8 @@
 package com.allumez.refercanada;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,46 +16,29 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Blog extends AppCompatActivity {
+import java.util.List;
 
-    boolean doubleBackToExitPressedOnce = false;
+public class Coupon_Details extends AppCompatActivity {
+
+    ListView listViewCouponsListing;
+    List<Setting_Coupons_Details_Data> settingCouponsDetailsData;
     String url;
-    ListView listViewBlogListing,listViewBlogId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blog);
+        setContentView(R.layout.activity_coupon_details);
+        listViewCouponsListing = findViewById(R.id.listViewCouponsListing);
 
-        listViewBlogListing  = findViewById(R.id.listViewBlogListing);
-        listViewBlogId       = findViewById(R.id.listViewBlogId);
+        SharedPreferences bb = getSharedPreferences("my_prefs", 0);
+        String stateId = bb.getString("stateId", "stateId");
+        String cityId = bb.getString("cityId", "cityId");
+        String categoryId = bb.getString("categoryIdCoupon", "categoryIdCoupon");
 
-        url = "http://refercanada.com/api/getBlog.php";
-
+        url = "http://refercanada.com/api/getCouponFilterListing.php/?categoryId="+categoryId+"&stateId="+stateId+"&cityId="+cityId;
+//        Log.e("==CouponsListing",url);
         sendRequest();
-    }
 
-    @Override
-    public void onBackPressed() {
-
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-        else
-        {
-            this.doubleBackToExitPressedOnce = true;
-
-            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    doubleBackToExitPressedOnce=false;
-                }
-            }, 2000);
-        }
     }
 
     private void sendRequest() {
@@ -73,19 +56,19 @@ public class Blog extends AppCompatActivity {
                             if (abc !=1 )
                             {
                                 loading.dismiss();
-                                Toast.makeText(Blog.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Work in Progress....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
                                 loading.dismiss();
                                 showJSON(response);
-                                Toast.makeText(Blog.this, "Blogs", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Coupons!!", Toast.LENGTH_SHORT).show();
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             loading.dismiss();
-                            Toast.makeText(Blog.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -102,12 +85,11 @@ public class Blog extends AppCompatActivity {
     }
 
     private void showJSON(String json) {
-        JsonHolder_Blog_Listing jsonHolderBlogListing = new JsonHolder_Blog_Listing(json);
-        jsonHolderBlogListing.parseJSON();
+        JsonHolder_Coupons_Listing jsonHolderCouponsListing = new JsonHolder_Coupons_Listing(json);
+        settingCouponsDetailsData = jsonHolderCouponsListing.parseJSON();
 
-        Blog_Listing_Adpater blogListingAdpater = new Blog_Listing_Adpater(this, JsonHolder_Blog_Listing.id, JsonHolder_Blog_Listing.title, JsonHolder_Blog_Listing.description, JsonHolder_Blog_Listing.image, JsonHolder_Blog_Listing.meta_key, JsonHolder_Blog_Listing.meta_description);
-        listViewBlogListing.setAdapter(blogListingAdpater);
-        blogListingAdpater.notifyDataSetChanged();
+        Coupons_Details_Adpater couponsDetailsAdpater = new Coupons_Details_Adpater(this, settingCouponsDetailsData);
+        listViewCouponsListing.setAdapter(couponsDetailsAdpater);
+
     }
-
 }
