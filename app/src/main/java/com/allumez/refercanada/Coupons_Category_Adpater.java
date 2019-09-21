@@ -28,7 +28,7 @@ import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class Coupons_Category_Adpater extends BaseAdapter implements Filterable {
+public class Coupons_Category_Adpater extends BaseAdapter implements Filterable{
 
     Context c;
     public static String[] id;

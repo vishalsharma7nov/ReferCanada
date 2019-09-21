@@ -7,24 +7,36 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".HomeActivity"
+    android:background="@drawable/frontpagebackground"
     tools:showIn="@layout/app_bar_home">
 
     <ImageView
         android:id="@+id/imageView"
         android:visibility="gone"
+        android:background="@color/cardview_shadow_start_color"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/logorefercanada"/>
 
-    <ImageView
-        android:visibility="visible"
-        android:id="@+id/imageViewReferCanadaLogo"
-        android:src="@drawable/logorefercanada"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/toronto"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageViewReferCanadaLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/cardview_shadow_start_color"
+            android:src="@drawable/refercanada" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/buttonSignIn"
@@ -52,64 +64,115 @@
         android:textColor="@color/colorTextWhite" />
 
 
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayoutListing"
                 android:layout_margin="5dp"
                 android:visibility="gone"
                 android:paddingBottom="10dp"
-                android:id="@+id/linearLayoutListing"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/canadianlisting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfieldoutline"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Canadian Listing"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/canadianlisting"
-                    android:src="@drawable/canadianlisting"
-                    android:layout_margin="10dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/internationallisting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfieldoutline"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="International Listing"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/coupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfieldoutline"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Local Coupon's"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:background="@drawable/imageviewborder"
-                    android:layout_gravity="center"
-                    android:layout_width="300dp"
-                    android:layout_height="250dp" />
+                    android:layout_margin="5dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/onlinecoupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfieldoutline"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Online Coupon's"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            <GridLayout
-                android:background="@drawable/cardviewoutline"
-                android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/internationallisting"
-                    android:src="@drawable/internationallisting"
-                    android:layout_margin="10dp"
-                    android:layout_width="150dp"
-                    android:background="@drawable/imageviewborder"
-                    android:layout_gravity="center"
-                    android:layout_height="150dp"
-                    android:padding="5dp" />
-
-                <ImageView
-                    android:id="@+id/coupon"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/imageviewborder"
-                    android:layout_gravity="center"
-                    android:padding="5dp"
-                    android:src="@drawable/coupons_icon" />
-
-            </GridLayout>
             </LinearLayout>
 
+        </LinearLayout>
 
-    </LinearLayout>
-
-
-
+    </ScrollView>
 
 </RelativeLayout>

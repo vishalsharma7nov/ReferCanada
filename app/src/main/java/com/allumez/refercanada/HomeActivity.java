@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,9 +25,8 @@ public class HomeActivity extends AppCompatActivity
     ImageView imageViewReferCanadaLogo,imageViewHeader;
     LinearLayout linearLayoutListing;
 
-    ImageView imageViewCanadianList,imageViewInternationalListing,imageViewCoupon;
+    TextView textViewCanadianList,textViewInternationalListing,textViewCoupon;
     Button buttonSignIn,buttonRegister;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity
 
         buttonSignIn   = findViewById(R.id.buttonSignIn);
         buttonRegister = findViewById(R.id.buttonRegister);
+        final RelativeLayout relativeLayout1 = findViewById(R.id.relativeLayout1);
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,15 +54,15 @@ public class HomeActivity extends AppCompatActivity
 
         imageViewReferCanadaLogo = findViewById(R.id.imageViewReferCanadaLogo);
         imageViewHeader          = findViewById(R.id.imageView);
-        imageViewCanadianList = findViewById(R.id.canadianlisting);
-        imageViewInternationalListing= findViewById(R.id.internationallisting);
-        imageViewCoupon = findViewById(R.id.coupon);
+        textViewCanadianList    = findViewById(R.id.canadianlisting);
+        textViewInternationalListing = findViewById(R.id.internationallisting);
+        textViewCoupon              = findViewById(R.id.coupon);
 
 
         linearLayoutListing      = findViewById(R.id.linearLayoutListing);
 
 
-        imageViewCanadianList.setOnClickListener(new View.OnClickListener() {
+        textViewCanadianList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, Canadian_State_Listing_Activity.class);
@@ -68,7 +70,7 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        imageViewInternationalListing.setOnClickListener(new View.OnClickListener() {
+        textViewInternationalListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, International_CategoryList_Activity.class);
@@ -76,7 +78,7 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        imageViewCoupon.setOnClickListener(new View.OnClickListener() {
+        textViewCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this,Coupons.class);
@@ -84,21 +86,27 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
+        relativeLayout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                relativeLayout1.setVisibility(View.GONE);
+                linearLayoutListing.setVisibility(View.VISIBLE);
+                imageViewHeader.setVisibility(View.VISIBLE);
+                buttonRegister.setVisibility(View.VISIBLE);
+            }
+        });
 
         final Handler someHandler = new Handler(getMainLooper());
         someHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                imageViewReferCanadaLogo.setVisibility(View.GONE);
+                relativeLayout1.setVisibility(View.GONE);
                 linearLayoutListing.setVisibility(View.VISIBLE);
                 imageViewHeader.setVisibility(View.VISIBLE);
                 buttonRegister.setVisibility(View.VISIBLE);
-                someHandler.postDelayed(this, 1000);
+                someHandler.postDelayed(this, 3000);
             }
-        }, 1000);
-
-
-
+        }, 3000);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
