@@ -7,19 +7,17 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".HomeActivity"
-    android:background="@drawable/frontpagebackground"
+    android:background="@drawable/frontpagebackgraound"
     tools:showIn="@layout/app_bar_home">
 
     <ImageView
         android:id="@+id/imageView"
         android:visibility="gone"
-        android:background="@color/cardview_shadow_start_color"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/logorefercanada"/>
-
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -84,12 +82,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
+                    android:layout_margin="10dp"
                     android:background="@color/cardview_shadow_start_color"
                     android:orientation="vertical"
                     android:padding="5dp">
                     <TextView
                         android:id="@+id/canadianlisting"
+                        android:textAllCaps="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -112,6 +111,7 @@
                     android:padding="5dp">
                     <TextView
                         android:id="@+id/internationallisting"
+                        android:textAllCaps="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -134,6 +134,7 @@
                     android:padding="5dp">
                     <TextView
                         android:id="@+id/coupon"
+                        android:textAllCaps="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -156,6 +157,7 @@
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/onlinecoupon"
+                        android:textAllCaps="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -164,6 +166,29 @@
                         android:gravity="center"
                         android:padding="5dp"
                         android:text="Online Coupon's"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/form"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfieldoutline"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="discussion forum"
+                        android:textAllCaps="true"
                         android:textColor="@color/colorTextWhite"
                         android:textSize="30sp"
                         android:textStyle="bold" />

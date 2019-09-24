@@ -2,16 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.allumez.refercanada">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:resizeable="true"
-        android:smallScreens="true"
-        android:xlargeScreens="true" />
-
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -22,14 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Coupons_CityName"></activity>
-        <activity android:name=".State_Name" />
-        <activity android:name=".Coupon_Details" />
-        <activity android:name=".Coupons" />
-        <activity android:name=".Blog_Detail" />
-        <activity android:name=".Canadian_Cities_FullListing_Activity" />
-        <activity android:name=".Blog" />
-        <activity android:name=".Canadian_Cities_CategoryListing_Activity" />
+        <activity android:name=".com.allumez.refercanada.forum.ForumActivity"></activity>
+        <activity android:name=".com.allumez.refercanada.coupons.Coupons_CityName" />
+        <activity android:name=".com.allumez.refercanada.canadianListing.Canadian_State_Name" />
+        <activity android:name=".com.allumez.refercanada.coupons.Coupon_Details" />
+        <activity android:name=".com.allumez.refercanada.coupons.Coupons" />
+        <activity android:name=".com.allumez.refercanada.blogs.Blog_Detail" />
+        <activity android:name=".com.allumez.refercanada.canadianListing.Canadian_Cities_FullListing_Activity" />
+        <activity android:name=".com.allumez.refercanada.blogs.Blog" />
+        <activity android:name=".com.allumez.refercanada.canadianListing.Canadian_Cities_CategoryListing_Activity" />
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar">
@@ -44,16 +35,26 @@
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".International_CategorySubList_Activity" />
-        <activity android:name=".International_CategoryList_Activity" />
-        <activity android:name=".Canadian_Cities_CategoryList_Activity" />
-        <activity android:name=".Canadian_Cities_Category_Activity" />
-        <activity android:name=".Canadian_Cities_Activity" />
-        <activity android:name=".Canadian_State_Listing_Activity" />
+        <activity android:name=".com.allumez.refercanada.internationalListing.International_CategorySubList_Activity" />
+        <activity android:name=".com.allumez.refercanada.internationalListing.International_CategoryList_Activity" />
+        <activity android:name=".com.allumez.refercanada.canadianListing.Canadian_Cities_CategoryList_Activity" />
+        <activity android:name=".com.allumez.refercanada.canadianListing.Canadian_Cities_Category_Activity" />
+        <activity android:name=".com.allumez.refercanada.canadianListing.Canadian_Cities_Activity" />
+        <activity android:name=".com.allumez.refercanada.canadianListing.Canadian_State_Listing_Activity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -19,13 +19,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.allumez.refercanada.com.allumez.refercanada.blogs.Blog;
+import com.allumez.refercanada.com.allumez.refercanada.canadianListing.Canadian_State_Listing_Activity;
+import com.allumez.refercanada.com.allumez.refercanada.coupons.Coupons;
+import com.allumez.refercanada.com.allumez.refercanada.forum.ForumActivity;
+import com.allumez.refercanada.com.allumez.refercanada.internationalListing.International_CategoryList_Activity;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView imageViewReferCanadaLogo,imageViewHeader;
     LinearLayout linearLayoutListing;
 
-    TextView textViewCanadianList,textViewInternationalListing,textViewCoupon;
+    TextView textViewCanadianList,textViewInternationalListing,textViewCoupon,textViewFourm;
     Button buttonSignIn,buttonRegister;
 
     @Override
@@ -57,7 +63,14 @@ public class HomeActivity extends AppCompatActivity
         textViewCanadianList    = findViewById(R.id.canadianlisting);
         textViewInternationalListing = findViewById(R.id.internationallisting);
         textViewCoupon              = findViewById(R.id.coupon);
-
+        textViewFourm           = findViewById(R.id.form);
+        textViewFourm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ForumActivity.class);
+                startActivity(intent);
+            }
+        });
 
         linearLayoutListing      = findViewById(R.id.linearLayoutListing);
 
@@ -81,7 +94,7 @@ public class HomeActivity extends AppCompatActivity
         textViewCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,Coupons.class);
+                Intent intent = new Intent(HomeActivity.this, Coupons.class);
                 startActivity(intent);
             }
         });
@@ -164,7 +177,7 @@ public class HomeActivity extends AppCompatActivity
 
         else if (id == R.id.nav_blog)
         {
-            Intent intent = new Intent(HomeActivity.this,Blog.class);
+            Intent intent = new Intent(HomeActivity.this, Blog.class);
             startActivity(intent);
 
         }

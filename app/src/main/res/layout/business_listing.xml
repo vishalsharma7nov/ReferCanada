@@ -7,21 +7,20 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/listing"
-        android:layout_margin="5dp"
         app:cardPreventCornerOverlap="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:padding="10dp"
-            android:background="@drawable/cardviewoutline"
+            android:background="@color/cardview_shadow_end_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/imageViewCoverImage"
-                android:background="@drawable/imageviewoutline"
                 android:padding="5dp"
-                android:layout_width="170dp"
-                android:layout_height="200dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/tourandtravels" />
 
             <LinearLayout
@@ -31,50 +30,54 @@
 
                 <TextView
                     android:id="@+id/textViewListingName"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginStart="180dp"
-                    android:gravity="center"
+                    android:layout_marginStart="110dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="18sp"
                     android:padding="5dp"
-                    android:background="@drawable/textfieldoutline"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/textViewAddress"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="180dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
                     android:autoLink="all"
-                    android:background="@drawable/textfieldoutline"/>
+                    android:padding="5dp"
+                    android:textIsSelectable="true"/>
                 <TextView
                     android:id="@+id/textViewPhone"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="180dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="5dp"
                     android:autoLink="all"
-                    android:background="@drawable/textfieldoutline"/>
+                    android:textIsSelectable="true"
+                    android:padding="5dp"
+                    android:visibility="gone"/>
                 <TextView
                     android:id="@+id/textViewEmail"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="180dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="5dp"
                     android:autoLink="all"
-                    android:background="@drawable/textfieldoutline" />
+                    android:textIsSelectable="true"
+                    android:padding="5dp"
+                    android:visibility="gone" />
 
-                <Button
-                    android:id="@+id/buttonOffers"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="60dp"
-                    android:background="@drawable/buttonoutline"
-                    android:text="Offers"
-                    android:textColor="#FCFCFC" />
+                <TextView
+                    android:id="@+id/textViewOffers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorTextWhite"
+                    android:text="Coupon's And Offer's"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
 
