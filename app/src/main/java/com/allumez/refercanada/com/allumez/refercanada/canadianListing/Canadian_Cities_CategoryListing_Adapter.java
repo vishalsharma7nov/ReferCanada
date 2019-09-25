@@ -15,11 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.allumez.refercanada.R;
+import com.allumez.refercanada.Setting_Data_RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+
+import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -35,23 +38,20 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
     public static String[] email;
     public static String[] address;
 
+    public List<Setting_Data_RecyclerView> filteredData;
+    List<Setting_Data_RecyclerView> list;
 
 
-    public Canadian_Cities_CategoryListing_Adapter(Context c, String[] id, String[] cover_image, String[] business_id, String[] listing_name, String[] address, String[] phone, String[] email)
+    public Canadian_Cities_CategoryListing_Adapter(Context c, List<Setting_Data_RecyclerView> list )
     {
         this.c=c;
-        Canadian_Cities_CategoryListing_Adapter.id = id;
-        Canadian_Cities_CategoryListing_Adapter.business_id = business_id;
-        Canadian_Cities_CategoryListing_Adapter.cover_image = cover_image;
-        Canadian_Cities_CategoryListing_Adapter.listing_name = listing_name;
-        Canadian_Cities_CategoryListing_Adapter.address = address;
-        Canadian_Cities_CategoryListing_Adapter.phone = phone;
-        Canadian_Cities_CategoryListing_Adapter.email = email;
+        this.list = list;
+        this.filteredData = list;
     }
 
     @Override
     public int getCount() {
-        return id.length;
+        return filteredData.size();
     }
 
     @Override
@@ -87,8 +87,8 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
                 Intent intent = new Intent(c, Canadian_Cities_FullListing_Activity.class);
                 SharedPreferences prefs = c.getSharedPreferences("my_prefs", MODE_PRIVATE);
                 SharedPreferences.Editor edit = prefs.edit();
-                edit.putString("listId", id[position]);
-                edit.putString("businessId", business_id[position]);
+                edit.putString("listId", filteredData.get(position).getId());
+                edit.putString("businessId", filteredData.get(position).getBusiness_id());
                 edit.commit();
                 c.startActivity(intent);
             }
@@ -99,8 +99,8 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
                 Intent intent = new Intent(c, Canadian_Cities_FullListing_Activity.class);
                 SharedPreferences prefs = c.getSharedPreferences("my_prefs", MODE_PRIVATE);
                 SharedPreferences.Editor edit = prefs.edit();
-                edit.putString("listId", id[position]);
-                edit.putString("businessId", business_id[position]);
+                edit.putString("listId", filteredData.get(position).getId());
+                edit.putString("businessId", filteredData.get(position).getBusiness_id());
                 edit.commit();
                 c.startActivity(intent);
             }
@@ -119,7 +119,7 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
 //            }
 //        });
 
-        String url = "http://refercanada.com/uploads/listing_img/"+cover_image[position];
+        String url = "http://refercanada.com/uploads/listing_img/"+filteredData.get(position).getCover_image();
             Glide.with(c)
                     .load(url)
                     .addListener(new RequestListener<Drawable>() {
@@ -136,11 +136,12 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
                     })
 
                     .into(i1);
-            t1.setText(listing_name[position]);
-            t2.setText(address[position]);
-            t3.setText(phone[position]);
-            t4.setText(email[position]);
+            t1.setText(filteredData.get(position).getListing_name());
+            t2.setText(filteredData.get(position).getAddress());
+            t3.setText(filteredData.get(position).getPhone());
+            t4.setText(filteredData.get(position).getEmail());
 
         return convertView;
     }
+
 }

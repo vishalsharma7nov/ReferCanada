@@ -1,20 +1,17 @@
 package com.allumez.refercanada.com.allumez.refercanada.jsonData;
 
+import com.allumez.refercanada.Setting_Data_RecyclerView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JsonHolder_Category_Listing {
-    public static String[] id;
-    public static String[] business_id;
-    public static String[] listing_name;
-    public static String[] landmark;
-    public static String[] cover_image;
-    public static String[] phone;
-    public static String[] email;
-    public static String[] address;
 
-
+    public static List<Setting_Data_RecyclerView> jsonDataList = new ArrayList<>();
 
     public static final String JSON_ARRAY                  = "data";
     public static final String KEY_ID                      = "id";
@@ -32,38 +29,33 @@ public class JsonHolder_Category_Listing {
         this.json = json;
     }
 
-    public void parseJSON() {
+    public List<Setting_Data_RecyclerView> parseJSON() {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
 
-            id                  = new String[users.length()];
-            business_id         = new String[users.length()];
-            listing_name        = new String[users.length()];
-            landmark            = new String[users.length()];
-            cover_image         = new String[users.length()];
-            phone               = new String[users.length()];
-            email               = new String[users.length()];
-            address             = new String[users.length()];
-
+            jsonDataList = new ArrayList<>();
 
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
 
-                id               [i]     = jo.getString(KEY_ID);
-                business_id      [i]     = jo.getString(KEY_business_id);
-                listing_name     [i]     = jo.getString(KEY_listing_name);
-                landmark         [i]     = jo.getString(KEY_landmark);
-                cover_image      [i]     = jo.getString(KEY_cover_image);
-                phone            [i]     = jo.getString(KEY_phone);
-                email            [i]     = jo.getString(KEY_email);
-                address          [i]     = jo.getString(KEY_address);
-
+                String id            = jo.getString(KEY_ID);
+                String business_id   = jo.getString(KEY_business_id);
+                String listing_name  = jo.getString(KEY_listing_name);
+                String landmark      = jo.getString(KEY_landmark);
+                String cover_image   = jo.getString(KEY_cover_image);
+                String phone         = jo.getString(KEY_phone);
+                String email         = jo.getString(KEY_email);
+                String address       = jo.getString(KEY_address);
+                String image         = jo.getString(KEY_cover_image);
+                jsonDataList.add(new Setting_Data_RecyclerView(id, business_id, listing_name, landmark, cover_image, phone, email, address, image));
+//                Log.e("===coverImage", jsonDataList.get(i).getCover_image());
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return jsonDataList;
     }
 
 }

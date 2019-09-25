@@ -24,7 +24,6 @@ public class Canadian_State_Listing_Adpater extends BaseAdapter implements Filte
     public static String[] name;
     public static String[] image;
 
-
     List<Setting_Data> list;
     public List<Setting_Data> filteredData;
 

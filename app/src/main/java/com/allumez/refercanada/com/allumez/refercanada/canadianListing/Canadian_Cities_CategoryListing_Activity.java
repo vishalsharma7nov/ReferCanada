@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.WindowManager;
@@ -12,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
+import com.allumez.refercanada.RecyclerViewTopRated;
+import com.allumez.refercanada.Setting_Data_RecyclerView;
 import com.allumez.refercanada.com.allumez.refercanada.jsonData.JsonHolder_Category_Listing;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,12 +26,15 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity {
 
     boolean doubleBackToExitPressedOnce = false;
     RecyclerView recyclerViewTopRated;
     ListView listViewListing;
     String url;
+    List<Setting_Data_RecyclerView> settingDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,13 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
 
         listViewListing  = findViewById(R.id.listviewListing);
         recyclerViewTopRated = findViewById(R.id.recyclerViewTopRated);
+
+        RecyclerViewTopRated myadpt = new RecyclerViewTopRated(this,settingDataList);
+        recyclerViewTopRated.setAdapter(myadpt);
+        LinearLayoutManager lm = new LinearLayoutManager(this);
+        lm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewTopRated.setLayoutManager(lm);
+        recyclerViewTopRated.setItemAnimator(new DefaultItemAnimator());
 
         SharedPreferences bb = getSharedPreferences("my_prefs", 0);
         String stateId = bb.getString("stateId", "stateId");
@@ -117,14 +131,12 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
 
     private void showJSON(String json) {
         JsonHolder_Category_Listing jsonHolderListing = new JsonHolder_Category_Listing(json);
-        jsonHolderListing.parseJSON();
+        settingDataList = jsonHolderListing.parseJSON();
 
-        Canadian_Cities_CategoryListing_Adapter ca = new Canadian_Cities_CategoryListing_Adapter(this, JsonHolder_Category_Listing.id, JsonHolder_Category_Listing.cover_image, JsonHolder_Category_Listing.business_id, JsonHolder_Category_Listing.listing_name, JsonHolder_Category_Listing.address, JsonHolder_Category_Listing.phone, JsonHolder_Category_Listing.email);
+        Canadian_Cities_CategoryListing_Adapter ca = new Canadian_Cities_CategoryListing_Adapter(this, settingDataList);
         listViewListing.setAdapter(ca);
         ca.notifyDataSetChanged();
 
-//        RecyclerViewTopRated recyclerView = new RecyclerViewTopRated(this, JsonHolder_Category_Listing.id, JsonHolder_Category_Listing.cover_image, JsonHolder_Category_Listing.business_id, JsonHolder_Category_Listing.listing_name, JsonHolder_Category_Listing.address, JsonHolder_Category_Listing.phone, JsonHolder_Category_Listing.email);
-//        recyclerViewTopRated.setAdapter(recyclerView);
     }
 
 }

@@ -37,7 +37,6 @@ public class JsonHolder_State_Listing {
             name   = new String[users.length()];
             image  = new String[users.length()];
 
-
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
                 Setting_Data sd = new Setting_Data(jo.getString(KEY_ID), jo.getString(KEY_CITYNAME));
@@ -45,7 +44,6 @@ public class JsonHolder_State_Listing {
                 id[i]       = jo.getString(KEY_ID);
                 name[i]     = jo.getString(KEY_CITYNAME);
                 image[i]    = jo.getString(KEY_CITYIMAGE);
-
             }
         } catch (JSONException e) {
             e.printStackTrace();

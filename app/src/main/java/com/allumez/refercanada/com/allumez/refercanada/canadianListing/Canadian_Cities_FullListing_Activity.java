@@ -103,20 +103,20 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
             }
         });
 
-        textViewListingName.setText(JsonHolder_Category_Listing.listing_name[0]);
-        textViewLandmark.setText(JsonHolder_Category_Listing.landmark[0]);
+        textViewListingName.setText(JsonHolder_Category_Listing.jsonDataList.get(0).getListing_name());
+        textViewLandmark.setText(JsonHolder_Category_Listing.jsonDataList.get(0).getLandmark());
 
         imageButtonMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{JsonHolder_Category_Listing.email[0]});
+                emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{JsonHolder_Category_Listing.jsonDataList.get(0).getEmail()});
                 startActivity(emailIntent);
             }
         });
 
-        final String address = JsonHolder_Category_Listing.address[0]+", "+ JsonHolder_Category_Listing.landmark[0];
+        final String address = JsonHolder_Category_Listing.jsonDataList.get(0).getAddress()+", "+ JsonHolder_Category_Listing.jsonDataList.get(0).getLandmark();
 
         imageButtonAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +131,7 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.fromParts(
-                        "tel", JsonHolder_Category_Listing.phone[0], null));
+                        "tel", JsonHolder_Category_Listing.jsonDataList.get(0).getPhone(), null));
                 startActivity(phoneIntent);
             }
         });
@@ -139,7 +139,7 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.setData(Uri.parse("sms:" + JsonHolder_Category_Listing.phone[0]));
+                sendIntent.setData(Uri.parse("sms:" + JsonHolder_Category_Listing.jsonDataList.get(0).getPhone()));
                 startActivity(sendIntent);
             }
         });
