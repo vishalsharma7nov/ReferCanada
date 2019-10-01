@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.Setting_Data_RecyclerView;
+import com.allumez.refercanada.SettingData.Setting_Data_RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;

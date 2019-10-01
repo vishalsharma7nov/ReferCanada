@@ -10,7 +10,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.Setting_Data;
+import com.allumez.refercanada.SettingData.Setting_Data;
 
 import java.util.ArrayList;
 import java.util.List;

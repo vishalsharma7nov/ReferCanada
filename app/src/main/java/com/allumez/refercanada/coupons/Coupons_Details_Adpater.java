@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.Setting_Coupons_Details_Data;
+import com.allumez.refercanada.SettingData.Setting_Coupons_Details_Data;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;

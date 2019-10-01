@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.Setting_Data;
+import com.allumez.refercanada.SettingData.Setting_Data;
 import com.allumez.refercanada.jsonData.JsonHolder_State_Listing;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;

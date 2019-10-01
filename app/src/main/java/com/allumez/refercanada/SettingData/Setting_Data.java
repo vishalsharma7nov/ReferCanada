@@ -1,4 +1,4 @@
-package com.allumez.refercanada;
+package com.allumez.refercanada.SettingData;
 
 public class Setting_Data {
 

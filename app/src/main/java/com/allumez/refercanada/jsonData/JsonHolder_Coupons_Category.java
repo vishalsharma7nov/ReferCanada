@@ -1,6 +1,6 @@
 package com.allumez.refercanada.jsonData;
 
-import com.allumez.refercanada.Setting_Coupons_Category_Data;
+import com.allumez.refercanada.SettingData.Setting_Coupons_Category_Data;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.allumez.refercanada.R;
 import com.allumez.refercanada.RecyclerViewTopRated;
-import com.allumez.refercanada.Setting_Data_RecyclerView;
+import com.allumez.refercanada.SettingData.Setting_Data_RecyclerView;
 import com.allumez.refercanada.jsonData.JsonHolder_Category_Listing;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;

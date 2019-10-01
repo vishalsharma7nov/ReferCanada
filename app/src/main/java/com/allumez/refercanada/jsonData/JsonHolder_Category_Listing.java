@@ -1,6 +1,6 @@
 package com.allumez.refercanada.jsonData;
 
-import com.allumez.refercanada.Setting_Data_RecyclerView;
+import com.allumez.refercanada.SettingData.Setting_Data_RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.Setting_Coupons_Category_Data;
+import com.allumez.refercanada.SettingData.Setting_Coupons_Category_Data;
 import com.allumez.refercanada.canadianListing.Canadian_State_Name;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
