@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.SettingData.Setting_Coupons_Category_Data;
+import com.allumez.refercanada.GetterAndSetter.Setting_Coupons_Category_Data;
 import com.allumez.refercanada.canadianListing.Canadian_State_Name;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -90,8 +90,7 @@ public class Coupons_Category_Adpater extends BaseAdapter implements Filterable{
                 c.startActivity(intent);
             }
         });
-        String url= "http://refercanada.com/uploads/category_img/"+filteredData.get(position).getCoupon_icon();
-
+        String url= "http://canada.net.in/uploads/category_img/"+filteredData.get(position).getCoupon_icon();
         Glide.with(c)
                     .load(url)
                     .fitCenter()

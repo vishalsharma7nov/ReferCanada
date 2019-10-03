@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.SettingData.Setting_Coupons_Details_Data;
+import com.allumez.refercanada.GetterAndSetter.Setting_Coupons_Details_Data;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -75,7 +75,7 @@ public class Coupons_Details_Adpater extends BaseAdapter implements Filterable {
 
         ImageView i1= convertView.findViewById(R.id.imageViewCouponListing);
 
-        String url= "http://refercanada.com/uploads/coupon_img/"+filteredData.get(position).getImage();
+        String url= "http://canada.net.in/uploads/coupon_img/"+filteredData.get(position).getImage();
             Glide.with(c)
                     .load(url)
                     .fitCenter()

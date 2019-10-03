@@ -45,7 +45,7 @@ public class Blog_Detail extends AppCompatActivity {
 
         Intent intent = getIntent();
         String blogId = intent.getStringExtra("blogId");
-        url = "http://refercanada.com/api/getBlogDetail.php?blogId="+blogId;
+        url = "http://canada.net.in/api/getBlogDetail.php?blogId="+blogId;
 
         Log.e("==urlBlog",url);
 

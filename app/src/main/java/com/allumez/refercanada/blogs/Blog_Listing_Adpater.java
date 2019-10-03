@@ -101,7 +101,7 @@ public class Blog_Listing_Adpater extends BaseAdapter{
         });
 
 
-        String url= "http://refercanada.com/uploads/blogs_img/"+image[position];
+        String url= "http://canada.net.in/uploads/blogs_img/"+image[position];
         Glide.with(c)
                 .load(url)
                 .addListener(new RequestListener<Drawable>() {

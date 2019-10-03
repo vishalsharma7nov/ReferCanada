@@ -1,4 +1,4 @@
-package com.allumez.refercanada;
+package com.allumez.refercanada.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.allumez.refercanada.SettingData.Setting_Data_RecyclerView;
+import com.allumez.refercanada.R;
+import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
 import com.allumez.refercanada.canadianListing.Canadian_Cities_FullListing_Activity;
 import com.allumez.refercanada.jsonData.JsonHolder_Category_Listing;
 import com.bumptech.glide.Glide;
@@ -22,7 +23,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerViewTopRated extends RecyclerView.Adapter<RecyclerViewTopRated.MyHolder> {
 
-    Context c;
     List<Setting_Data_RecyclerView> objList;
     LayoutInflater inflater;
     ImageView im;
@@ -33,7 +33,6 @@ public class RecyclerViewTopRated extends RecyclerView.Adapter<RecyclerViewTopRa
         inflater = LayoutInflater.from(c);
         objList = obj;
     }
-
     @NonNull
     @Override
     public RecyclerViewTopRated.MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -46,7 +45,7 @@ public class RecyclerViewTopRated extends RecyclerView.Adapter<RecyclerViewTopRa
     public void onBindViewHolder(@NonNull final MyHolder myHolder, final int i) {
         textView.setText(JsonHolder_Category_Listing.jsonDataList.get(i).getListing_name());
         Glide.with(myHolder.itemView.getContext())
-                .load("http://refercanada.com/uploads/listing_img/"+JsonHolder_Category_Listing.jsonDataList.get(i).getCover_image())
+                .load("http://canada.net.in/uploads/listing_img/"+JsonHolder_Category_Listing.jsonDataList.get(i).getCover_image())
                 .fitCenter()
                 .into(im);
         im.setOnClickListener(new View.OnClickListener() {
@@ -74,13 +73,11 @@ public class RecyclerViewTopRated extends RecyclerView.Adapter<RecyclerViewTopRa
     {
         int position;
         Setting_Data_RecyclerView currentobj;
-
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             im = itemView.findViewById(R.id.iv_auto_image_slider);
             textView = itemView.findViewById(R.id.tv);
         }
-
         public void setData(Setting_Data_RecyclerView current, int i) {
             this.position = i;
             currentobj = current;

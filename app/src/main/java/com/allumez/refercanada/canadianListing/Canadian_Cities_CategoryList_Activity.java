@@ -37,37 +37,30 @@ public class Canadian_Cities_CategoryList_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_canadian_cities);
         Intent intent = getIntent();
         String a = intent.getStringExtra("pos");
-
-        url="http://refercanada.com/api/getSubCategoryList.php?categoryId="+a;
+        url="http://canada.net.in/api/getSubCategoryList.php?categoryId="+a;
         Log.e("url",url);
         listViewCitiesCategoryList = findViewById(R.id.listView);
-
         listViewId  = findViewById(R.id.listViewId);
         listViewSearch = findViewById(R.id.listViewsearch);
         searchView = findViewById(R.id.searchview);
-
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 searchView.setIconified(false);
             }
         });
-
         sendRequest();
     }
 
     private void sendRequest() {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
-
         StringRequest stringRequest = new StringRequest(url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-
                             if (abc !=1 )
                             {
                                 Toast.makeText(Canadian_Cities_CategoryList_Activity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
@@ -77,17 +70,12 @@ public class Canadian_Cities_CategoryList_Activity extends AppCompatActivity {
                             {
                                 loading.dismiss();
                                 showJSON(response);
-
                                 final String[] mId = JsonHolder_State_Listing.id;
-
                                 final ArrayAdapter a = new ArrayAdapter(Canadian_Cities_CategoryList_Activity.this,android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
-
-
                                 listViewCitiesCategoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                                         String selectedId = String.valueOf(a.getItem(position));
                                         Intent intent = new Intent(Canadian_Cities_CategoryList_Activity.this, Canadian_Cities_CategoryListing_Activity.class);
                                         intent.putExtra("pos",position);
@@ -98,9 +86,10 @@ public class Canadian_Cities_CategoryList_Activity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 });
-
                             }
                         } catch (JSONException e) {
+                            loading.dismiss();
+                            Toast.makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
@@ -108,10 +97,10 @@ public class Canadian_Cities_CategoryList_Activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        loading.dismiss();
+                        Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

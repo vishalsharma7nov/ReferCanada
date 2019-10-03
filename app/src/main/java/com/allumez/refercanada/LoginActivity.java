@@ -31,8 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText editTextEmailId,editTextPassword;
     Button buttonLogin;
-    String LoginAPI = "http://refercanada.com/api/login.php";
-    ProgressDialog loading;
+    String LoginAPI = "http://canada.net.in/api/login.php";
     Spinner spinner;
     ArrayAdapter arrayAdapter;
 
@@ -40,17 +39,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
         editTextEmailId = findViewById(R.id.editTextEmailId);
         editTextPassword = findViewById(R.id.editTextPassword);
         spinner = findViewById(R.id.spinner);
-
         String[] loginType = {"Choose Login Type", "Business Login", "Member Login"};
-
         arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item,R.id.customSpinnerItemTextView, loginType);
         spinner.setAdapter(arrayAdapter);
-
         buttonLogin = findViewById(R.id.login);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,22 +57,18 @@ public class LoginActivity extends AppCompatActivity {
     public void login()
     {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
-
         final String email         = editTextEmailId.getText().toString();
         final String password      = editTextPassword.getText().toString();
         final String member        = "2";
         final String business      = "3";
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LoginAPI,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
                             String loginMsg = obj.getString("msg");
-
                             if (abc !=1 )
                             {
                                 loading.dismiss();
@@ -97,25 +87,21 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             loading.dismiss();
+                            makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-
-
                     }
                 },
-
                 new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                       loading.dismiss();
-                        makeText(getApplicationContext(), error.getMessage(), LENGTH_LONG).show();
+                        loading.dismiss();
+                       makeText(getApplicationContext(), "Error "+error.getMessage(), LENGTH_LONG).show();
                     }
                 })
         {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-
                 if (spinner.getSelectedItem().equals("Member Login")) {
                     params.put("email", email);
                     params.put("password", password);
@@ -130,7 +116,6 @@ public class LoginActivity extends AppCompatActivity {
                 return params;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }

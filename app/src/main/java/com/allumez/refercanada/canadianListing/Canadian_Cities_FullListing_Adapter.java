@@ -75,7 +75,7 @@ public class Canadian_Cities_FullListing_Adapter extends BaseAdapter {
         textViewFeatures.setText(features[i]);
 
         ImageView i1= view.findViewById(R.id.imageViewGallery);
-        String url= "http://refercanada.com/uploads/product_img/"+product_image[i];
+        String url= "http://canada.net.in/uploads/product_img/"+product_image[i];
 
         Glide.with(c)
                 .load(url)

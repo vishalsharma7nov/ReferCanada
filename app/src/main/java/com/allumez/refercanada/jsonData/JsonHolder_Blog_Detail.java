@@ -12,8 +12,6 @@ public class JsonHolder_Blog_Detail {
      public static String image;
      public static String meta_key;
      public static String meta_description;
-
-
         public static final String JSON_ARRAY                  = "data";
         public static final String KEY_ID                      = "id";
         public static final String KEY_TITLE                   = "title";
@@ -21,33 +19,27 @@ public class JsonHolder_Blog_Detail {
         public static final String KEY_IMAGE                   = "image";
         public static final String KEY_META_KEY                = "meta_key";
         public static final String KEY_META_DESCRIPTION        = "meta_description";
-
         private String json;
-
         public JsonHolder_Blog_Detail(String json) {
             this.json = json;
         }
-
         public void parseJSON() {
             JSONObject jsonObject = null;
             try {
                 jsonObject = new JSONObject(json);
                 JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
-
-
-
                 for (int i = 0; i < users.length(); i++) {
                     JSONObject jo = users.getJSONObject(i);
-
                     id                   = jo.getString(KEY_ID);
                     title                = jo.getString(KEY_TITLE);
                     description          = jo.getString(KEY_DESCRIPTION);
                     image                = jo.getString(KEY_IMAGE);
                     meta_key             = jo.getString(KEY_META_KEY);
                     meta_description     = jo.getString(KEY_META_DESCRIPTION);
-
                 }
-            } catch (JSONException e) {
+            }
+            catch (JSONException e)
+            {
                 e.printStackTrace();
             }
         }

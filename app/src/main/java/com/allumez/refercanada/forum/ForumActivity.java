@@ -21,11 +21,8 @@ public class ForumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
-
         loading = ProgressDialog.show(this, "Loading", "Please wait...", false, false);
-
         webView = findViewById(R.id.webView);
-
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -44,11 +41,9 @@ public class ForumActivity extends AppCompatActivity {
                     webView.stopLoading();
                 } catch (Exception e) {
                 }
-
                 if (webView.canGoBack()) {
                     webView.goBack();
                 }
-
                 webView.loadUrl("about:blank");
                 AlertDialog alertDialog = new AlertDialog.Builder(ForumActivity.this).create();
                 alertDialog.setTitle("Error");
@@ -59,24 +54,20 @@ public class ForumActivity extends AppCompatActivity {
                         startActivity(getIntent());
                     }
                 });
-
                 alertDialog.show();
                 super.onReceivedError(webView, errorCode, description, failingUrl);
             }
         });
     }
     public class CustomWebViewClient extends WebViewClient {
-
          @Override
              public void onPageStarted(WebView view, String url, Bitmap favicon) {
              //TODO: show progress bar here
          }
-
          @Override
             public void onPageFinished(WebView view, String url) {
              //TODO: hide progress bar here
              loading.dismiss();
          }
-
     }
 }

@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.SettingData.Setting_Coupons_Category_Data;
+import com.allumez.refercanada.GetterAndSetter.Setting_Coupons_Category_Data;
 import com.allumez.refercanada.jsonData.JsonHolder_Coupons_Category;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,29 +39,23 @@ public class Coupons extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupons);
-
         listViewCitiesCategory = findViewById(R.id.listView);
         listViewId  = findViewById(R.id.listViewId);
         listViewSearch = findViewById(R.id.listViewsearch);
         searchView = findViewById(R.id.searchview);
-
-        url = "http://refercanada.com/api/getCategoryList.php";
+        url = "http://canada.net.in/api/getCategoryList.php";
         sendRequest();
-
     }
 
     private void sendRequest() {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
-
         StringRequest stringRequest = new StringRequest(url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-
                             if (abc !=1 )
                             {
                                 loading.dismiss();
@@ -72,26 +66,18 @@ public class Coupons extends AppCompatActivity{
                                 loading.dismiss();
                                 showJSON(response);
                                 final String[] mId = JsonHolder_Coupons_Category.id;
-
                                 final ArrayAdapter a = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,mId);
                                 listViewId.setAdapter(a);
-
-
                                 final Coupons_Category_Adpater ar = new Coupons_Category_Adpater(getApplicationContext(), settingDataList);
                                 listViewSearch.setAdapter(ar);
-
-
                                 listViewCitiesCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                                     }
                                 });
                                 listViewSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
                                     }
                                 });
                                 searchView.setOnSearchClickListener(new View.OnClickListener() {
@@ -150,9 +136,10 @@ public class Coupons extends AppCompatActivity{
                                         return false;
                                     }
                                 });
-
                             }
                         } catch (JSONException e) {
+                            loading.dismiss();
+                            Toast.makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
@@ -160,10 +147,10 @@ public class Coupons extends AppCompatActivity{
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        loading.dismiss();
+                        Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
@@ -171,10 +158,8 @@ public class Coupons extends AppCompatActivity{
     private void showJSON(String json) {
         JsonHolder_Coupons_Category jsonHolderCouponsCategory= new JsonHolder_Coupons_Category(json);
         settingDataList = jsonHolderCouponsCategory.parseJSON();
-
         Coupons_Category_Adpater ca = new Coupons_Category_Adpater(this, settingDataList);
         listViewCitiesCategory.setAdapter(ca);
         ca.notifyDataSetChanged();
     }
-
 }

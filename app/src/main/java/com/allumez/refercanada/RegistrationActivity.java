@@ -31,22 +31,19 @@ public class RegistrationActivity extends AppCompatActivity {
 
     EditText editTextFirstName,editTextLastName,editTextEmailId,editTextMobileNumber,editTextPassword;
     Button  buttonRegister;
-    String RegistrationAPI = "http://refercanada.com/api/registration.php";
+    String RegistrationAPI = "http://canada.net.in/api/registration.php";
     ArrayAdapter arrayAdapter;
     Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-
-
         editTextFirstName    = findViewById(R.id.firstname);
         editTextLastName     = findViewById(R.id.lastname);
         editTextEmailId      = findViewById(R.id.email);
         editTextMobileNumber = findViewById(R.id.mobilenumber);
         editTextPassword     = findViewById(R.id.password);
         spinner  = findViewById(R.id.spinner);
-
         buttonRegister = findViewById(R.id.register);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,19 +52,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
             }
         });
-
         String[] loginType ={"Choose Login Type","Business Login", "Member Login"};
-
         arrayAdapter = new ArrayAdapter(getApplicationContext(),R.layout.spinner_item,R.id.customSpinnerItemTextView,loginType);
         spinner.setAdapter(arrayAdapter);
-
     }
-
-
     public void registration()
     {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
-
         final String firstname     = editTextFirstName.getText().toString();
         final String lastname      = editTextLastName.getText().toString();
         final String email         = editTextEmailId.getText().toString();
@@ -75,18 +66,14 @@ public class RegistrationActivity extends AppCompatActivity {
         final String password      = editTextPassword.getText().toString();
         final String member        = "2";
         final String business      = "3";
-
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, RegistrationAPI,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
                             String loginMsg = obj.getString("msg");
-
                             if (abc !=1 )
                             {
                                 loading.dismiss();
@@ -107,17 +94,16 @@ public class RegistrationActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             loading.dismiss();
                         }
                     }
                 },
-
                 new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
-                        makeText(getApplicationContext(), error.getMessage(), LENGTH_LONG).show();
+                        makeText(getApplicationContext(), "Error "+error.getMessage(), LENGTH_LONG).show();
                     }
                 })
         {
@@ -141,13 +127,10 @@ public class RegistrationActivity extends AppCompatActivity {
                     params.put("password", password);
                     params.put("role_id", business);
                 }
-
                 return params;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }
-
 }

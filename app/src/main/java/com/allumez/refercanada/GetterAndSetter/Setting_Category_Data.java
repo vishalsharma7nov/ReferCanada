@@ -1,13 +1,15 @@
-package com.allumez.refercanada.SettingData;
+package com.allumez.refercanada.GetterAndSetter;
 
-public class Setting_Data {
+public class Setting_Category_Data {
 
     String id;
     String name;
+    String icon;
 
-    public Setting_Data(String id, String name) {
+    public Setting_Category_Data(String id, String name, String icon) {
         this.id = id;
         this.name = name;
+        this.icon = icon;
     }
 
     public String getId() {
@@ -24,5 +26,13 @@ public class Setting_Data {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

@@ -24,14 +24,14 @@ public class International_CategorySubList_Activity extends AppCompatActivity {
 
     ListView listViewCitiesCategoryList;
     String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_international_category_sub_list);
         Intent intent = getIntent();
         String a = intent.getStringExtra("pos");
-
-        url="http://refercanada.com/api/getinterSubCategoryList.php?categoryId="+a;
+        url="http://canada.net.in/api/getinterSubCategoryList.php?categoryId="+a;
         Log.e("url",url);
         listViewCitiesCategoryList = findViewById(R.id.listView);
         sendRequest();
@@ -39,16 +39,13 @@ public class International_CategorySubList_Activity extends AppCompatActivity {
 
     private void sendRequest() {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
-
         StringRequest stringRequest = new StringRequest(url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-
                             if (abc !=1 )
                             {
                                 Toast.makeText(International_CategorySubList_Activity.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
@@ -56,10 +53,11 @@ public class International_CategorySubList_Activity extends AppCompatActivity {
                             else if (abc == 1)
                             {
                                loading.dismiss();
-                                showJSON(response);
-//
+                               showJSON(response);
                             }
                         } catch (JSONException e) {
+                            loading.dismiss();
+                            Toast.makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
@@ -67,10 +65,10 @@ public class International_CategorySubList_Activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        loading.dismiss();
+                        Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

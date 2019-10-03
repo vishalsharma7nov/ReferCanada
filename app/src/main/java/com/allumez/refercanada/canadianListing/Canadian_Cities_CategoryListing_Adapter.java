@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.SettingData.Setting_Data_RecyclerView;
+import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -37,10 +37,8 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
     public static String[] phone;
     public static String[] email;
     public static String[] address;
-
     public List<Setting_Data_RecyclerView> filteredData;
     List<Setting_Data_RecyclerView> list;
-
 
     public Canadian_Cities_CategoryListing_Adapter(Context c, List<Setting_Data_RecyclerView> list )
     {
@@ -67,11 +65,8 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         convertView=in.inflate(R.layout.business_listing,null);
-
         final ProgressDialog loading = ProgressDialog.show(c,"Loading Images","Please wait...",false,false);
-
         CardView card1 = convertView.findViewById(R.id.listing);
         ImageView i1 = convertView.findViewById(R.id.imageViewCoverImage);
         TextView t1  = convertView.findViewById(R.id.textViewListingName);
@@ -80,7 +75,6 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
         TextView t4  = convertView.findViewById(R.id.textViewEmail);
         TextView t5  = convertView.findViewById(R.id.textViewOffers);
 //        Button   b1  = convertView.findViewById(R.id.buttonOffers);
-
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,20 +100,7 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
             }
         });
 
-//        b1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(c, Canadian_Cities_FullListing_Activity.class);
-//                SharedPreferences prefs = c.getSharedPreferences("my_prefs", MODE_PRIVATE);
-//                SharedPreferences.Editor edit = prefs.edit();
-//                edit.putString("listId", id[position]);
-//                edit.putString("businessId", business_id[position]);
-//                edit.commit();
-//                c.startActivity(intent);
-//            }
-//        });
-
-        String url = "http://refercanada.com/uploads/listing_img/"+filteredData.get(position).getCover_image();
+        String url = "http://canada.net.in/uploads/listing_img/"+filteredData.get(position).getCover_image();
             Glide.with(c)
                     .load(url)
                     .addListener(new RequestListener<Drawable>() {
@@ -127,21 +108,17 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                             return false;
                         }
-
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                             loading.dismiss();
                             return false;
                         }
                     })
-
                     .into(i1);
             t1.setText(filteredData.get(position).getListing_name());
             t2.setText(filteredData.get(position).getAddress());
             t3.setText(filteredData.get(position).getPhone());
             t4.setText(filteredData.get(position).getEmail());
-
         return convertView;
     }
-
 }

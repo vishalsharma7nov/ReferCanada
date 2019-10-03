@@ -1,6 +1,6 @@
 package com.allumez.refercanada.jsonData;
 
-import com.allumez.refercanada.SettingData.Setting_Coupons_Details_Data;
+import com.allumez.refercanada.GetterAndSetter.Setting_Coupons_Details_Data;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,18 +32,15 @@ public class JsonHolder_Coupons_Listing {
     public static String[] total_number_of_coupons;
     public static String[] created_at;
     private String json;
-
     public JsonHolder_Coupons_Listing(String json) {
         this.json = json;
     }
-
     public List<Setting_Coupons_Details_Data> parseJSON(){
         JSONObject jsonObject = null;
         List<Setting_Coupons_Details_Data> list = new ArrayList<>();
         try {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
-
            id                       = new String[users.length()];
            title                    = new String[users.length()];
            description              = new String[users.length()];
@@ -54,11 +51,8 @@ public class JsonHolder_Coupons_Listing {
            discounted_price         = new String[users.length()];
            total_number_of_coupons  = new String[users.length()];
            created_at               = new String[users.length()];
-
-
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
-
                 Setting_Coupons_Details_Data sd = new Setting_Coupons_Details_Data(jo.getString(KEY_ID),
                                                                              jo.getString(KEY_title),
                                                                              jo.getString(KEY_description),
@@ -69,7 +63,6 @@ public class JsonHolder_Coupons_Listing {
                                                                              jo.getString(KEY_discounted_price),
                                                                              jo.getString(KEY_total_number_of_coupons),
                                                                              jo.getString(KEY_created_at));
-
                 list.add(sd);
                 id                         [i]     = jo.getString(KEY_ID);
                 title                      [i]     = jo.getString(KEY_title);
@@ -81,12 +74,10 @@ public class JsonHolder_Coupons_Listing {
                 discounted_price           [i]     = jo.getString(KEY_discounted_price);
                 total_number_of_coupons    [i]     = jo.getString(KEY_total_number_of_coupons);
                 created_at                 [i]     = jo.getString(KEY_created_at);
-
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return list;
     }
-
 }

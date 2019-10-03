@@ -32,7 +32,7 @@ public class Blog extends AppCompatActivity {
         listViewBlogListing  = findViewById(R.id.listViewBlogListing);
         listViewBlogId       = findViewById(R.id.listViewBlogId);
 
-        url = "http://refercanada.com/api/getBlog.php";
+        url = "http://canada.net.in/api/getBlog.php";
 
         sendRequest();
     }

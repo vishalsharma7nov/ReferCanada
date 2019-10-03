@@ -30,7 +30,6 @@ public class HomeActivity extends AppCompatActivity
 
     ImageView imageViewReferCanadaLogo,imageViewHeader;
     LinearLayout linearLayoutListing;
-
     TextView textViewCanadianList,textViewInternationalListing,textViewCoupon,textViewFourm;
     Button buttonSignIn,buttonRegister;
 
@@ -38,7 +37,6 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         buttonSignIn   = findViewById(R.id.buttonSignIn);
         buttonRegister = findViewById(R.id.buttonRegister);
         final RelativeLayout relativeLayout1 = findViewById(R.id.relativeLayout1);
@@ -57,7 +55,6 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
         imageViewReferCanadaLogo = findViewById(R.id.imageViewReferCanadaLogo);
         imageViewHeader          = findViewById(R.id.imageView);
         textViewCanadianList    = findViewById(R.id.canadianlisting);
@@ -71,10 +68,7 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
         linearLayoutListing      = findViewById(R.id.linearLayoutListing);
-
-
         textViewCanadianList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +76,6 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
         textViewInternationalListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +83,6 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
         textViewCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +90,6 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
         relativeLayout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +99,6 @@ public class HomeActivity extends AppCompatActivity
                 buttonRegister.setVisibility(View.VISIBLE);
             }
         });
-
         final Handler someHandler = new Handler(getMainLooper());
         someHandler.postDelayed(new Runnable() {
             @Override
@@ -120,10 +110,8 @@ public class HomeActivity extends AppCompatActivity
                 someHandler.postDelayed(this, 3000);
             }
         }, 3000);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,10 +120,8 @@ public class HomeActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -158,7 +144,6 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_home)
         {
 
@@ -172,23 +157,17 @@ public class HomeActivity extends AppCompatActivity
         {
             Intent intent = new Intent(HomeActivity.this,RegistrationActivity.class);
             startActivity(intent);
-
         }
-
         else if (id == R.id.nav_blog)
         {
             Intent intent = new Intent(HomeActivity.this, Blog.class);
             startActivity(intent);
-
         }
-
         else if (id == R.id.nav_coupons)
         {
             Intent intent = new Intent(HomeActivity.this,Coupons.class);
             startActivity(intent);
-
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

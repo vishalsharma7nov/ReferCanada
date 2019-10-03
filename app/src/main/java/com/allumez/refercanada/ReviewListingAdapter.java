@@ -49,19 +49,16 @@ public class ReviewListingAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view=in.inflate(R.layout.reviews_listing,null);
-
+       LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+       view=in.inflate(R.layout.reviews_listing,null);
        TextView textViewUsername        = view.findViewById(R.id.textViewUserName);
        TextView textViewDate            = view.findViewById(R.id.textViewCreatedDate);
        TextView textViewComment         = view.findViewById(R.id.textViewComment);
        RatingBar ratingBar              = view.findViewById(R.id.reviewedRatingBar);
-
-        textViewUsername.setText(name[i]);
-        textViewDate.setText(created_date[i]);
-        textViewComment.setText(comment[i]);
-        ratingBar.setRating(Float.parseFloat(rating[i]));
-
-        return view;
+       textViewUsername.setText(name[i]);
+       textViewDate.setText(created_date[i]);
+       textViewComment.setText(comment[i]);
+       ratingBar.setRating(Float.parseFloat(rating[i]));
+       return view;
     }
 }

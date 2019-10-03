@@ -1,4 +1,4 @@
-package com.allumez.refercanada.SettingData;
+package com.allumez.refercanada.GetterAndSetter;
 
 public class Setting_Data_RecyclerView {
 

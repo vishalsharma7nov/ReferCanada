@@ -63,37 +63,11 @@ public class Blog_Detail_Adpater extends BaseAdapter{
 
         convertView=in.inflate(R.layout.blog_details,null);
 
-
-        ImageView i1= convertView.findViewById(R.id.imageViewBlogDetailImage);
-
         TextView t1= convertView.findViewById(R.id.textViewBlogDetailTitle);
         TextView t2= convertView.findViewById(R.id.textViewBlogDetailDescription);
 
-        String url=null;
-
         t1.setText(title);
         t2.setText(description);
-        url= "http://refercanada.com/uploads/blogs_img/"+image;
-//        final ProgressDialog loading = ProgressDialog.show(c,"Loading Images","Please wait...",false,true);
-//            Glide.with(c)
-//                    .load(url)
-//                    .centerCrop()
-//                    .addListener(new RequestListener<Drawable>() {
-//                        @Override
-//                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                            loading.dismiss();
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-//                            loading.dismiss();
-//                            return false;
-//                        }
-//                    })
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                    .into(i1);
-
 
         return convertView;
     }

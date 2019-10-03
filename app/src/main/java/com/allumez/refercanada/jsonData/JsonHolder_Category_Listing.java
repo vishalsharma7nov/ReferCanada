@@ -1,6 +1,6 @@
 package com.allumez.refercanada.jsonData;
 
-import com.allumez.refercanada.SettingData.Setting_Data_RecyclerView;
+import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,24 +22,18 @@ public class JsonHolder_Category_Listing {
     public static final String KEY_phone                   = "phone";
     public static final String KEY_email                   = "email";
     public static final String KEY_address                 = "address";
-
     private String json;
-
     public JsonHolder_Category_Listing(String json) {
         this.json = json;
     }
-
     public List<Setting_Data_RecyclerView> parseJSON() {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
-
             jsonDataList = new ArrayList<>();
-
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
-
                 String id            = jo.getString(KEY_ID);
                 String business_id   = jo.getString(KEY_business_id);
                 String listing_name  = jo.getString(KEY_listing_name);
@@ -50,7 +44,6 @@ public class JsonHolder_Category_Listing {
                 String address       = jo.getString(KEY_address);
                 String image         = jo.getString(KEY_cover_image);
                 jsonDataList.add(new Setting_Data_RecyclerView(id, business_id, listing_name, landmark, cover_image, phone, email, address, image));
-//                Log.e("===coverImage", jsonDataList.get(i).getCover_image());
             }
         } catch (JSONException e) {
             e.printStackTrace();
