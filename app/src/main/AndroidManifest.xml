@@ -14,13 +14,13 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".forum.ForumActivity"></activity>
         <activity android:name=".coupons.Coupons_CityName" />
-        <activity android:name=".canadianListing.Canadian_State_Name" />
+        <activity android:name=".CanadianListingActivities.Canadian_State_Name" />
         <activity android:name=".coupons.Coupon_Details" />
         <activity android:name=".coupons.Coupons" />
         <activity android:name=".blogs.Blog_Detail" />
-        <activity android:name=".canadianListing.Canadian_Cities_FullListing_Activity" />
+        <activity android:name=".CanadianListingActivities.Canadian_Cities_FullListing_Activity" />
         <activity android:name=".blogs.Blog" />
-        <activity android:name=".canadianListing.Canadian_Cities_CategoryListing_Activity" />
+        <activity android:name=".CanadianListingActivities.Canadian_Cities_CategoryListing_Activity" />
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar">
@@ -37,10 +37,10 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".internationalListing.International_CategorySubList_Activity" />
         <activity android:name=".internationalListing.International_CategoryList_Activity" />
-        <activity android:name=".canadianListing.Canadian_Cities_CategoryList_Activity" />
-        <activity android:name=".canadianListing.Canadian_Cities_Category_Activity" />
-        <activity android:name=".canadianListing.Canadian_Cities_Activity" />
-        <activity android:name=".canadianListing.Canadian_State_Listing_Activity" />
+        <activity android:name=".CanadianListingActivities.Canadian_Cities_CategoryList_Activity" />
+        <activity android:name=".CanadianListingActivities.Canadian_Cities_Category_Activity" />
+        <activity android:name=".CanadianListingActivities.Canadian_Cities_Activity" />
+        <activity android:name=".CanadianListingActivities.Canadian_State_Listing_Activity" />
 
         <meta-data
             android:name="preloaded_fonts"

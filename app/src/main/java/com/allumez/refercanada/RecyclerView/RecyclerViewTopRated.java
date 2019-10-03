@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.allumez.refercanada.R;
 import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
-import com.allumez.refercanada.canadianListing.Canadian_Cities_FullListing_Activity;
+import com.allumez.refercanada.CanadianListingActivities.Canadian_Cities_FullListing_Activity;
 import com.allumez.refercanada.jsonData.JsonHolder_Category_Listing;
 import com.bumptech.glide.Glide;
 

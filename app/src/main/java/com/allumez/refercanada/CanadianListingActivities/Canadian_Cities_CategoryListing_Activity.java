@@ -1,4 +1,4 @@
-package com.allumez.refercanada.canadianListing;
+package com.allumez.refercanada.CanadianListingActivities;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;

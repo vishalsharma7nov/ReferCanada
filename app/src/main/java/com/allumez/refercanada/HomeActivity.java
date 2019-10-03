@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.allumez.refercanada.blogs.Blog;
-import com.allumez.refercanada.canadianListing.Canadian_State_Listing_Activity;
+import com.allumez.refercanada.CanadianListingActivities.Canadian_State_Listing_Activity;
 import com.allumez.refercanada.coupons.Coupons;
 import com.allumez.refercanada.forum.ForumActivity;
 import com.allumez.refercanada.internationalListing.International_CategoryList_Activity;

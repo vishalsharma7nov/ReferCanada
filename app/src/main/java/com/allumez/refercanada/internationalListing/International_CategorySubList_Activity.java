@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.canadianListing.Canadian_Cities_CategoryList_Adpater;
+import com.allumez.refercanada.CanadianListingActivities.Canadian_Cities_CategoryList_Adpater;
 import com.allumez.refercanada.jsonData.JsonHolder_State_Listing;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;

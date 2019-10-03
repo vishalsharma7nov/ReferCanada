@@ -1,4 +1,4 @@
-package com.allumez.refercanada.canadianListing;
+package com.allumez.refercanada.CanadianListingActivities;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

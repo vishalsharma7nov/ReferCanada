@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:background="@drawable/cardviewoutline"
-    tools:context=".canadianListing.Canadian_Cities_CategoryList_Activity">
+    tools:context=".CanadianListingActivities.Canadian_Cities_CategoryList_Activity">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
