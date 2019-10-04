@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.allumez.refercanada.Adapter.Blog_Listing_Adpater;
 import com.allumez.refercanada.R;
 import com.allumez.refercanada.jsonData.JsonHolder_Blog_Listing;
 import com.android.volley.RequestQueue;
@@ -20,9 +21,9 @@ import org.json.JSONObject;
 
 public class Blog extends AppCompatActivity {
 
-    boolean doubleBackToExitPressedOnce = false;
-    String url;
-    ListView listViewBlogListing,listViewBlogId;
+    protected boolean doubleBackToExitPressedOnce = false;
+    protected String url;
+    protected ListView listViewBlogListing,listViewBlogId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

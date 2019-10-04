@@ -12,7 +12,6 @@ import java.util.List;
 public class JsonHolder_Category_Listing {
 
     public static List<Setting_Data_RecyclerView> jsonDataList = new ArrayList<>();
-
     public static final String JSON_ARRAY                  = "data";
     public static final String KEY_ID                      = "id";
     public static final String KEY_business_id             = "business_id";

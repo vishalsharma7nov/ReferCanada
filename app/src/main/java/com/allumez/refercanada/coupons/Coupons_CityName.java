@@ -11,9 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.allumez.refercanada.R;
+import com.allumez.refercanada.Adapter.Canadian_State_Listing_Adpater;
 import com.allumez.refercanada.GetterAndSetter.Setting_Data;
-import com.allumez.refercanada.CanadianListingActivities.Canadian_State_Listing_Adpater;
+import com.allumez.refercanada.R;
 import com.allumez.refercanada.jsonData.JsonHolder_State_Listing;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;

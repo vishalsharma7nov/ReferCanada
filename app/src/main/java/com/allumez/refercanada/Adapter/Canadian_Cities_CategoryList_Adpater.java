@@ -1,4 +1,4 @@
-package com.allumez.refercanada.CanadianListingActivities;
+package com.allumez.refercanada.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,9 +13,9 @@ import com.allumez.refercanada.R;
 public class Canadian_Cities_CategoryList_Adpater extends BaseAdapter{
 
     Context c;
-    public static String[] id;
-    public static String[] name;
-    public static String[] image;
+    protected static String[] id;
+    protected static String[] name;
+    protected static String[] image;
 
     public Canadian_Cities_CategoryList_Adpater(Context c, String[] id, String[] name, String[] image)
     {
@@ -45,7 +45,6 @@ public class Canadian_Cities_CategoryList_Adpater extends BaseAdapter{
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         convertView=in.inflate(R.layout.citynames,null);
-
         TextView t1= convertView.findViewById(R.id.textViewName);
         t1.setText(name[position]);
 

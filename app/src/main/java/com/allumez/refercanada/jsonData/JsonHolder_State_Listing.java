@@ -22,7 +22,6 @@ public class JsonHolder_State_Listing {
     public JsonHolder_State_Listing(String json) {
         this.json = json;
     }
-
     public List<Setting_Data> parseJSON() {
         List<Setting_Data> list = new ArrayList<>();
         JSONObject jsonObject = null;

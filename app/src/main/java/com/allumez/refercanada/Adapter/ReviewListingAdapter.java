@@ -1,12 +1,13 @@
-package com.allumez.refercanada;
+package com.allumez.refercanada.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.allumez.refercanada.R;
 
 public class ReviewListingAdapter extends BaseAdapter {
 
@@ -54,11 +55,11 @@ public class ReviewListingAdapter extends BaseAdapter {
        TextView textViewUsername        = view.findViewById(R.id.textViewUserName);
        TextView textViewDate            = view.findViewById(R.id.textViewCreatedDate);
        TextView textViewComment         = view.findViewById(R.id.textViewComment);
-       RatingBar ratingBar              = view.findViewById(R.id.reviewedRatingBar);
+       TextView ratingBar              = view.findViewById(R.id.reviewedRatingBar);
        textViewUsername.setText(name[i]);
        textViewDate.setText(created_date[i]);
        textViewComment.setText(comment[i]);
-       ratingBar.setRating(Float.parseFloat(rating[i]));
+       ratingBar.setText(rating[i]);
        return view;
     }
 }

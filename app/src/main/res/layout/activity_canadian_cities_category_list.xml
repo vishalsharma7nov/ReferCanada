@@ -17,10 +17,7 @@
         app:srcCompat="@drawable/logorefercanada"/>
     <ListView
         android:id="@+id/listView"
-        android:layout_marginTop="140dp"
-        android:divider="@color/colorPrimary"
-        android:dividerHeight="1dp"
-        android:background="@drawable/textfield"
+        android:layout_marginTop="180dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
@@ -41,9 +38,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/listViewsearch"
+        android:layout_marginTop="85dp"
+        android:gravity="center"
+        android:text="Select/Search For Category"
+        android:textSize="20sp"/>
     <android.support.v7.widget.SearchView
         android:id="@+id/searchview"
         app:defaultQueryHint="Search"
+        android:layout_marginTop="40dp"
         android:background="@drawable/textfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

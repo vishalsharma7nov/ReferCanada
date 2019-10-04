@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.allumez.refercanada.Adapter.Canadian_Cities_CategoryList_Adpater;
 import com.allumez.refercanada.R;
 import com.allumez.refercanada.jsonData.JsonHolder_State_Listing;
 import com.android.volley.RequestQueue;
@@ -26,15 +27,15 @@ import org.json.JSONObject;
 
 public class Canadian_Cities_CategoryList_Activity extends AppCompatActivity {
 
-    ListView listViewCitiesCategoryList;
-    String url;
-    ListView listViewId,listViewSearch;
-    SearchView searchView;
+    protected ListView listViewCitiesCategoryList;
+    protected String url;
+    protected ListView listViewId,listViewSearch;
+    protected SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canadian_cities);
+        setContentView(R.layout.activity_canadian_cities_category_list);
         Intent intent = getIntent();
         String a = intent.getStringExtra("pos");
         url="http://canada.net.in/api/getSubCategoryList.php?categoryId="+a;
@@ -77,7 +78,7 @@ public class Canadian_Cities_CategoryList_Activity extends AppCompatActivity {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         String selectedId = String.valueOf(a.getItem(position));
-                                        Intent intent = new Intent(Canadian_Cities_CategoryList_Activity.this, Canadian_Cities_CategoryListing_Activity.class);
+                                        Intent intent = new Intent(getApplicationContext(), Canadian_Cities_CategoryListing_Activity.class);
                                         intent.putExtra("pos",position);
                                         SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
                                         SharedPreferences.Editor edit = prefs.edit();

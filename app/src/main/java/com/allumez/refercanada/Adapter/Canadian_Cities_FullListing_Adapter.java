@@ -1,4 +1,4 @@
-package com.allumez.refercanada.CanadianListingActivities;
+package com.allumez.refercanada.Adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -40,7 +40,6 @@ public class Canadian_Cities_FullListing_Adapter extends BaseAdapter {
         Canadian_Cities_FullListing_Adapter.discount = discount;
         Canadian_Cities_FullListing_Adapter.price = price;
         Canadian_Cities_FullListing_Adapter.features = features;
-
     }
 
     @Override
@@ -60,23 +59,18 @@ public class Canadian_Cities_FullListing_Adapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view=in.inflate(R.layout.full_listing,null);
-
-       TextView textViewTitle           = view.findViewById(R.id.textViewTitle);
-       TextView textViewDiscount        = view.findViewById(R.id.textViewDiscount);
-       TextView textViewPrice           = view.findViewById(R.id.textViewPrice);
-       TextView textViewFeatures        = view.findViewById(R.id.textViewFeatures);
-
+        TextView textViewTitle           = view.findViewById(R.id.textViewTitle);
+        TextView textViewDiscount        = view.findViewById(R.id.textViewDiscount);
+        TextView textViewPrice           = view.findViewById(R.id.textViewPrice);
+        TextView textViewFeatures        = view.findViewById(R.id.textViewFeatures);
         textViewTitle.setText(title[i]);
-        textViewDiscount.setText("Offer Price="+discount[i]);
+        textViewDiscount.setText("Price="+discount[i]);
         textViewPrice.setText(price[i]);
         textViewFeatures.setText(features[i]);
-
         ImageView i1= view.findViewById(R.id.imageViewGallery);
         String url= "http://canada.net.in/uploads/product_img/"+product_image[i];
-
         Glide.with(c)
                 .load(url)
                 .optionalCircleCrop()
@@ -95,7 +89,6 @@ public class Canadian_Cities_FullListing_Adapter extends BaseAdapter {
                 })
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(i1);
-
         return view;
     }
 }

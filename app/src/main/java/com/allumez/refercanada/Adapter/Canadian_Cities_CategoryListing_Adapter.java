@@ -1,4 +1,4 @@
-package com.allumez.refercanada.CanadianListingActivities;
+package com.allumez.refercanada.Adapter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,8 +14,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.allumez.refercanada.R;
+import com.allumez.refercanada.CanadianListingActivities.Canadian_Cities_FullListing_Activity;
 import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
+import com.allumez.refercanada.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -30,15 +31,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
 
     Context c;
-    public static String[] id;
-    public static String[] business_id;
-    public static String[] listing_name;
-    public static String[] cover_image;
-    public static String[] phone;
-    public static String[] email;
-    public static String[] address;
-    public List<Setting_Data_RecyclerView> filteredData;
-    List<Setting_Data_RecyclerView> list;
+    protected static String[] id;
+    protected static String[] email;
+    public List<Setting_Data_RecyclerView> list;
+    protected List<Setting_Data_RecyclerView> filteredData;
 
     public Canadian_Cities_CategoryListing_Adapter(Context c, List<Setting_Data_RecyclerView> list )
     {
@@ -74,7 +70,6 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
         TextView t3  = convertView.findViewById(R.id.textViewPhone);
         TextView t4  = convertView.findViewById(R.id.textViewEmail);
         TextView t5  = convertView.findViewById(R.id.textViewOffers);
-//        Button   b1  = convertView.findViewById(R.id.buttonOffers);
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +78,8 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
                 SharedPreferences.Editor edit = prefs.edit();
                 edit.putString("listId", filteredData.get(position).getId());
                 edit.putString("businessId", filteredData.get(position).getBusiness_id());
+                edit.putString("listing_name",filteredData.get(position).listing_name);
+                edit.putString("landmark",filteredData.get(position).landmark);
                 edit.commit();
                 c.startActivity(intent);
             }
@@ -95,11 +92,12 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
                 SharedPreferences.Editor edit = prefs.edit();
                 edit.putString("listId", filteredData.get(position).getId());
                 edit.putString("businessId", filteredData.get(position).getBusiness_id());
+                edit.putString("listing_name",filteredData.get(position).listing_name);
+                edit.putString("landmark",filteredData.get(position).landmark);
                 edit.commit();
                 c.startActivity(intent);
             }
         });
-
         String url = "http://canada.net.in/uploads/listing_img/"+filteredData.get(position).getCover_image();
             Glide.with(c)
                     .load(url)

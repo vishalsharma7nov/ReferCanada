@@ -1,4 +1,4 @@
-package com.allumez.refercanada.CanadianListingActivities;
+package com.allumez.refercanada.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
-import com.allumez.refercanada.R;
 import com.allumez.refercanada.GetterAndSetter.Setting_Data;
+import com.allumez.refercanada.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +18,13 @@ import java.util.List;
 
 public class Canadian_State_Listing_Adpater extends BaseAdapter implements Filterable
 {
-
     Context c;
-    public static String[] id;
-    public static String[] name;
-    public static String[] image;
-
-    List<Setting_Data> list;
+    protected static String[] id;
+    protected static String[] name;
+    protected static String[] image;
+    protected List<Setting_Data> list;
     public List<Setting_Data> filteredData;
-
-    public ItemFilter mFilter = new ItemFilter();
+    protected ItemFilter mFilter = new ItemFilter();
 
     public Canadian_State_Listing_Adpater(Context c, List<Setting_Data> list )
     {
@@ -55,14 +52,10 @@ public class Canadian_State_Listing_Adpater extends BaseAdapter implements Filte
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView=in.inflate(R.layout.citynames,null);
-
-
         TextView t1= convertView.findViewById(R.id.textViewName);
         TextView t2= convertView.findViewById(R.id.textViewId);
-
-            t1.setText(filteredData.get(position).getName());
-            t2.setText(filteredData.get(position).getId());
-
+        t1.setText(filteredData.get(position).getName());
+        t2.setText(filteredData.get(position).getId());
         return convertView;
     }
 
@@ -74,37 +67,27 @@ public class Canadian_State_Listing_Adpater extends BaseAdapter implements Filte
     private class ItemFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
             String filterString = constraint.toString().toLowerCase();
-
             FilterResults results = new FilterResults();
-
             final List<Setting_Data> list1 = list;
-
             int count = list1.size();
             final ArrayList<Setting_Data> nlist = new ArrayList<Setting_Data>(count);
-
             Setting_Data filterableString ;
-
             for (int i = 0; i < count; i++) {
                 filterableString = list1.get(i);
                 if (filterableString.getName().toLowerCase().contains(filterString)) {
                     nlist.add(filterableString);
                 }
             }
-
             results.values = nlist;
             results.count = nlist.size();
-
             return results;
         }
-
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredData = (ArrayList<Setting_Data>) results.values;
             notifyDataSetChanged();
         }
-
     }
 }

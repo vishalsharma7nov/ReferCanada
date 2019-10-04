@@ -30,41 +30,33 @@ import org.json.JSONObject;
 
 public class Blog_Detail extends AppCompatActivity {
 
-    String url;
-    TextView textViewBlogDetailTitle,textViewBlogDetailDescription;
-    ImageView imageViewBlogDetailImage;
+    protected String url;
+    protected TextView textViewBlogDetailTitle,textViewBlogDetailDescription;
+    protected ImageView imageViewBlogDetailImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_full_detail);
-
         textViewBlogDetailTitle       = findViewById(R.id.textViewBlogDetailTitle);
         textViewBlogDetailDescription = findViewById(R.id.textViewBlogDetailDescription);
         imageViewBlogDetailImage      = findViewById(R.id.imageViewBlogDetailImage);
-
         Intent intent = getIntent();
         String blogId = intent.getStringExtra("blogId");
         url = "http://canada.net.in/api/getBlogDetail.php?blogId="+blogId;
-
         Log.e("==urlBlog",url);
-
         sendRequest();
-
     }
 
     private void sendRequest() {
         final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
-
         StringRequest stringRequest = new StringRequest(url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-
                             if (abc !=1 )
                             {
                                 loading.dismiss();
@@ -80,7 +72,6 @@ public class Blog_Detail extends AppCompatActivity {
                                 textViewBlogDetailTitle.setText(title);
                                 textViewBlogDetailDescription.setText(description);
                                 String imageUrl= "http://refercanada.com/uploads/blogs_img/"+image;
-
                                 final ProgressDialog loading = ProgressDialog.show(Blog_Detail.this,"Loading Images","Please wait...",false,true);
                                 Glide.with(Blog_Detail.this)
                                         .load(imageUrl)
@@ -100,13 +91,11 @@ public class Blog_Detail extends AppCompatActivity {
                                         })
                                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                                         .into(imageViewBlogDetailImage);
-
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             loading.dismiss();
-                            Log.e("===JSONException",e.getMessage());
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 },
@@ -114,10 +103,9 @@ public class Blog_Detail extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
@@ -125,6 +113,5 @@ public class Blog_Detail extends AppCompatActivity {
     private void showJSON(String json) {
         JsonHolder_Blog_Detail jsonHolderBlogDetail = new JsonHolder_Blog_Detail(json);
         jsonHolderBlogDetail.parseJSON();
-
     }
 }

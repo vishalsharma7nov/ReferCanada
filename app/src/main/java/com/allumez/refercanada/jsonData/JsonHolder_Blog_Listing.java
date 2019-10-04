@@ -12,28 +12,28 @@ public class JsonHolder_Blog_Listing {
      public static String[] image;
      public static String[] meta_key;
      public static String[] meta_description;
-        public static final String JSON_ARRAY                  = "data";
-        public static final String KEY_ID                      = "id";
-        public static final String KEY_TITLE                   = "title";
-        public static final String KEY_DESCRIPTION             = "description";
-        public static final String KEY_IMAGE                   = "image";
-        public static final String KEY_META_KEY                = "meta_key";
-        public static final String KEY_META_DESCRIPTION        = "meta_description";
-        private String json;
-        public JsonHolder_Blog_Listing(String json) {
+     public static final String JSON_ARRAY                  = "data";
+     public static final String KEY_ID                      = "id";
+     public static final String KEY_TITLE                   = "title";
+     public static final String KEY_DESCRIPTION             = "description";
+     public static final String KEY_IMAGE                   = "image";
+     public static final String KEY_META_KEY                = "meta_key";
+     public static final String KEY_META_DESCRIPTION        = "meta_description";
+     private String json;
+     public JsonHolder_Blog_Listing(String json) {
             this.json = json;
         }
-        public void parseJSON() {
+     public void parseJSON() {
             JSONObject jsonObject = null;
             try {
                 jsonObject = new JSONObject(json);
                 JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
                 id                  = new String[users.length()];
-                title        = new String[users.length()];
-                description        = new String[users.length()];
-                image        = new String[users.length()];
-                meta_key        = new String[users.length()];
-                meta_description        = new String[users.length()];
+                title               = new String[users.length()];
+                description         = new String[users.length()];
+                image               = new String[users.length()];
+                meta_key            = new String[users.length()];
+                meta_description    = new String[users.length()];
                 for (int i = 0; i < users.length(); i++) {
                     JSONObject jo = users.getJSONObject(i);
                     id               [i]     = jo.getString(KEY_ID);
@@ -48,5 +48,5 @@ public class JsonHolder_Blog_Listing {
             {
                 e.printStackTrace();
             }
-        }
+     }
 }

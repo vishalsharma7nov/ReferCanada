@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -20,8 +21,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.allumez.refercanada.Adapter.Canadian_Cities_FullListing_Adapter;
+import com.allumez.refercanada.Adapter.ReviewListingAdapter;
 import com.allumez.refercanada.R;
-import com.allumez.refercanada.ReviewListingAdapter;
 import com.allumez.refercanada.jsonData.JsonHolder_Category_Listing;
 import com.allumez.refercanada.jsonData.JsonHolder_FullListing;
 import com.allumez.refercanada.jsonData.JsonHolder_Reviews;
@@ -49,17 +51,17 @@ import static android.widget.Toast.makeText;
 
 public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
 
-    boolean doubleBackToExitPressedOnce = false;
-    TextView textViewListingName,textViewLandmark;
-    ImageButton imageButtonMail,imageButtonPhone,imageButtonAddress,imageButtonSms;
-    String url,urlForReviews;
-    ListView listViewBusinessInformation,listViewUsersReviews;
-    String reviewAPI,ratingBarUserReview;
-    String listId,businessId;
-    EditText editTextFullName,editTextMobile,editTextEmailId,editTextCity,editTextReview;
-    Button buttonSubmitButton;
-    RatingBar ratingBarReview;
-    ImageView imageViewCoverImage;
+    protected boolean doubleBackToExitPressedOnce = false;
+    protected TextView textViewListingName,textViewLandmark,textViewDescription;
+    protected ImageButton imageButtonMail,imageButtonPhone,imageButtonAddress,imageButtonSms;
+    protected String url,urlForReviews;
+    protected ListView listViewBusinessInformation,listViewUsersReviews;
+    protected String reviewAPI,ratingBarUserReview;
+    protected String listId,businessId,listing_name,landmark;
+    protected EditText editTextFullName,editTextMobile,editTextEmailId,editTextCity,editTextReview;
+    protected Button buttonSubmitButton;
+    protected RatingBar ratingBarReview;
+    protected ImageView imageViewCoverImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
         }
         imageViewCoverImage = findViewById(R.id.imageViewCoverImage);
         textViewListingName          = findViewById(R.id.textViewListingName);
+        textViewDescription          = findViewById(R.id.textViewDescription);
         textViewLandmark             = findViewById(R.id.textViewLandMark);
         imageButtonAddress           = findViewById(R.id.imageButtonLocation);
         imageButtonMail              = findViewById(R.id.imageButtonMail);
@@ -94,8 +97,6 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
                 ratingBarReview.setRating(0);
             }
         });
-        textViewListingName.setText(JsonHolder_Category_Listing.jsonDataList.get(0).getListing_name());
-        textViewLandmark.setText(JsonHolder_Category_Listing.jsonDataList.get(0).getLandmark());
         imageButtonMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,19 +135,24 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
         SharedPreferences bb = getSharedPreferences("my_prefs", 0);
         listId = bb.getString("listId", "listId");
         businessId = bb.getString("businessId","businessId");
+        listing_name = bb.getString("listing_name","listing_name");
+        landmark = bb.getString("landmark","landmark");
         url = "http://canada.net.in/api/getListingDetail.php?listingId="+listId;
         listViewBusinessInformation = findViewById(R.id.listViewBusinessInformation);
         listViewUsersReviews = findViewById(R.id.listViewUsersReviews);
         reviewAPI = "http://canada.net.in/api/addreview.php?";
         ratingBarReview = findViewById(R.id.ratingbarUserReview);
         urlForReviews = "http://canada.net.in/api/getReviews.php?listingId="+listId;
+        textViewListingName.setText(listing_name);
+        textViewLandmark.setText(landmark);
+        textViewDescription.setText(landmark);
         sendRequest();
         sendRequestReviews();
+        Log.e("===url",url);
     }
 
     @Override
     public void onBackPressed() {
-
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
             return;
@@ -174,15 +180,17 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
                             String image = obj.getJSONObject("data").getString("cover_image");
+                            String description = obj.getJSONObject("data").getString("description");
                             if (abc != 1)
                             {
                                 loading.dismiss();
-                                Toast.makeText(getApplicationContext(), "Work in Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Work in Progress...."+response, Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
                                 loading.dismiss();
                                 showJSON(response);
+                                textViewDescription.setText(description);
                                 String imageUrl = "http://canada.net.in/uploads/listing_img/"+image;
                                 Glide.with(getApplicationContext())
                                         .load(imageUrl)
@@ -292,7 +300,7 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
                             if (abc != 1)
                             {
                                 loading.dismiss();
-                                Toast.makeText(getApplicationContext(), "Work in Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "No Reviews!!....", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
@@ -328,7 +336,5 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
         jsonHolderFullListing.parseJSON();
         Canadian_Cities_FullListing_Adapter fullListingAdapter = new Canadian_Cities_FullListing_Adapter(this, JsonHolder_FullListing.title, JsonHolder_FullListing.product_image, JsonHolder_FullListing.discount, JsonHolder_FullListing.price, JsonHolder_FullListing.features);
         listViewBusinessInformation.setAdapter(fullListingAdapter);
-
     }
-
 }

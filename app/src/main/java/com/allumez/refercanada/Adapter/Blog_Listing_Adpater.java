@@ -1,4 +1,4 @@
-package com.allumez.refercanada.blogs;
+package com.allumez.refercanada.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.allumez.refercanada.R;
+import com.allumez.refercanada.blogs.Blog_Detail;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -25,14 +26,12 @@ import com.bumptech.glide.request.target.Target;
 public class Blog_Listing_Adpater extends BaseAdapter{
 
     Context c;
-    public static String[] id;
-    public static String[] title;
-    public static String[] description;
-    public static String[] image;
-    public static String[] meta_key;
-    public static String[] meta_description;
-
-
+    protected static String[] id;
+    protected static String[] title;
+    protected static String[] description;
+    protected static String[] image;
+    protected static String[] meta_key;
+    protected static String[] meta_description;
 
     public Blog_Listing_Adpater(Context c,
                                 String[] id,
@@ -49,9 +48,7 @@ public class Blog_Listing_Adpater extends BaseAdapter{
         Blog_Listing_Adpater.meta_key = meta_key;
         Blog_Listing_Adpater.meta_description = meta_description;
         Blog_Listing_Adpater.image = image;
-
     }
-
 
     @Override
     public int getCount() {
@@ -71,15 +68,10 @@ public class Blog_Listing_Adpater extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         convertView=in.inflate(R.layout.blog_listing,null);
-
-
         ImageView i1= convertView.findViewById(R.id.imageViewBlogImage);
-
         TextView t1= convertView.findViewById(R.id.textViewBlogTitle);
         TextView t2= convertView.findViewById(R.id.textViewBlogDescription);
-
         LinearLayout lo1 = convertView.findViewById(R.id.linearLayoutbloglisting);
         lo1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +81,6 @@ public class Blog_Listing_Adpater extends BaseAdapter{
                 c.startActivity(intent);
             }
         });
-
         Button b1 = convertView.findViewById(R.id.buttonBlogReadMore);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +90,6 @@ public class Blog_Listing_Adpater extends BaseAdapter{
                 c.startActivity(intent);
             }
         });
-
-
         String url= "http://canada.net.in/uploads/blogs_img/"+image[position];
         Glide.with(c)
                 .load(url)
@@ -118,14 +107,8 @@ public class Blog_Listing_Adpater extends BaseAdapter{
                     }
                 })
                 .into(i1);
-
-
-        for (int i = 0;i<id.length;i++)
-        {
             t1.setText(title[position]);
             t2.setText(description[position]);
-
-        }
         return convertView;
     }
 }

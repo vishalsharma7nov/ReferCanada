@@ -12,8 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.allumez.refercanada.R;
+import com.allumez.refercanada.Adapter.Canadian_Cities_Category_Adpater;
 import com.allumez.refercanada.GetterAndSetter.Setting_Category_Data;
+import com.allumez.refercanada.R;
 import com.allumez.refercanada.jsonData.JsonHolder_Cities_Category;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,13 +35,12 @@ public class Canadian_Cities_Category_Activity extends AppCompatActivity {
     JsonHolder_Cities_Category jsonHolderCitiesCategory;
     SearchView searchView;
     ArrayList<String> list;
-
     List<Setting_Category_Data> settingDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canadian_cities);
+        setContentView(R.layout.activity_canadian_cities_category);
         url="http://canada.net.in/api/getCategoryList.php";
         listViewCitiesCategory = findViewById(R.id.listView);
         listViewId  = findViewById(R.id.listViewId);
@@ -64,7 +64,6 @@ public class Canadian_Cities_Category_Activity extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-
                             if (abc !=1 )
                             {
                                 loading.dismiss();

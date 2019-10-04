@@ -12,18 +12,18 @@ public class JsonHolder_Blog_Detail {
      public static String image;
      public static String meta_key;
      public static String meta_description;
-        public static final String JSON_ARRAY                  = "data";
-        public static final String KEY_ID                      = "id";
-        public static final String KEY_TITLE                   = "title";
-        public static final String KEY_DESCRIPTION             = "description";
-        public static final String KEY_IMAGE                   = "image";
-        public static final String KEY_META_KEY                = "meta_key";
-        public static final String KEY_META_DESCRIPTION        = "meta_description";
-        private String json;
-        public JsonHolder_Blog_Detail(String json) {
+     public static final String JSON_ARRAY                  = "data";
+     public static final String KEY_ID                      = "id";
+     public static final String KEY_TITLE                   = "title";
+     public static final String KEY_DESCRIPTION             = "description";
+     public static final String KEY_IMAGE                   = "image";
+     public static final String KEY_META_KEY                = "meta_key";
+     public static final String KEY_META_DESCRIPTION        = "meta_description";
+     private String json;
+     public JsonHolder_Blog_Detail(String json) {
             this.json = json;
-        }
-        public void parseJSON() {
+     }
+     public void parseJSON() {
             JSONObject jsonObject = null;
             try {
                 jsonObject = new JSONObject(json);
@@ -42,5 +42,5 @@ public class JsonHolder_Blog_Detail {
             {
                 e.printStackTrace();
             }
-        }
+     }
 }

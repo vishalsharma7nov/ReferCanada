@@ -12,8 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.allumez.refercanada.R;
+import com.allumez.refercanada.Adapter.Canadian_State_Listing_Adpater;
 import com.allumez.refercanada.GetterAndSetter.Setting_Data;
+import com.allumez.refercanada.R;
 import com.allumez.refercanada.jsonData.JsonHolder_State_Listing;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,11 +30,11 @@ import java.util.List;
 
 public class Canadian_Cities_Activity extends AppCompatActivity {
 
-    ListView listViewCities,listViewSearch;
-    String url;
-    SearchView searchView;
-    ArrayList<String> list;
-    List<Setting_Data> settingDataList;
+    protected ListView listViewCities,listViewSearch;
+    protected String url;
+    protected SearchView searchView;
+    protected ArrayList<String> list;
+    protected List<Setting_Data> settingDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,6 @@ public class Canadian_Cities_Activity extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
-
                             if (abc !=1 )
                             {
                                 loading.dismiss();

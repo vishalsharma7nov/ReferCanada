@@ -12,8 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.allumez.refercanada.R;
+import com.allumez.refercanada.Adapter.Canadian_State_Listing_Adpater;
 import com.allumez.refercanada.GetterAndSetter.Setting_Data;
+import com.allumez.refercanada.R;
 import com.allumez.refercanada.coupons.Coupons_CityName;
 import com.allumez.refercanada.jsonData.JsonHolder_State_Listing;
 import com.android.volley.RequestQueue;
@@ -31,12 +32,11 @@ import java.util.List;
 
 public class Canadian_State_Name extends AppCompatActivity {
 
-    ListView listView, listViewId, listViewSearch;
-    JsonHolder_State_Listing jsonHolderListing;
-    SearchView searchView;
-    ArrayList<String> list;
-    List<Setting_Data> settingDataList;
-
+    protected ListView listView, listViewId, listViewSearch;
+    protected JsonHolder_State_Listing jsonHolderListing;
+    protected SearchView searchView;
+    protected ArrayList<String> list;
+    protected List<Setting_Data> settingDataList;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

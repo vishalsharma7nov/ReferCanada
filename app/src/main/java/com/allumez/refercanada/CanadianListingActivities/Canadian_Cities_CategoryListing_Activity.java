@@ -8,13 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.allumez.refercanada.Adapter.Canadian_Cities_CategoryListing_Adapter;
+import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
 import com.allumez.refercanada.R;
 import com.allumez.refercanada.RecyclerView.RecyclerViewTopRated;
-import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
 import com.allumez.refercanada.jsonData.JsonHolder_Category_Listing;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,11 +31,11 @@ import java.util.List;
 
 public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity {
 
-    boolean doubleBackToExitPressedOnce = false;
-    RecyclerView recyclerViewTopRated;
-    ListView listViewListing;
-    String url;
-    List<Setting_Data_RecyclerView> settingDataList;
+    protected boolean doubleBackToExitPressedOnce = false;
+    protected RecyclerView recyclerViewTopRated;
+    protected ListView listViewListing;
+    protected String url;
+    protected List<Setting_Data_RecyclerView> settingDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,8 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
         String cityId = bb.getString("cityId", "cityId");
         String categoryId = bb.getString("categoryId", "categoryId");
         String subcategoryId = bb.getString("subcategoryId", "subcategoryId");
-        url = "http://refercanada.com/api/getListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
+        url = "http://canada.net.in/api/getListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
+        Log.e("===urlCL",url);
         sendRequest();
     }
 

@@ -1,7 +1,5 @@
 package com.allumez.refercanada.jsonData;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +14,6 @@ public class JsonHolder_FullListing {
     public static String[] show_product;
     public static String[] show_price;
     public static String[] discount;
-    public static String cover_image;
     public static final String JSON_ARRAY                  = "product_data";
     public static final String KEY_ID                      = "id";
     public static final String KEY_title                   = "title";
@@ -37,7 +34,6 @@ public class JsonHolder_FullListing {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
             JSONObject jsonObject1 = new JSONObject(json);
-            cover_image         = jsonObject1.getJSONObject("data").getString("cover_image");
             id                  = new String[users.length()];
             title               = new String[users.length()];
             product_image       = new String[users.length()];

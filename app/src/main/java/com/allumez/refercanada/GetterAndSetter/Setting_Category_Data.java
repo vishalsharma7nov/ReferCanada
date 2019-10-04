@@ -2,9 +2,9 @@ package com.allumez.refercanada.GetterAndSetter;
 
 public class Setting_Category_Data {
 
-    String id;
-    String name;
-    String icon;
+    protected String id;
+    protected String name;
+    protected String icon;
 
     public Setting_Category_Data(String id, String name, String icon) {
         this.id = id;
