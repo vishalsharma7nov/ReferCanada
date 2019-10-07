@@ -33,6 +33,60 @@
                 android:layout_margin="5dp"
                 android:id="@+id/imageViewCoverImage"/>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButtonPhone"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="240dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="#FCFCFC"
+                    android:src="@drawable/ic_phone_android_black_24dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonLocation"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="174dp"
+                    android:background="#FCFCFC"
+                    android:src="@drawable/ic_location_on_black_24dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonMail"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="26dp"
+                    android:background="#FCFCFC"
+                    android:src="@drawable/ic_mail_black_24dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonSMS"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="99dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#FCFCFC"
+                    android:src="@drawable/ic_sms_black_24dp" />
+
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -67,6 +121,34 @@
                     android:layout_margin="10dp"
                     android:padding="5dp"/>
 
+                <RelativeLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/buttonDealsAndOffers"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/buttonoutline"
+                        android:textColor="#FCFCFC"
+                        android:fontFamily="monospace"
+                        android:text="Deals And Offers"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/buttonProductAndService"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="70dp"
+                        android:background="@drawable/buttonoutline"
+                        android:fontFamily="monospace"
+                        android:text="Product And Services"
+                        android:textColor="#FCFCFC"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -75,14 +157,17 @@
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/buttonSubmitReview"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/buttonoutline"
-                    android:text="Submit Review"
-                    android:textColor="#FFFFFF" />
+                    android:text="Write Your Reviews"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Writing great reviews may help others discover the places that are just apt for them. Here are a few tips to write a good review:" />
 
                 <EditText
                     android:id="@+id/editTextMobile"
@@ -154,73 +239,16 @@
                     android:scaleY=".5"
                     android:theme="@style/RatingBar" />
 
-                <TextView
+                <Button
+                    android:id="@+id/buttonSubmitReview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Writing great reviews may help others discover the places that are just apt for them. Here are a few tips to write a good review:" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Write Your Reviews"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/colorPrimary" />
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/buttonoutline"
+                    android:text="Submit Review"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/imageButtonPhone"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="240dp"
-                    android:layout_marginEnd="30dp"
-                    android:background="#FCFCFC"
-                    android:src="@drawable/ic_phone_android_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonLocation"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="174dp"
-                    android:background="#FCFCFC"
-                    android:src="@drawable/ic_location_on_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonMail"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="26dp"
-                    android:background="#FCFCFC"
-                    android:src="@drawable/ic_mail_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonSMS"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="99dp"
-                    android:layout_marginTop="0dp"
-                    android:background="#FCFCFC"
-                    android:src="@drawable/ic_sms_black_24dp" />
-
-
-            </RelativeLayout>
 
             <LinearLayout
                 android:layout_height="200dp"
@@ -330,34 +358,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <RelativeLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/buttonDealsAndOffers"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/buttonoutline"
-                    android:textColor="#FCFCFC"
-                    android:fontFamily="monospace"
-                    android:text="Deals And Offers"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/buttonProductAndService"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="70dp"
-                    android:background="@drawable/buttonoutline"
-                    android:fontFamily="monospace"
-                    android:text="Product And Services"
-                    android:textColor="#FCFCFC"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
 
         </LinearLayout>
 
