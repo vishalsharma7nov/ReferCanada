@@ -14,7 +14,7 @@ public class Canadian_DealsAndOffersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canadian__deals_and_offers);
-        makeText(this, "Nothing to Show...", Toast.LENGTH_SHORT).show();
+        makeText(this, "No Deals And Offers Available...", Toast.LENGTH_SHORT).show();
     }
 
 }
