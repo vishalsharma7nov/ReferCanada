@@ -23,6 +23,7 @@
 
     <string name="photo_gallery"><u>Photo Gallery</u></string>
     <string name="services_offered"><u>Services Offered</u></string>
-    <string name="room_booking"><u>Product And Services</u></string>
+    <string name="productandservices"><u>Product And Services</u></string>
+    <string name="dealsandoffers"><u>Deals And Offers</u></string>
 
 </resources>

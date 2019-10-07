@@ -112,30 +112,6 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/internationallisting"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/textfieldoutline"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="International Listing"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorTextWhite"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/cardview_shadow_start_color"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <TextView
                         android:id="@+id/coupon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -154,13 +130,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:orientation="vertical"
                     android:layout_margin="5dp"
                     android:background="@color/cardview_shadow_start_color"
-                    android:orientation="vertical">
+                    android:padding="5dp">
                     <TextView
                         android:id="@+id/onlinecoupon"
-                        android:textAllCaps="true"
+                        android:text="Online Coupon's"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -168,7 +144,7 @@
                         android:background="@drawable/textfieldoutline"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Online Coupon's"
+                        android:textAllCaps="true"
                         android:textColor="@color/colorTextWhite"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -197,6 +173,31 @@
                         android:textSize="25sp"
                         android:textStyle="bold" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/internationallisting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfieldoutline"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="International Listing"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
 
             </LinearLayout>
 

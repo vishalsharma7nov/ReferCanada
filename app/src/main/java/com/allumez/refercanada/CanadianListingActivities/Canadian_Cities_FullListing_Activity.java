@@ -56,10 +56,9 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
     protected ImageButton imageButtonMail,imageButtonPhone,imageButtonAddress,imageButtonSms;
     protected String url,urlForReviews;
     protected ListView listViewBusinessInformation,listViewUsersReviews;
-    protected String reviewAPI,ratingBarUserReview;
-    protected String listId,businessId,listing_name,landmark;
+    protected String reviewAPI,ratingBarUserReview,listId,businessId,listing_name,landmark;
     protected EditText editTextFullName,editTextMobile,editTextEmailId,editTextCity,editTextReview;
-    protected Button buttonSubmitButton;
+    protected Button buttonSubmitButton,buttonDealsAndOffers,buttonProductAndService;
     protected RatingBar ratingBarReview;
     protected ImageView imageViewCoverImage;
 
@@ -83,6 +82,22 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
         editTextEmailId         =findViewById(R.id.editTextEmailId);
         editTextCity            =findViewById(R.id.editTextCity);
         editTextReview          =findViewById(R.id.editTextReview);
+        buttonDealsAndOffers = findViewById(R.id.buttonDealsAndOffers);
+        buttonProductAndService = findViewById(R.id.buttonProductAndService);
+        buttonDealsAndOffers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Canadian_DealsAndOffersActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonProductAndService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Canadian_ProductAndServicesActivity.class);
+                startActivity(intent);
+            }
+        });
         buttonSubmitButton = findViewById(R.id.buttonSubmitReview);
         buttonSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override

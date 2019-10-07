@@ -17,6 +17,7 @@
         app:srcCompat="@drawable/logorefercanada"/>
     <ListView
         android:id="@+id/listView"
+        android:divider="@color/colorTextWhite"
         android:layout_marginTop="180dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"

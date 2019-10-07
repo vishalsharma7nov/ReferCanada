@@ -13,6 +13,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="24dp"
+            android:padding="10dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="City Name"
             android:textAllCaps="true"
@@ -23,6 +24,5 @@
             android:id="@+id/textViewId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
 </RelativeLayout>

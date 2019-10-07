@@ -34,12 +34,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class Coupons_Category_Adpater extends BaseAdapter implements Filterable{
 
     Context c;
-    public static String[] id;
-    public static String[] name;
-    public static String[] image;
-    public static String[] icon;
-    public static String[] coupon_icon;
-
     public Coupons_Category_Adpater.ItemFilter mFilter = new Coupons_Category_Adpater.ItemFilter();
     List<Setting_Coupons_Category_Data> list;
     List<Setting_Coupons_Category_Data> filteredData;
@@ -50,7 +44,6 @@ public class Coupons_Category_Adpater extends BaseAdapter implements Filterable{
         this.list = list;
         this.filteredData = list;
     }
-
 
     @Override
     public int getCount() {
@@ -102,13 +95,11 @@ public class Coupons_Category_Adpater extends BaseAdapter implements Filterable{
                         }
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-//                            Toast.makeText(c, "Image Loading Finished!!!", Toast.LENGTH_SHORT).show();
                             return false;
                         }
                     })
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(i1);
-
         return convertView;
     }
 
@@ -120,38 +111,27 @@ public class Coupons_Category_Adpater extends BaseAdapter implements Filterable{
     private class ItemFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
             String filterString = constraint.toString().toLowerCase();
-
             FilterResults results = new FilterResults();
-
             final List<Setting_Coupons_Category_Data> list1 = list;
-
             int count = list1.size();
             final ArrayList<Setting_Coupons_Category_Data> nlist = new ArrayList<Setting_Coupons_Category_Data>(count);
-
             Setting_Coupons_Category_Data filterableString ;
-
             for (int i = 0; i < count; i++) {
                 filterableString = list1.get(i);
                 if (filterableString.getName().toLowerCase().contains(filterString)) {
                     nlist.add(filterableString);
                 }
             }
-
             results.values = nlist;
             results.count = nlist.size();
-
             return results;
         }
-
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredData = (ArrayList<Setting_Coupons_Category_Data>) results.values;
             notifyDataSetChanged();
         }
-
     }
-
 }

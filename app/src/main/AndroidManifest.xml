@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".forum.ForumActivity"></activity>
+        <activity android:name=".CanadianListingActivities.Canadian_ProductAndServicesActivity"/>
+        <activity android:name=".CanadianListingActivities.Canadian_DealsAndOffersActivity"/>
+        <activity android:name=".forum.ForumActivity" />
         <activity android:name=".coupons.Coupons_CityName" />
         <activity android:name=".CanadianListingActivities.Canadian_State_Name" />
         <activity android:name=".coupons.Coupon_Details" />

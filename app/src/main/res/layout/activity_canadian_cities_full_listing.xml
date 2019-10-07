@@ -69,87 +69,84 @@
 
             </LinearLayout>
 
-
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:text="Write Your Reviews"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/colorPrimary"
+                <Button
+                    android:id="@+id/buttonSubmitReview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:text="Writing great reviews may help others discover the places that are just apt for them. Here are a few tips to write a good review:"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/editTextFullName"
-                    android:padding="10dp"
-                    android:layout_marginTop="20dp"
-                    android:hint="Full Name"
-                    android:background="@drawable/textfield"
-                    android:singleLine="true"
-                    android:inputType="text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/buttonoutline"
+                    android:text="Submit Review"
+                    android:textColor="#FFFFFF" />
 
                 <EditText
                     android:id="@+id/editTextMobile"
-                    android:padding="10dp"
-                    android:layout_marginTop="10dp"
-                    android:hint="Mobile"
-                    android:background="@drawable/textfield"
-                    android:maxLength="10"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/grey_outline"
+                    android:hint="Mobile"
+                    android:maxLength="10"
+                    android:padding="10dp" />
 
                 <EditText
                     android:id="@+id/editTextEmailId"
-                    android:padding="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/textfield"
-                    android:hint="Email Id"
-                    android:singleLine="true"
-                    android:inputType="text|textEmailAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/grey_outline"
+                    android:hint="Email Id"
+                    android:inputType="text|textEmailAddress"
+                    android:padding="10dp"
+                    android:singleLine="true" />
 
                 <EditText
                     android:id="@+id/editTextCity"
-                    android:padding="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/textfield"
-                    android:hint="City"
-                    android:singleLine="true"
-                    android:inputType="text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/grey_outline"
+                    android:hint="City"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:singleLine="true" />
 
                 <EditText
                     android:id="@+id/editTextReview"
-                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/grey_outline"
+                    android:gravity="top|left"
                     android:hint="Write Review"
                     android:inputType="textMultiLine"
                     android:lines="8"
-                    android:background="@drawable/textfield"
-                    android:minLines="6"
-                    android:gravity="top|left"
                     android:maxLines="10"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
+                    android:minLines="6"
+                    android:padding="10dp"
                     android:scrollbars="vertical"/>
+
+                <EditText
+                    android:id="@+id/editTextFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/grey_outline"
+                    android:hint="Full Name"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:singleLine="true" />
 
                 <RatingBar
                     android:id="@+id/ratingbarUserReview"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_alignParentStart="true"
                     android:gravity="start"
                     android:numStars="5"
@@ -157,14 +154,17 @@
                     android:scaleY=".5"
                     android:theme="@style/RatingBar" />
 
-                <Button
-                    android:id="@+id/buttonSubmitReview"
-                    android:layout_marginTop="10dp"
-                    android:text="Submit Review"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/buttonoutline"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Writing great reviews may help others discover the places that are just apt for them. Here are a few tips to write a good review:" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Write Your Reviews"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
 
@@ -222,21 +222,61 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_margin="10dp"
+            <LinearLayout
+                android:layout_height="200dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+                <ListView
+                    android:id="@+id/listViewUsersReviews"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="20dp"
+                    android:fadeScrollbars="false"
+                    android:focusable="true"
+                    android:nestedScrollingEnabled="true"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="true"
+                    android:paddingBottom="30dp"
+                    android:scrollbarThumbVertical="@color/colorPrimary"/>
+            </LinearLayout>
 
-                <Button
-                    android:id="@+id/buttonOffers"
+
+<!--            <ImageView-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:layout_marginStart="40dp"-->
+<!--                android:layout_marginEnd="40dp"-->
+<!--                android:src="@color/colorPrimary"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="2dp" />-->
+
+<!--            <TextView-->
+<!--                android:text="@string/room_booking"-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:gravity="center"-->
+<!--                android:fontFamily="sans-serif-smallcaps"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content" />-->
+
+            <RelativeLayout
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:layout_margin="5dp"
+                android:visibility="gone">
+                <ListView
+                    android:id="@+id/listViewBusinessInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/buttonoutline"
-                    android:textColor="#FCFCFC"
-                    android:fontFamily="monospace"
-                    android:text="Offers"
-                    android:textStyle="bold" />
-
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cardviewoutline"
+                    android:fadeScrollbars="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="true"
+                    android:nestedScrollingEnabled="true"
+                    android:scrollbarThumbVertical="@color/colorPrimary"/>
 
             </RelativeLayout>
 
@@ -250,57 +290,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp" />
 
-            <TextView
-                android:text="@string/room_booking"
-                android:textColor="@color/colorPrimary"
-                android:gravity="center"
-                android:fontFamily="sans-serif-smallcaps"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ListView
-                    android:id="@+id/listViewUsersReviews"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_margin="20dp"
-                    android:paddingBottom="30dp"
-                    android:fadeScrollbars="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:focusedByDefault="true"
-                    android:nestedScrollingEnabled="true"
-                    android:scrollbarThumbVertical="@color/colorPrimary"/>
-            </LinearLayout>
-
-
-            <ImageView
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-                android:src="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="2dp" />
-
             <RelativeLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <RatingBar
                     android:id="@+id/ratingbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:isIndicator="true"
-                    android:layout_alignParentStart="true"
                     android:layout_gravity="center"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="75dp"
+                    android:isIndicator="true"
                     android:numStars="5"
                     android:scaleX=".5"
                     android:scaleY=".5"
@@ -329,21 +332,30 @@
                 android:layout_height="wrap_content" />
 
             <RelativeLayout
-                android:id="@+id/layout"
-                android:layout_height="450dp"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_margin="5dp">
-                <ListView
-                    android:id="@+id/listViewBusinessInformation"
-                    android:nestedScrollingEnabled="true"
-                    android:focusableInTouchMode="true"
-                    android:focusedByDefault="true"
-                    android:focusable="true"
-                    android:background="@drawable/cardviewoutline"
-                    android:fadeScrollbars="false"
-                    android:scrollbarThumbVertical="@color/colorPrimary"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/buttonDealsAndOffers"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/buttonoutline"
+                    android:textColor="#FCFCFC"
+                    android:fontFamily="monospace"
+                    android:text="Deals And Offers"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonProductAndService"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="70dp"
+                    android:background="@drawable/buttonoutline"
+                    android:fontFamily="monospace"
+                    android:text="Product And Services"
+                    android:textColor="#FCFCFC"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 

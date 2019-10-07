@@ -110,7 +110,6 @@
                         android:background="#FCFCFC"
                         android:src="@drawable/ic_sms_black_24dp" />
 
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -127,7 +126,6 @@
                         android:text="Offers"
                         android:textStyle="bold" />
 
-
                 </RelativeLayout>
 
 
@@ -141,7 +139,7 @@
                     android:layout_height="2dp" />
 
                 <TextView
-                    android:text="@string/room_booking"
+                    android:text="@string/productandservices"
                     android:textColor="@color/colorPrimary"
                     android:gravity="center"
                     android:fontFamily="sans-serif-smallcaps"
@@ -164,8 +162,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
                             android:src="@drawable/gallery3" />
-
-
 
                         <TextView
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"

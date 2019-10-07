@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -58,7 +57,6 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
         String categoryId = bb.getString("categoryId", "categoryId");
         String subcategoryId = bb.getString("subcategoryId", "subcategoryId");
         url = "http://canada.net.in/api/getListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
-        Log.e("===urlCL",url);
         sendRequest();
     }
 
