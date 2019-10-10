@@ -60,7 +60,7 @@ public class Coupons extends AppCompatActivity{
                             if (abc !=1 )
                             {
                                 loading.dismiss();
-                                Toast.makeText(getApplicationContext(), "Work under Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "No Coupons Left!!", Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
@@ -140,7 +140,7 @@ public class Coupons extends AppCompatActivity{
                             }
                         } catch (JSONException e) {
                             loading.dismiss();
-                            Toast.makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Application Under Maintenance!!"+e.getMessage(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
@@ -149,7 +149,7 @@ public class Coupons extends AppCompatActivity{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
-                        Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Application Under Maintenance!!"+error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
         RequestQueue requestQueue = Volley.newRequestQueue(this);

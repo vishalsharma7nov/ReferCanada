@@ -59,7 +59,7 @@ public class Canadian_State_Listing_Activity extends AppCompatActivity {
                             JSONObject obj = new JSONObject(response);
                             int abc = Integer.parseInt(obj.getString("status"));
                             if (abc != 1) {
-                                Toast.makeText(Canadian_State_Listing_Activity.this, "Work in Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Canadian_State_Listing_Activity.this, "Application Under Maintenance!!", Toast.LENGTH_SHORT).show();
                             } else if (abc == 1) {
                                 loading.dismiss();
                                 showJSON(response);
@@ -130,7 +130,7 @@ public class Canadian_State_Listing_Activity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             loading.dismiss();
-                            Toast.makeText(getApplicationContext(), "Error "+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Application Under Maintenance!!"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
@@ -139,7 +139,7 @@ public class Canadian_State_Listing_Activity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
-                        Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Application Under Maintenance!!"+error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
         RequestQueue requestQueue = Volley.newRequestQueue(this);

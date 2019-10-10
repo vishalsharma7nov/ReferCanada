@@ -4,52 +4,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <android.support.v7.widget.CardView
         android:id="@+id/listing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardPreventCornerOverlap="true">
-
         <RelativeLayout
             android:id="@+id/relativeLayout1"
             android:paddingBottom="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <ImageView
                 android:id="@+id/imageViewGallery"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="10dp"
-                android:scaleType="centerInside"
+                android:layout_height="140dp"
+                android:padding="5dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/gallery3" />
-
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="ULTRA DELUXE ROOMS"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frame3"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/buttonoutline"
+                android:text="Book now"
+                android:textColor="#FFFFFF" />
             <LinearLayout
+                android:id="@+id/frame3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
+                android:paddingBottom="30dp"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/textViewTitle"
+                    android:id="@+id/textViewFeatures"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="ULTRA DELUXE ROOMS"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                    android:text="Wi-Fi, Air Contitioner, Swimming Pool, Bathroom , Bar , TV, Spa, Music, Parking" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
-
                     <TextView
                         android:id="@+id/textViewDiscount"
                         android:layout_width="wrap_content"
@@ -57,7 +72,6 @@
                         android:layout_margin="5dp"
                         android:text="Price: $450"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-
                     <TextView
                         android:id="@+id/textViewPrice"
                         android:layout_width="wrap_content"
@@ -66,27 +80,8 @@
                         android:background="@drawable/strike"
                         android:text="$940"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textViewFeatures"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="Wi-Fi, Air Contitioner, Swimming Pool, Bathroom , Bar , TV, Spa, Music, Parking" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/buttonoutline"
-                    android:text="Book now"
-                    android:textColor="#FFFFFF" />
                </LinearLayout>
-
         </RelativeLayout>
-
     </android.support.v7.widget.CardView>
-
 </RelativeLayout>
