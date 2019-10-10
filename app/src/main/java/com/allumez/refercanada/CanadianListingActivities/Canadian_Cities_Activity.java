@@ -43,7 +43,7 @@ public class Canadian_Cities_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         String a = intent.getStringExtra("pos");
         url="http://canada.net.in/api/getCityList.php?stateId="+a;
-        Log.e("url",url);
+        Log.e("===urlStateId",url);
         listViewCities = findViewById(R.id.listView);
         listViewSearch = findViewById(R.id.listViewsearch);
         searchView     = findViewById(R.id.searchview);

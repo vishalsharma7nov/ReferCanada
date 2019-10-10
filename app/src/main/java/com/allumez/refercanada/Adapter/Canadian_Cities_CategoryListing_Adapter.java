@@ -1,6 +1,5 @@
 package com.allumez.refercanada.Adapter;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.allumez.refercanada.CanadianListingActivities.Canadian_Cities_FullListing_Activity;
 import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
@@ -31,8 +31,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
 
     Context c;
-    protected static String[] id;
-    protected static String[] email;
     public List<Setting_Data_RecyclerView> list;
     protected List<Setting_Data_RecyclerView> filteredData;
 
@@ -62,7 +60,6 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView=in.inflate(R.layout.business_listing,null);
-        final ProgressDialog loading = ProgressDialog.show(c,"Loading Images","Please wait...",false,false);
         CardView card1 = convertView.findViewById(R.id.listing);
         ImageView i1 = convertView.findViewById(R.id.imageViewCoverImage);
         TextView t1  = convertView.findViewById(R.id.textViewListingName);
@@ -104,11 +101,11 @@ public class Canadian_Cities_CategoryListing_Adapter extends BaseAdapter{
                     .addListener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            Toast.makeText(c, "Error While Loading Image!!!", Toast.LENGTH_SHORT).show();
                             return false;
                         }
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            loading.dismiss();
                             return false;
                         }
                     })

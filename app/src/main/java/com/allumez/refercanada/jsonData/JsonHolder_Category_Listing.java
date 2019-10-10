@@ -21,6 +21,7 @@ public class JsonHolder_Category_Listing {
     public static final String KEY_phone                   = "phone";
     public static final String KEY_email                   = "email";
     public static final String KEY_address                 = "address";
+    public static final String KEY_sponsor                 = "sponsor";
     private String json;
     public JsonHolder_Category_Listing(String json) {
         this.json = json;
@@ -42,7 +43,8 @@ public class JsonHolder_Category_Listing {
                 String email         = jo.getString(KEY_email);
                 String address       = jo.getString(KEY_address);
                 String image         = jo.getString(KEY_cover_image);
-                jsonDataList.add(new Setting_Data_RecyclerView(id, business_id, listing_name, landmark, cover_image, phone, email, address, image));
+                String sponsor       = jo.getString(KEY_sponsor);
+                jsonDataList.add(new Setting_Data_RecyclerView(id, business_id, listing_name, landmark, cover_image, phone, email, address, image,sponsor));
             }
         } catch (JSONException e) {
             e.printStackTrace();

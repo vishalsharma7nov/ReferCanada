@@ -1,26 +1,19 @@
 package com.allumez.refercanada.Adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.allumez.refercanada.GetterAndSetter.Setting_Coupons_Details_Data;
+import com.allumez.refercanada.LoginActivity;
 import com.allumez.refercanada.R;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,40 +53,24 @@ public class Coupons_Details_Adpater extends BaseAdapter implements Filterable {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater in=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView=in.inflate(R.layout.coupons_listing_layout,null);
-
         TextView t1= convertView.findViewById(R.id.textViewCouponsTitle);
         TextView t2= convertView.findViewById(R.id.textViewCouponsDescription);
         TextView t3= convertView.findViewById(R.id.textViewCouponsLeft);
         TextView t4= convertView.findViewById(R.id.textViewCouponsDiscountPrice);
         TextView t5= convertView.findViewById(R.id.textViewCouponsActualPrice);
-
         t1.setText(filteredData.get(position).getTitle());
         t2.setText(filteredData.get(position).getDescription());
         t3.setText("Total Coupons Left = "+filteredData.get(position).getTotal_number_of_coupons());
         t4.setText("Price =$"+filteredData.get(position).getDiscounted_price());
         t5.setText("$"+filteredData.get(position).getActual_price());
-
-        ImageView i1= convertView.findViewById(R.id.imageViewCouponListing);
-
-        String url= "http://canada.net.in/uploads/coupon_img/"+filteredData.get(position).getImage();
-            Glide.with(c)
-                    .load(url)
-                    .fitCenter()
-                    .addListener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            Toast.makeText(c, "Error While Loading Image!!!", Toast.LENGTH_SHORT).show();
-                            return false;
-                        }
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-//                            Toast.makeText(c, "Image Loading Finished!!!", Toast.LENGTH_SHORT).show();
-                            return false;
-                        }
-                    })
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(i1);
-
+        Button b1 =convertView.findViewById(R.id.buttonGetDeal);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(c.getApplicationContext(), LoginActivity.class);
+                c.startActivity(intent);
+            }
+        });
         return convertView;
     }
 

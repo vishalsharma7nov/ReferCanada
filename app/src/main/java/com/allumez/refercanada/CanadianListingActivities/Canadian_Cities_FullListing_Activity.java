@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.allumez.refercanada.Adapter.Canadian_Cities_FullListing_Adapter;
 import com.allumez.refercanada.Adapter.ReviewListingAdapter;
+import com.allumez.refercanada.GetterAndSetter.Setting_Data_RecyclerView;
+import com.allumez.refercanada.GetterAndSetter.Setting_Full_Listing;
 import com.allumez.refercanada.R;
 import com.allumez.refercanada.jsonData.JsonHolder_Category_Listing;
 import com.allumez.refercanada.jsonData.JsonHolder_FullListing;
@@ -44,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_LONG;
@@ -61,6 +64,8 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
     protected Button buttonSubmitButton,buttonDealsAndOffers,buttonProductAndService;
     protected RatingBar ratingBarReview;
     protected ImageView imageViewCoverImage;
+    protected List<Setting_Full_Listing> settingDataList;
+    protected List<Setting_Data_RecyclerView> address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,7 +214,6 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
                                 String imageUrl = "http://canada.net.in/uploads/listing_img/"+image;
                                 Glide.with(getApplicationContext())
                                         .load(imageUrl)
-                                        .centerCrop()
                                         .addListener(new RequestListener<Drawable>() {
                                             @Override
                                             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -348,8 +352,8 @@ public class Canadian_Cities_FullListing_Activity extends AppCompatActivity  {
     }
     private void showJSON(String json) {
         JsonHolder_FullListing jsonHolderFullListing = new JsonHolder_FullListing(json);
-        jsonHolderFullListing.parseJSON();
-        Canadian_Cities_FullListing_Adapter fullListingAdapter = new Canadian_Cities_FullListing_Adapter(this, JsonHolder_FullListing.title, JsonHolder_FullListing.product_image, JsonHolder_FullListing.discount, JsonHolder_FullListing.price, JsonHolder_FullListing.features);
+        settingDataList=jsonHolderFullListing.parseJSON();
+        Canadian_Cities_FullListing_Adapter fullListingAdapter = new Canadian_Cities_FullListing_Adapter(this, settingDataList);
         listViewBusinessInformation.setAdapter(fullListingAdapter);
     }
 }

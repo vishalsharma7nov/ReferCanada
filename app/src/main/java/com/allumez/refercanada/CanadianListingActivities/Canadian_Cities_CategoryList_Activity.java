@@ -39,7 +39,7 @@ public class Canadian_Cities_CategoryList_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         String a = intent.getStringExtra("pos");
         url="http://canada.net.in/api/getSubCategoryList.php?categoryId="+a;
-        Log.e("url",url);
+        Log.e("===urlcategoryID",url);
         listViewCitiesCategoryList = findViewById(R.id.listView);
         listViewId  = findViewById(R.id.listViewId);
         listViewSearch = findViewById(R.id.listViewsearch);

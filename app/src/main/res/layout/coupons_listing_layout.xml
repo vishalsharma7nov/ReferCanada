@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -10,103 +11,71 @@
         android:background="@drawable/couponsbackground"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/imageViewCouponListing"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="40dp"
-                android:src="@drawable/blog1" />
-
             <TextView
                 android:id="@+id/textViewCouponsTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="top"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="82dp"
+                android:gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
                 android:text="Coupons"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
                 android:textColor="@color/colorPrimary" />
 
             <TextView
-                android:id="@+id/textViewCouponsLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="130dp"
-                android:layout_marginBottom="30dp"
-                android:gravity="left"
-                android:text="Coupons Left = 2"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/buttonGetDeal"
+                android:id="@+id/textViewCouponsDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="210dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/buttonoutline"
-                android:padding="10dp"
-                android:text="get deal"
-                android:textColor="@color/colorTextWhite" />
-
-            <TextView
-                android:id="@+id/textViewCouponsDescription"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="130dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
                 android:autoSizeTextType="uniform"
                 android:maxLines="3"
                 android:text="TextView TextView TextView TextView TextView TextView TextView" />
 
+        <LinearLayout
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textViewCouponsDiscountPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="150dp"
                 android:text="price = $40"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/textViewCouponsActualPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/textViewCouponsDiscountPrice"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="148dp"
-                android:layout_marginEnd="-85dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="106dp"
                 android:background="@drawable/strike"
+                android:layout_marginStart="20dp"
                 android:text="$50"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
-
-        </RelativeLayout>
-
+        </LinearLayout>
+        <TextView
+            android:id="@+id/textViewCouponsLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:gravity="right"
+            android:text="Coupons Left = 2"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/buttonGetDeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@drawable/buttonoutline"
+            android:padding="10dp"
+            android:text="get deal"
+            android:textColor="@color/colorTextWhite" />
     </LinearLayout>
 
 </LinearLayout>

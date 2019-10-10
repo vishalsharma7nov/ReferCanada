@@ -1,10 +1,16 @@
 package com.allumez.refercanada.jsonData;
 
+import com.allumez.refercanada.GetterAndSetter.Setting_Full_Listing;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JsonHolder_FullListing {
+    public static List<Setting_Full_Listing> jsonDataList = new ArrayList<>();
     public static String[] id;
     public static String[] title;
     public static String[] product_image;
@@ -28,12 +34,12 @@ public class JsonHolder_FullListing {
     public JsonHolder_FullListing(String json) {
         this.json = json;
     }
-    public void parseJSON() {
+    public List<Setting_Full_Listing>parseJSON() {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
-            JSONObject jsonObject1 = new JSONObject(json);
+            jsonDataList = new ArrayList<>();
             id                  = new String[users.length()];
             title               = new String[users.length()];
             product_image       = new String[users.length()];
@@ -54,9 +60,11 @@ public class JsonHolder_FullListing {
                 show_product     [i]     = jo.getString(KEY_show_product);
                 show_price       [i]     = jo.getString(KEY_show_price);
                 discount         [i]     = jo.getString(KEY_discount);
+                jsonDataList.add(new Setting_Full_Listing(jo.getString(KEY_ID),jo.getString(KEY_title),jo.getString(KEY_product_image),jo.getString(KEY_detail),jo.getString(KEY_price),jo.getString(KEY_show_product),jo.getString(KEY_features),jo.getString(KEY_show_price),jo.getString(KEY_discount)));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return jsonDataList;
     }
 }

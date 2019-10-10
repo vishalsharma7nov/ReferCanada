@@ -13,14 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.allumez.refercanada.blogs.Blog;
 import com.allumez.refercanada.CanadianListingActivities.Canadian_State_Listing_Activity;
+import com.allumez.refercanada.blogs.Blog;
 import com.allumez.refercanada.coupons.Coupons;
 import com.allumez.refercanada.forum.ForumActivity;
 import com.allumez.refercanada.internationalListing.International_CategoryList_Activity;
@@ -28,33 +27,15 @@ import com.allumez.refercanada.internationalListing.International_CategoryList_A
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ImageView imageViewReferCanadaLogo,imageViewHeader;
-    LinearLayout linearLayoutListing;
-    TextView textViewCanadianList,textViewInternationalListing,textViewCoupon,textViewFourm;
-    Button buttonSignIn,buttonRegister;
+    protected ImageView imageViewReferCanadaLogo,imageViewHeader;
+    protected LinearLayout linearLayoutListing;
+    protected TextView textViewCanadianList,textViewInternationalListing,textViewCoupon,textViewFourm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        buttonSignIn   = findViewById(R.id.buttonSignIn);
-        buttonRegister = findViewById(R.id.buttonRegister);
         final RelativeLayout relativeLayout1 = findViewById(R.id.relativeLayout1);
-
-        buttonSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,RegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
         imageViewReferCanadaLogo = findViewById(R.id.imageViewReferCanadaLogo);
         imageViewHeader          = findViewById(R.id.imageView);
         textViewCanadianList    = findViewById(R.id.canadianlisting);
@@ -96,7 +77,6 @@ public class HomeActivity extends AppCompatActivity
                 relativeLayout1.setVisibility(View.GONE);
                 linearLayoutListing.setVisibility(View.VISIBLE);
                 imageViewHeader.setVisibility(View.VISIBLE);
-                buttonRegister.setVisibility(View.VISIBLE);
             }
         });
         final Handler someHandler = new Handler(getMainLooper());
@@ -106,7 +86,6 @@ public class HomeActivity extends AppCompatActivity
                 relativeLayout1.setVisibility(View.GONE);
                 linearLayoutListing.setVisibility(View.VISIBLE);
                 imageViewHeader.setVisibility(View.VISIBLE);
-                buttonRegister.setVisibility(View.VISIBLE);
                 someHandler.postDelayed(this, 3000);
             }
         }, 3000);

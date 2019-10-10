@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -33,8 +34,9 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
     protected boolean doubleBackToExitPressedOnce = false;
     protected RecyclerView recyclerViewTopRated;
     protected ListView listViewListing;
-    protected String url;
+    protected String url,API;
     protected List<Setting_Data_RecyclerView> settingDataList;
+    protected RecyclerViewTopRated myadpt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
         }
         listViewListing  = findViewById(R.id.listviewListing);
         recyclerViewTopRated = findViewById(R.id.recyclerViewTopRated);
-        RecyclerViewTopRated myadpt = new RecyclerViewTopRated(this,settingDataList);
+        myadpt = new RecyclerViewTopRated(this,settingDataList);
         recyclerViewTopRated.setAdapter(myadpt);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         lm.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -57,7 +59,10 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
         String categoryId = bb.getString("categoryId", "categoryId");
         String subcategoryId = bb.getString("subcategoryId", "subcategoryId");
         url = "http://canada.net.in/api/getListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
+        API = "http://canada.net.in/api/getSponsorListing.php?stateId="+stateId+"&cityId="+cityId+"&categoryId="+categoryId+"&subcategoryId="+subcategoryId;
         sendRequest();
+        getSponsor();
+        Log.e("===urlSubCategory",url);
     }
 
     @Override
@@ -118,11 +123,52 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
         requestQueue.add(stringRequest);
     }
 
+    private void getSponsor() {
+        final ProgressDialog loading = ProgressDialog.show(this,"Loading","Please wait...",false,false);
+        StringRequest stringRequest = new StringRequest(API,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            int abc = Integer.parseInt(obj.getString("status"));
+                            if (abc !=1 )
+                            {
+                                Toast.makeText(Canadian_Cities_CategoryListing_Activity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
+                                loading.dismiss();
+                            }
+                            else if (abc == 1)
+                            {
+                                loading.dismiss();
+                                showSponsor(response);
+                            }
+                        } catch (JSONException e) {
+                            loading.dismiss();
+                            Toast.makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
+                        Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
     private void showJSON(String json) {
         JsonHolder_Category_Listing jsonHolderListing = new JsonHolder_Category_Listing(json);
         settingDataList = jsonHolderListing.parseJSON();
         Canadian_Cities_CategoryListing_Adapter ca = new Canadian_Cities_CategoryListing_Adapter(this, settingDataList);
         listViewListing.setAdapter(ca);
         ca.notifyDataSetChanged();
+    }
+    private void showSponsor(String json) {
+        JsonHolder_Category_Listing jsonHolderListing = new JsonHolder_Category_Listing(json);
+        settingDataList = jsonHolderListing.parseJSON();
     }
 }
