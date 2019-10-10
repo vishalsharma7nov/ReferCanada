@@ -53,12 +53,12 @@ public class Canadian_Cities_FullListing_Adapter extends BaseAdapter {
         view=in.inflate(R.layout.full_listing,null);
         TextView textViewTitle           = view.findViewById(R.id.textViewTitle);
         TextView textViewDiscount        = view.findViewById(R.id.textViewDiscount);
-        TextView textViewPrice           = view.findViewById(R.id.textViewPrice);
+//        TextView textViewPrice           = view.findViewById(R.id.textViewPrice);
         TextView textViewFeatures        = view.findViewById(R.id.textViewFeatures);
         textViewTitle.setText(list.get(i).getTitle());
-        textViewDiscount.setText("Price="+list.get(i).getDiscount());
-        textViewPrice.setText(list.get(i).getPrice());
-        textViewFeatures.setText(list.get(i).getFeatures());
+        textViewDiscount.setText("Price="+list.get(i).getPrice());
+//        textViewPrice.setText(list.get(i).getPrice());
+        textViewFeatures.setText(list.get(i).getDetail());
         ImageView i1= view.findViewById(R.id.imageViewGallery);
         String url= "http://canada.net.in/uploads/product_img/"+list.get(i).getProduct_image();
         Glide.with(c)

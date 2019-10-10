@@ -11,15 +11,6 @@ import java.util.List;
 
 public class JsonHolder_FullListing {
     public static List<Setting_Full_Listing> jsonDataList = new ArrayList<>();
-    public static String[] id;
-    public static String[] title;
-    public static String[] product_image;
-    public static String[] detail;
-    public static String[] price;
-    public static String[] features;
-    public static String[] show_product;
-    public static String[] show_price;
-    public static String[] discount;
     public static final String JSON_ARRAY                  = "product_data";
     public static final String KEY_ID                      = "id";
     public static final String KEY_title                   = "title";
@@ -40,15 +31,15 @@ public class JsonHolder_FullListing {
             jsonObject = new JSONObject(json);
             JSONArray users = jsonObject.getJSONArray(JSON_ARRAY);
             jsonDataList = new ArrayList<>();
-            id                  = new String[users.length()];
-            title               = new String[users.length()];
-            product_image       = new String[users.length()];
-            detail              = new String[users.length()];
-            price               = new String[users.length()];
-            features            = new String[users.length()];
-            show_product        = new String[users.length()];
-            show_price          = new String[users.length()];
-            discount            = new String[users.length()];
+           String[] id                  = new String[users.length()];
+           String[] title               = new String[users.length()];
+           String[] product_image       = new String[users.length()];
+           String[] detail              = new String[users.length()];
+           String[] price               = new String[users.length()];
+           String[] features            = new String[users.length()];
+           String[] show_product        = new String[users.length()];
+           String[] show_price          = new String[users.length()];
+           String[] discount            = new String[users.length()];
             for (int i = 0; i < users.length(); i++) {
                 JSONObject jo = users.getJSONObject(i);
                 id               [i]     = jo.getString(KEY_ID);

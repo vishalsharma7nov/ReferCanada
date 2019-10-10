@@ -51,7 +51,7 @@ public class Canadian_ProductAndServicesActivity extends AppCompatActivity {
                             if (abc != 1)
                             {
                                 loading.dismiss();
-                                Toast.makeText(getApplicationContext(), "Application Under Maintenance!!"+response, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "No Product And Services Available Right Now!!"+response, Toast.LENGTH_SHORT).show();
                             }
                             else if (abc == 1)
                             {
