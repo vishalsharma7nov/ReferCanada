@@ -97,7 +97,7 @@ public class Canadian_Cities_CategoryListing_Activity extends AppCompatActivity 
                             int abc = Integer.parseInt(obj.getString("status"));
                             if (abc !=1 )
                             {
-                                Toast.makeText(Canadian_Cities_CategoryListing_Activity.this, "Work under Progress....", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Canadian_Cities_CategoryListing_Activity.this, "Application Under Maintenance!!", Toast.LENGTH_SHORT).show();
                                 loading.dismiss();
                             }
                             else if (abc == 1)

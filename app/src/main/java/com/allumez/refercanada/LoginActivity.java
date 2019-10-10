@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             loading.dismiss();
-                            makeText(getApplicationContext(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            makeText(getApplicationContext(), "Application Under Maintenance!!"+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
-                       makeText(getApplicationContext(), "Error "+error.getMessage(), LENGTH_LONG).show();
+                       makeText(getApplicationContext(), "Application Under Maintenance!!"+error.getMessage(), LENGTH_LONG).show();
                     }
                 })
         {
